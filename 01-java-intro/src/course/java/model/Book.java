@@ -1,11 +1,17 @@
 package course.java.model;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-public class Book implements Comparable<Book> {
+public class Book {
+    private static Random random;
+    static {
+        random = new Random();
+        random.setSeed(System.nanoTime());
+    }
+    public static String getNextId() {
+        return UUID.randomUUID().toString();
+    }
     private Long id;
     private String title;
     private String author;
@@ -89,6 +95,14 @@ public class Book implements Comparable<Book> {
         this.price = price;
     }
 
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
+    }
+
     public String getDescription() {
         if(description == null){
             description = "id=" + id +
@@ -107,15 +121,17 @@ public class Book implements Comparable<Book> {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", publishingDate=" + publishingDate +
-                ", publisher='" + publisher + '\'' +
-                ", price=" + price +
-                ", description='" + getDescription() + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("Book{");
+        sb.append("id=").append(id);
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", author='").append(author).append('\'');
+        sb.append(", publishingDate=").append(publishingDate);
+        sb.append(", publisher='").append(publisher).append('\'');
+        sb.append(", price=").append(price);
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", tags=").append(tags);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
@@ -133,9 +149,4 @@ public class Book implements Comparable<Book> {
         return getId() != null ? getId().hashCode() : 0;
     }
 
-    @Override
-    public int compareTo(Book other) {
-        return getId() < other.getId() ? -1 : getId() == other.getId() ? 0 : 1;
-//        return Integer.compare(getId(), other.getId());
-    }
 }

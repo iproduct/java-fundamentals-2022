@@ -3,8 +3,9 @@ package course.java.model;
 public class User extends Person{
     private String username;
     private String password;
-    private Role role;
+    private Role role = Role.USER; // default value - init during declaration
     private boolean active = true;
+    private String info;
 
     public User() {
 //        super();
@@ -14,7 +15,7 @@ public class User extends Person{
         super(firstName, lastName, age);
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.role = role; // init in constructor
     }
 
     public User(Long id, String firstName, String lastName, int age, String username, String password, Role role, boolean active) {
@@ -57,6 +58,17 @@ public class User extends Person{
         this.active = active;
     }
 
+    public String getInfo() {
+        if(info == null) { // lazy init - not thread safe!
+            info = fetchInfo();
+        }
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
@@ -75,6 +87,11 @@ public class User extends Person{
     @Override
     public String format() {
         return String.format("%s %-15.15s | %-15.15s | %-5.5s | %-4s |", super.format(), username, password, role, active);
+    }
+
+    // utility methods
+    private String fetchInfo() {
+        return String.format("This is extended information about user '%s' ...", username);
     }
 
 }
