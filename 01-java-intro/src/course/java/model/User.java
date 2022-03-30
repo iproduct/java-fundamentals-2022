@@ -15,7 +15,6 @@ public class User extends Person{
         this.username = username;
         this.password = password;
         this.role = role;
-        this.active = active;
     }
 
     public User(Long id, String firstName, String lastName, int age, String username, String password, Role role, boolean active) {
@@ -24,5 +23,52 @@ public class User extends Person{
         this.password = password;
         this.role = role;
         this.active = active;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(getId());
+        sb.append(", firstName='").append(getFirstName()).append('\'');
+        sb.append(", lastName='").append(getLastName()).append('\'');
+        sb.append(", age=").append(getAge());
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", role=").append(role);
+        sb.append(", active=").append(active);
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -4,14 +4,12 @@ public class PersonBuilder {
     private Person builded = new Person();
     public PersonBuilder() {
     }
+
     public PersonBuilder setName(String name) {
-        String[] names = name.trim().split("\\s+");
-        builded.setFirstName(names[0]);
-        if(names.length > 1) {
-            builded.setLastName(names[names.length - 1]);
-        }
+        setNames(name);
         return this;
     }
+
     public PersonBuilder setAge(int age) {
         builded.setAge(age);
         return this;
@@ -22,5 +20,14 @@ public class PersonBuilder {
     }
     public Person build(){
         return builded;
+    }
+
+    // utility methods
+    protected void setNames(String name) {
+        String[] names = name.trim().split("\\s+");
+        build().setFirstName(names[0]);
+        if(names.length > 1) {
+           build().setLastName(names[names.length - 1]);
+        }
     }
 }
