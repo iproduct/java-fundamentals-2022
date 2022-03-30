@@ -71,4 +71,10 @@ public class User extends Person{
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public String format() {
+        return String.format("%s %-15.15s | %-15.15s | %-5.5s | %-4s |", super.format(), username, password, role, active);
+    }
+
 }
