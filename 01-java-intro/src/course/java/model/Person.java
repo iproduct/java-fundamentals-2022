@@ -18,6 +18,7 @@ public class Person {
     public Person(Long id, String firstName, String lastName, int age) {
         this(firstName, lastName, age);
         this.age = age;
+        this.id = id;
     }
 
     public Long getId() {
