@@ -44,16 +44,17 @@ public class UserRepositoryMemoryImpl implements UserRepository {
 
     @Override
     public User update(User user) {
-        return null;
+        entities.put(user.getId(), user);
+        return user;
     }
 
     @Override
     public Optional<User> deleteById(long id) {
-        return Optional.empty();
+        return Optional.ofNullable(entities.remove(id));
     }
 
     @Override
     public long count() {
-        return 0;
+        return entities.size();
     }
 }

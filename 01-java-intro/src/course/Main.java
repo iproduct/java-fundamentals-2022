@@ -25,6 +25,14 @@ public class Main {
                 .setUsername("stefan").setPassword("stef123").setRole(Role.USER)
                 .build();
         userRepo.create(newUser);
+        var ivanOptional = userRepo.findByUsername("ivan");
+        if(ivanOptional.isPresent()) {
+            var ivan = ivanOptional.get();
+            ivan.setLastName("Hristov");
+            ivan.setPassword("new_pass");
+            userRepo.update(ivan);
+        }
+        userRepo.deleteById(2L);
         for (User user : userRepo.findAll()) {
             System.out.println(user.format());
         }
