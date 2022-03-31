@@ -15,7 +15,11 @@ public class TypeCasting {
         int i2 = (int) 435335343444534454L;
         System.out.printf("long to int: %d\n", i2);
 
+        float f = 435335343444534454L;
+        System.out.printf("long to float: %f\n", f);
+
         String str = "Hello Java!";
+//        Date date = new Date();
         Object obj = str; // Upcasting is automatic
         System.out.println("Upcasting String -> Object: " + str );
 
