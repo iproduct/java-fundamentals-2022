@@ -11,15 +11,15 @@ public class User extends Person{
 //        super();
     }
 
-    public User(String firstName, String lastName, int age,  String username, String password, Role role) {
-        super(firstName, lastName, age);
+    public User(String firstName, String lastName, int age,  String username, String password, Role role, String phone) {
+        super(firstName, lastName, age, phone);
         this.username = username;
         this.password = password;
         this.role = role; // init in constructor
     }
 
-    public User(Long id, String firstName, String lastName, int age, String username, String password, Role role, boolean active) {
-        super(id, firstName, lastName, age);
+    public User(Long id, String firstName, String lastName, int age, String username, String password, Role role, boolean active, String phone) {
+        super(id, firstName, lastName, age, phone);
         this.username = username;
         this.password = password;
         this.role = role;
