@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class WordCount {
-    public static final String[] STOP_WORDS = {
+    public static final Set<String> STOP_WORDS = Set.of(
             "when", "didn't", "wasn", "y", "few", "below", "into", "there", "his", "these", "about", "if", "again",
             "too", "were", "then", "doing", "haven", "such", "this", "me", "the", "further", "whom", "having",
             "mightn", "both", "him", "she", "don", "yourselves", "all", "do", "it's", "i", "what", "needn", "had",
@@ -21,7 +21,7 @@ public class WordCount {
             "hadn't", "herself", "nor", "should've", "am", "once", "ve", "an", "hers", "myself", "to", "her", "is",
             "shan't", "are", "same", "being", "your", "than", "it", "aren", "shan", "d", "m", "isn't", "down",
             "shouldn't", "you're", "why", "o", "yourself", "has", "my", "ma", "out", "that", "mustn't", "because",
-            "after", "before", "most", "off", "mustn", "won't"};
+            "after", "before", "most", "off", "mustn", "won't");
     public static final int KEYWORDS_COUNT = 20;
 
     public static List<Map.Entry<String, Integer>> findTopKeywords(String filename, int count) throws IOException{
@@ -31,7 +31,7 @@ public class WordCount {
             var words = line.split("[\\s.?!:\\\\/\"\',;\\[\\]\\-\\d\\(\\)\\{\\}]+");
             for(var word : words) {
                 word = word.toLowerCase();
-                if(word.length() < 2){
+                if(word.length() < 2 || STOP_WORDS.contains(word)){
                     continue;
                 }
                 wordCounts.put(word, wordCounts.getOrDefault(word, 0) + 1);
@@ -40,7 +40,7 @@ public class WordCount {
         });
         var results = new ArrayList<>(wordCounts.entrySet());
         results.sort(new WordCountComparator());
-        return results;
+        return results.subList(0, count);
     }
 
     public static void main(String[] args) {
