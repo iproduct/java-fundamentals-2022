@@ -17,11 +17,12 @@ public class WordCount {
                 if(word.length() < 2){
                     continue;
                 }
-
+                wordCounts.put(word, wordCounts.getOrDefault(word, 0) + 1);
             }
             System.out.println(Arrays.toString(words));
         });
-        return Collections.emptyList();
+        var results = new ArrayList<>(wordCounts.entrySet());
+        return results;
     }
 
     public static void main(String[] args) {
@@ -33,7 +34,7 @@ public class WordCount {
                 var topKeywords = findTopKeywords(filename, KEYWORDS_COUNT);
                 System.out.printf("%s:%n", filename);
                 for(var wordCount : topKeywords){
-                    System.out.printf("%20s -> %4d", wordCount.getKey(), wordCount.getValue());
+                    System.out.printf("%-15s -> %4d%n", wordCount.getKey(), wordCount.getValue());
                 }
             } catch (IOException ex) {
                 System.out.printf("Error indexing file '%s': %s%n", filename, ex.getMessage());
