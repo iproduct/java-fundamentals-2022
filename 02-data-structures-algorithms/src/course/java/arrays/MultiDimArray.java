@@ -28,12 +28,42 @@ public class MultiDimArray {
 
             rowSum = 0;
         }
-
         for (int i = 0; i < NUM_MONTHS; ++i) {
             sb.append(String.format("  %4d ", columnSums[i]));
         }
         sb.append(String.format("  %4d ", grandTotal));
         return sb.toString();
+    }
+
+    public static int[] findFirstIndexesSalesGreaterThan(int[][] data, int threshold) {
+        int[] result = null;
+        outer_label:
+        for (int i = 0; i < data.length; ++i) {
+            for (int j = 0; j < data[i].length; ++j) {
+                if(data[i][j] > threshold){
+                    result = new int[]{i, j};
+                    break outer_label;
+                }
+            }
+        }
+        // Do more calculations here ...
+        return result;
+    }
+
+    public static boolean findIfAllHasSalesGreaterThan(int[][] data, int threshold) {
+        boolean result = true;
+        outer_label:
+        for (int i = 0; i < data.length; ++i) {
+            for (int j = 0; j < data[i].length; ++j) {
+                if(data[i][j] > threshold){
+                    continue outer_label;
+                }
+            }
+            result = false;
+            break outer_label;
+        }
+        // Do more calculations here ...
+        return result;
     }
 
     public static void main(String[] args) {
@@ -44,6 +74,16 @@ public class MultiDimArray {
             }
         }
         System.out.println(formatAsTableWithTotals(sales));
+        var threshold = 1000;
+        var indexes = findFirstIndexesSalesGreaterThan(sales, threshold);
+        if(indexes != null) {
+            System.out.printf("[%d,%d] = %d > %d%n",
+                    indexes[0], indexes[1], sales[indexes[0]][indexes[1]], threshold);
+        } else {
+            System.out.println("No sales grater than " + threshold);
+        }
+        System.out.printf("Do all books have month sale > %2$d : %1$b%n",
+               findIfAllHasSalesGreaterThan(sales, threshold),  threshold);
     }
 }
 
