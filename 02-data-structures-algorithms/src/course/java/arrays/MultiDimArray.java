@@ -11,6 +11,10 @@ public class MultiDimArray {
         return ""; // TODO Your code here
     }
 
+    public static String formatAsTableWithTotals(int[][] data){
+        return ""; // TODO Your code here
+    }
+
     public static void main(String[] args) {
         int[][] sales = new int[NUM_BOOKS][NUM_MONTHS];
         for(int i = 0; i < sales.length; i++) {
