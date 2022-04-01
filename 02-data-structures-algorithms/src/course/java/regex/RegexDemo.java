@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class RegexDemo {
-    public static final String COUNTRY_CODE_REGEX = "[0+]\\s+\\((?<code>\\d+)\\)\\s*(?<number>[\\d\\s]{5,12})";
+    public static final String COUNTRY_CODE_REGEX = "[\\+0]\\s*\\((?<code>\\d+)\\)\\s+(?<number>[\\d\\s]{5,12})";
     public static void main(String[] args) {
         var users = List.of(
                 new User("Ivan", "Petrov", 25, "ivan", "ivan123", Role.ADMIN,
@@ -29,8 +29,13 @@ public class RegexDemo {
         }
         var pattern = Pattern.compile(COUNTRY_CODE_REGEX);
         for (User user : userRepo.findAll()) {
-            var matcher = pattern.matcher(user.getPhone());
-            System.out.printf("%s | %s |%n", user.format(), "");
+            var phone = user.getPhone();
+            var matcher = pattern.matcher(phone);
+            matcher.matches();
+//            for(int i = 0; i <= matcher.groupCount(); i++){
+//                System.out.printf("%d: [%d, %d] -> %s%n", i, matcher.start(i), matcher.end(i), matcher.group(i));
+//            }
+            System.out.printf("%s %3.3s |%n", user.format(), matcher.group("code"));
         }
     }
 }
