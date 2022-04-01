@@ -1,15 +1,26 @@
 package course.java.wordcount;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
 
 public class WordCount {
     public static final int KEYWORDS_COUNT = 20;
 
     public static List<Map.Entry<String, Integer>> findTopKeywords(String filename, int count) throws IOException{
-        // TODO
+        Map<String, Integer> wordCounts = new HashMap<>();
+        Path path = Path.of(filename);
+        Files.lines(path).forEach(line -> {
+            var words = line.split("[\\s.?!:\\\\/\"\',;\\[\\]\\-\\d\\(\\)\\{\\}]+");
+            for(var word : words) {
+                if(word.length() < 2){
+                    continue;
+                }
+
+            }
+            System.out.println(Arrays.toString(words));
+        });
         return Collections.emptyList();
     }
 
@@ -20,7 +31,7 @@ public class WordCount {
         for(String filename: args){
             try {
                 var topKeywords = findTopKeywords(filename, KEYWORDS_COUNT);
-                System.out.printf("File %s:%n", filename);
+                System.out.printf("%s:%n", filename);
                 for(var wordCount : topKeywords){
                     System.out.printf("%20s -> %4d", wordCount.getKey(), wordCount.getValue());
                 }
