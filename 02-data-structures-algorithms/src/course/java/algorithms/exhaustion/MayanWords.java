@@ -55,6 +55,7 @@ public class MayanWords {
     }
 
     public static void main(String[] args) {
+//        var anagramCounts = findPossibleAnagrams("acAd", "abracAdabRA");
 //        var anagramCounts = findPossibleAnagrams("acAda", "abracAdabRA");
         var anagramCounts = findPossibleAnagrams(
                 "aaaaaaaaaaaaaaaaaaaaaba",
