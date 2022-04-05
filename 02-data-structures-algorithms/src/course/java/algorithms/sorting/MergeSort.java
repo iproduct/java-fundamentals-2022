@@ -1,4 +1,4 @@
-package course.java.algorithms.sorting.merge;
+package course.java.algorithms.sorting;
 
 import java.util.Arrays;
 
