@@ -14,6 +14,7 @@ public class LabirintBFS {
 	public static final Cell START = new Cell(0, 0);
 	public static final Cell END = new Cell(2, 0);
 	public static Scanner sc = new Scanner(System.in);
+	public static Queue<List<Cell>> paths = new ArrayDeque<>();
 
 	public static void findPath(int[][] lab, Cell start, Cell target, List<Cell> currentPath, List<List<Cell>> results) {
 		int temp = lab[start.y][start.x];

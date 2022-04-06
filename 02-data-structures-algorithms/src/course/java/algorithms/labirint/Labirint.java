@@ -3,7 +3,7 @@ package course.java.algorithms.labirint;
 import java.util.*;
 
 public class Labirint {
-	public static int[][] labirint = {
+	public static int[][] labyrinth = {
 			{-1, -2, -1, -1, -1, -2},
 			{-1, -2, -2, -2, -1, -2},
 			{-1, -1, -1, -1, -1, -1},
@@ -14,7 +14,6 @@ public class Labirint {
 	public static final Cell START = new Cell(0, 0);
 	public static final Cell END = new Cell(2, 0);
 	public static Scanner sc = new Scanner(System.in);
-	public static Queue<List<Cell>> paths = new ArrayDeque<>();
 
 	public static void findPath(int[][] lab, Cell start, Cell target, List<Cell> currentPath, List<List<Cell>> results) {
 		int temp = lab[start.y][start.x];
@@ -71,9 +70,9 @@ public class Labirint {
 	}
 
 	public static void main(String[] args) {
-		printLabirint(labirint);
+		printLabirint(labyrinth);
 		List<List<Cell>> results = new ArrayList<>();
-		findPath(labirint, START, END, new ArrayList<Cell>(), results);
+		findPath(labyrinth, START, END, new ArrayList<Cell>(), results);
 		System.out.println("Paths Found:");
 		for(var path: results) {
 			System.out.println(path);
