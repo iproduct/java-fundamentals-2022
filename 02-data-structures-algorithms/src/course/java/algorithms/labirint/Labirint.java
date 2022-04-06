@@ -29,6 +29,7 @@ public class Labirint {
 		// Recursion bottom
 		if (start.equals(target)) {
 			results.add(List.copyOf(currentPath));
+			System.out.printf("Solution found: %s%n", currentPath);
 		}
 		// Recursion Step 
 		Cell[] emptyNeighbours = findEmptyNeighbours(lab, start);
