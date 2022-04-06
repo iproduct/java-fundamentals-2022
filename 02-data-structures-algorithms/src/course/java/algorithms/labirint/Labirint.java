@@ -1,56 +1,47 @@
 package course.java.algorithms.labirint;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class Labirint {
 	public static int[][] labirint = {
-			{-1,-2,-1,-1,-1,-2},
-			{-1,-2,-2,-2,-1,-2},
-			{-1,-1,-1,-2,-1,-1},
-			{-1,-2,-1,-2,-1,-1},
-			{-1,-2,-1,-1,-1,-2}
+			{-1, -2, -1, -1, -1, -2},
+			{-1, -2, -2, -2, -1, -2},
+			{-1, -1, -1, -2, -1, -1},
+			{-1, -2, -1, -2, -1, -1},
+			{-1, -2, -1, -1, -1, -2}
 	};
-	
+
 	public static final Cell START = new Cell(0, 0);
 	public static final Cell END = new Cell(2, 0);
-	
-	public static Cell[] findPath(int[][] lab, Cell start, Cell target, int len) {
+	public static Scanner sc = new Scanner(System.in);
+
+	public static void findPath(int[][] lab, Cell start, Cell target, int len, List<Cell> currentPath, List<List<Cell>> results) {
 		int temp = lab[start.y][start.x];
 		lab[start.y][start.x] = len;
+		currentPath.add(start);
 		System.out.println(start);
 		printLabirint(lab);
+		sc.nextLine();
+
 		// Recursion bottom
-		if(start.equals(target)) {
-			return new Cell[] { target };
+		if (start.equals(target)) {
+			results.add(List.copyOf(currentPath));
 		}
-		
 		// Recursion Step 
 		Cell[] emptyNeighbours = findEmptyNeighbours(lab, start);
 		Cell[] minPath = null;
 		
 		for(Cell nbr: emptyNeighbours) {
 			if(lab[nbr.y][nbr.x] == -1 || lab[nbr.y][nbr.x] > len + 1) {
-				Cell[] path = findPath(lab, nbr, target, len+1);
-				if(minPath == null || (path != null && path.length < minPath.length)) {
-					minPath = path;
-				}
+				findPath(lab, nbr, target, len+1, currentPath, results);
 			}
 		}
 
+		currentPath.remove(currentPath.size()-1);
 		lab[start.y][start.x] = temp;
-
-		Cell[] resultPath = null;
-		// prepend start cell and copy minPath
-		if (minPath != null) {
-			resultPath = new Cell[minPath.length + 1];
-			resultPath[0] = start;
-			int pos = 1;
-			for(Cell c: minPath) {
-				resultPath[pos++] = c;
-			}
-		}
-		
-		return resultPath;
 	}
 	
 	public static Cell[] findEmptyNeighbours(int[][] lab, Cell cell) {
@@ -83,10 +74,11 @@ public class Labirint {
 
 	public static void main(String[] args) {
 		printLabirint(labirint);
-		Cell[] path = findPath(labirint, START, END, 0);
-		System.out.println("Path Found:");
-		for(Cell c: path) {
-			System.out.print("[" + c.x + "," + c.y + "]->");
+		List<List<Cell>> results = new ArrayList<>();
+		findPath(labirint, START, END, 0, new ArrayList<Cell>(), results);
+		System.out.println("Paths Found:");
+		for(var path: results) {
+			System.out.println(path);
 		}
 		System.out.println();
 		

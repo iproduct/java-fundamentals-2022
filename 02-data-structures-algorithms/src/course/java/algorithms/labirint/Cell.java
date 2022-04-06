@@ -32,7 +32,7 @@ public class Cell {
 	}
 	@Override
 	public String toString() {
-		return "Cell [x=" + x + ", y=" + y + "]";
+		return "[x=" + x + ", y=" + y + "]";
 	}
 	
 	
