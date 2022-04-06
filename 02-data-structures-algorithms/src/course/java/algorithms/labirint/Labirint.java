@@ -9,7 +9,7 @@ public class Labirint {
 	public static int[][] labirint = {
 			{-1, -2, -1, -1, -1, -2},
 			{-1, -2, -2, -2, -1, -2},
-			{-1, -1, -1, -2, -1, -1},
+			{-1, -1, -1, -1, -1, -1},
 			{-1, -2, -1, -2, -1, -1},
 			{-1, -2, -1, -1, -1, -2}
 	};
@@ -47,17 +47,17 @@ public class Labirint {
 	public static List<Cell> findEmptyNeighbours(int[][] lab, Cell cell) {
 		List<Cell> nextCells = new ArrayList<>();
 		int pos = 0;
-		if(cell.x > 0 && lab[cell.y][cell.x - 1] != -2) {
-			nextCells.add(new Cell(cell.x - 1, cell.y));
-		}
 		if(cell.y > 0 && lab[cell.y - 1][cell.x] != -2) {
 			nextCells.add(new Cell(cell.x, cell.y - 1));
 		}
-		if(cell.x < lab[0].length - 1 && lab[cell.y][cell.x + 1] != -2) {
-			nextCells.add(new Cell(cell.x + 1, cell.y));
-		}
 		if(cell.y < lab.length-1 && lab[cell.y + 1][cell.x] != -2) {
 			nextCells.add(new Cell(cell.x, cell.y + 1));
+		}
+		if(cell.x > 0 && lab[cell.y][cell.x - 1] != -2) {
+			nextCells.add(new Cell(cell.x - 1, cell.y));
+		}
+		if(cell.x < lab[0].length - 1 && lab[cell.y][cell.x + 1] != -2) {
+			nextCells.add(new Cell(cell.x + 1, cell.y));
 		}
 		return nextCells;
 	}
