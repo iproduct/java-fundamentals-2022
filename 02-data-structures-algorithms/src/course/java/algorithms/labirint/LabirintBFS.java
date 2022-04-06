@@ -14,32 +14,35 @@ public class LabirintBFS {
 	public static final Cell START = new Cell(0, 0);
 	public static final Cell END = new Cell(2, 0);
 	public static Scanner sc = new Scanner(System.in);
-	public static Queue<List<Cell>> paths = new ArrayDeque<>();
+	public static Deque<List<Cell>> paths = new ArrayDeque<>();
 
-	public static void findPath(int[][] lab, Cell start, Cell target, List<Cell> currentPath, List<List<Cell>> results) {
-		int temp = lab[start.y][start.x];
-		lab[start.y][start.x] = currentPath.size();
-		currentPath.add(start);
-		System.out.println(start);
-		printLabirint(lab);
-		sc.nextLine();
+	public static void findPath(int[][] lab, Cell start, Cell target, List<List<Cell>> results) {
+		paths.addLast(List.of(start));
 
-		// Recursion bottom
-		if (start.equals(target)) {
-			results.add(List.copyOf(currentPath));
-			System.out.printf("Solution found: %s%n", currentPath);
-		}
-		// Recursion Step 
-		var emptyNeighbours = findEmptyNeighbours(lab, start);
+		while(!paths.isEmpty()) {
+			var currentPath = paths.removeFirst(); // Change Stack == DFS or Queue == BFS
+			System.out.println(currentPath);
+//			printLabirint(lab);
+//			sc.nextLine();
+			var lastCell = currentPath.get(currentPath.size()-1);
 
-		for(Cell nbr: emptyNeighbours) {
-			if(lab[nbr.y][nbr.x] == -1) {
-				findPath(lab, nbr, target, currentPath, results);
+			// Solution found
+			if (lastCell.equals(target)) {
+				results.add(List.copyOf(currentPath));
+				System.out.printf("Solution found: %s%n", currentPath);
+			}
+
+			// Find next Cells
+			var emptyNeighbours = findEmptyNeighbours(lab, lastCell);
+			for(Cell nbr: emptyNeighbours) {
+				if(lab[nbr.y][nbr.x] == -1 && !currentPath.contains(nbr)) {
+					var newPath = new ArrayList<>(currentPath);
+					newPath.add(nbr);
+					paths.addLast(newPath);
+				}
 			}
 		}
 
-		currentPath.remove(currentPath.size()-1);
-		lab[start.y][start.x] = temp;
 	}
 	
 	public static List<Cell> findEmptyNeighbours(int[][] lab, Cell cell) {
@@ -73,7 +76,7 @@ public class LabirintBFS {
 	public static void main(String[] args) {
 		printLabirint(labyrinth);
 		List<List<Cell>> results = new ArrayList<>();
-		findPath(labyrinth, START, END, new ArrayList<Cell>(), results);
+		findPath(labyrinth, START, END, results);
 		System.out.println("Paths Found:");
 		for(var path: results) {
 			System.out.println(path);
