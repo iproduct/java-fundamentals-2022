@@ -35,7 +35,7 @@ public class LabirintBFS {
 			// Find next Cells
 			var emptyNeighbours = findEmptyNeighbours(lab, lastCell);
 			for(Cell nbr: emptyNeighbours) {
-				if(lab[nbr.y][nbr.x] == -1 && !currentPath.contains(nbr)) {
+				if(!currentPath.contains(nbr)) {
 					var newPath = new ArrayList<>(currentPath);
 					newPath.add(nbr);
 					paths.addLast(newPath);
