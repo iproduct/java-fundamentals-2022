@@ -32,9 +32,8 @@ public class Labirint {
 			System.out.printf("Solution found: %s%n", currentPath);
 		}
 		// Recursion Step 
-		Cell[] emptyNeighbours = findEmptyNeighbours(lab, start);
-		Cell[] minPath = null;
-		
+		var emptyNeighbours = findEmptyNeighbours(lab, start);
+
 		for(Cell nbr: emptyNeighbours) {
 			if(lab[nbr.y][nbr.x] == -1) {
 				findPath(lab, nbr, target, currentPath, results);
@@ -45,22 +44,22 @@ public class Labirint {
 		lab[start.y][start.x] = temp;
 	}
 	
-	public static Cell[] findEmptyNeighbours(int[][] lab, Cell cell) {
-		Cell[] result = new Cell[4];
+	public static List<Cell> findEmptyNeighbours(int[][] lab, Cell cell) {
+		List<Cell> nextCells = new ArrayList<>();
 		int pos = 0;
 		if(cell.x > 0 && lab[cell.y][cell.x - 1] != -2) {
-			result[pos++] = new Cell(cell.x - 1, cell.y);
+			nextCells.add(new Cell(cell.x - 1, cell.y));
 		}
 		if(cell.y > 0 && lab[cell.y - 1][cell.x] != -2) {
-			result[pos++] = new Cell(cell.x, cell.y - 1);
+			nextCells.add(new Cell(cell.x, cell.y - 1));
 		}
 		if(cell.x < lab[0].length - 1 && lab[cell.y][cell.x + 1] != -2) {
-			result[pos++] = new Cell(cell.x + 1, cell.y);
+			nextCells.add(new Cell(cell.x + 1, cell.y));
 		}
 		if(cell.y < lab.length-1 && lab[cell.y + 1][cell.x] != -2) {
-			result[pos++] = new Cell(cell.x, cell.y + 1);
+			nextCells.add(new Cell(cell.x, cell.y + 1));
 		}
-		return Arrays.copyOf(result, pos);
+		return nextCells;
 	}
 	
 	public static void printLabirint(int[][] lab) {
