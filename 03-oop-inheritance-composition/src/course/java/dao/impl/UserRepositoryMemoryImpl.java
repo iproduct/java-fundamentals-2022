@@ -1,5 +1,7 @@
 package course.java.dao.impl;
 
+import course.java.dao.IdGenerator;
+import course.java.dao.Repository;
 import course.java.dao.UserRepository;
 import course.java.model.User;
 
@@ -8,18 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class UserRepositoryMemoryImpl implements UserRepository {
+public class UserRepositoryMemoryImpl extends RepositoryMemoryImpl<User, Long> implements UserRepository {
     private long nextId = 0;
     private Map<Long, User> entities = new HashMap<>();
 
-    @Override
-    public Collection<User> findAll() {
-        return entities.values();
-    }
-
-    @Override
-    public Optional<User> findById(long id) {
-        return Optional.ofNullable(entities.get(id)); // O(1)
+    public UserRepositoryMemoryImpl(IdGenerator<Long> idGenerator) {
+        super(idGenerator);
     }
 
     @Override
@@ -35,26 +31,4 @@ public class UserRepositoryMemoryImpl implements UserRepository {
                 .findAny();
     }
 
-    @Override
-    public User create(User user) {
-        user.setId(++nextId);
-        entities.put(user.getId(), user);
-        return user;
-    }
-
-    @Override
-    public User update(User user) {
-        entities.put(user.getId(), user);
-        return user;
-    }
-
-    @Override
-    public Optional<User> deleteById(long id) {
-        return Optional.ofNullable(entities.remove(id));
-    }
-
-    @Override
-    public long count() {
-        return entities.size();
-    }
 }

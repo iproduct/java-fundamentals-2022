@@ -1,6 +1,9 @@
 package course.java.model;
 
-public class Person {
+import course.java.dao.IdGenerator;
+import course.java.dao.Identifiable;
+
+public class Person implements Identifiable<Long> {
     private Long id;
     private String firstName;
     private String lastName;

@@ -1,6 +1,7 @@
 package course.java.regex;
 
 import course.java.dao.UserRepository;
+import course.java.dao.impl.LongIdGenerator;
 import course.java.dao.impl.UserRepositoryMemoryImpl;
 import course.java.model.Role;
 import course.java.model.User;
@@ -23,7 +24,7 @@ public class RegexDemo {
                 new User("Maria", "Manolova", 22, "maria", "mari123", Role.ADMIN,
                         "+(1) 98765432")
         );
-        UserRepository userRepo = new UserRepositoryMemoryImpl();
+        UserRepository userRepo = new UserRepositoryMemoryImpl(new LongIdGenerator());
         for (var user : users) {
             userRepo.create(user);
         }
