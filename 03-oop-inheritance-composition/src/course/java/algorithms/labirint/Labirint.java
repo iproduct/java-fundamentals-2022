@@ -15,7 +15,7 @@ public class Labirint {
 	public static final Cell END = new Cell(2, 0);
 	public static Scanner sc = new Scanner(System.in);
 
-	public static void findPath(int[][] lab, Cell start, Cell target, List<Cell> currentPath, List<List<Cell>> results) {
+	public static void findPath(int[][] lab, Cell start, Cell target, List<Cell> currentPath, Collection<List<Cell>> results) {
 		int temp = lab[start.y][start.x];
 		lab[start.y][start.x] = currentPath.size();
 		currentPath.add(start);
@@ -71,12 +71,14 @@ public class Labirint {
 
 	public static void main(String[] args) {
 		printLabirint(labyrinth);
-		List<List<Cell>> results = new ArrayList<>();
+		TreeSet<List<Cell>> results = new TreeSet<>();
 		findPath(labyrinth, START, END, new ArrayList<Cell>(), results);
 		System.out.println("Paths Found:");
 		for(var path: results) {
 			System.out.println(path);
 		}
+
+
 		System.out.println();
 		
 //		Cell[] neighbours = findEmptyNeighbours(labirint, new Cell(4, 2));
