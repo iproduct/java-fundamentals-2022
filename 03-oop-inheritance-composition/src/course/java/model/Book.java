@@ -1,12 +1,14 @@
 package course.java.model;
 
+import course.java.dao.Identifiable;
+
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
-public class Book {
+public class Book implements Identifiable<Long> {
     private static Random random;
     static {
         random = new Random();

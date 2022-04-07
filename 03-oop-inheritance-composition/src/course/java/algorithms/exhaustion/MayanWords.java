@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class MayanWords {
@@ -11,13 +12,17 @@ public class MayanWords {
         var results = new HashMap<String, Integer>();
         var textChars = text.toCharArray();
 //        var wordCharCounts = word.codePoints().boxed()
-//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//                .collect(Collectors
+//                        .<Integer, Integer, Long, Long>groupingBy(
+//                                Function.<Integer>identity(),
+//                                (Collector<Integer, Long, Long>) Collectors.<Integer>counting())
+//                );
         var wordChars = word.toCharArray();
-//        var wordCharCounts = new HashMap<Character, Integer>();
         var wordCharCounts = new int[256];
         for(int i = 0; i < wordChars.length; i++) {
             wordCharCounts[wordChars[i]]++;
         }
+//        var diffCounts = Arrays.copyOf(wordCharCounts.values().toArray(new Long[0]), wordCharCounts.size());
         var diffCounts = Arrays.copyOf(wordCharCounts, wordCharCounts.length);
         System.out.println(Arrays.toString(diffCounts));
 
