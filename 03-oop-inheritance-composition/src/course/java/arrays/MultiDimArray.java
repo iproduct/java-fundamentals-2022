@@ -70,6 +70,15 @@ public class MultiDimArray {
         return result;
     }
 
+    public static int findProductSalesByTotal(int[][] sales, int total, Comparator<int[]> comparator) {
+        if(sales.length == 0) {
+            return -1;
+        }
+        var qbe = new int[sales[0]. length];
+        qbe[1] = total;
+        return Arrays.binarySearch(sales, qbe, comparator);
+    }
+
     public static void main(String[] args) {
         int[][] sales = new int[NUM_BOOKS][NUM_MONTHS];
         for (int i = 0; i < sales.length; i++) {
@@ -89,9 +98,18 @@ public class MultiDimArray {
         }
         System.out.printf("Do all books have month sale > %2$d : %1$b%n",
                findIfAllHasSalesGreaterThan(sales, threshold),  threshold);
+        var totlaSalesOfFirstProduct = Arrays.stream(sales[0]).skip(1).sum();
+
         System.out.println("\nAFTER SORTING:");
-        Arrays.sort(sales, new ProductSalesComparator().reversed());
+        var productSalesComp = new ProductSalesComparator().reversed();
+        Arrays.sort(sales, productSalesComp);
         System.out.println(formatAsTableWithTotals(sales));
+
+        System.out.println("\nBINARY SEARCH OF FIRST PRODUCT:");
+        var firstProductIndex = findProductSalesByTotal(sales, totlaSalesOfFirstProduct, productSalesComp);
+        System.out.printf("%d [Totlal: %d] -> %s%n",
+                firstProductIndex, totlaSalesOfFirstProduct, Arrays.toString(sales[firstProductIndex]));
+
     }
 }
 
