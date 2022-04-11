@@ -20,7 +20,7 @@ public class Book implements Identifiable<Long> {
     private Long id;
     private String title;
     private String author;
-    private LocalDate publishingDate;
+    private int year;
     private String publisher;
     private double price;
     private String description;
@@ -36,18 +36,18 @@ public class Book implements Identifiable<Long> {
     }
 
     // Required args constructor
-    public Book(String title, String author, LocalDate publishingDate, String publisher, double price) {
+    public Book(String title, String author, int year, String publisher, double price) {
         this.title = title;
         this.author = author;
-        this.publishingDate = publishingDate;
+        this.year = year;
         this.publisher = publisher;
         this.price = price;
 
     }
 
-    public Book(String title, String author, LocalDate publishingDate, String publisher, double price,
+    public Book(String title, String author, int year, String publisher, double price,
                 String description, Set<String> tags) {
-        this(title, author, publishingDate, publisher, price);
+        this(title, author, year, publisher, price);
         this.description = description;
         this.tags = tags;
     }
@@ -76,12 +76,12 @@ public class Book implements Identifiable<Long> {
         this.author = author;
     }
 
-    public LocalDate getPublishingDate() {
-        return publishingDate;
+    public int getYear() {
+        return year;
     }
 
-    public void setPublishingDate(LocalDate publishingDate) {
-        this.publishingDate = publishingDate;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public String getPublisher() {
@@ -113,7 +113,7 @@ public class Book implements Identifiable<Long> {
             description = "id=" + id +
                     ", title='" + title + '\'' +
                     ", author='" + author + '\'' +
-                    ", publishingDate=" + publishingDate +
+                    ", publishingDate=" + year +
                     ", publisher='" + publisher + '\'' +
                     ", price=" + price;
         }
@@ -130,7 +130,7 @@ public class Book implements Identifiable<Long> {
         sb.append("id=").append(id);
         sb.append(", title='").append(title).append('\'');
         sb.append(", author='").append(author).append('\'');
-        sb.append(", publishingDate=").append(publishingDate);
+        sb.append(", year=").append(year);
         sb.append(", publisher='").append(publisher).append('\'');
         sb.append(", price=").append(price);
         sb.append(", description='").append(description).append('\'');
