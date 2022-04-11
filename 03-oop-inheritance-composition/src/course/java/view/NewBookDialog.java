@@ -3,7 +3,9 @@ package course.java.view;
 import course.java.model.Book;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class NewBookDialog implements EntityDialog<Book> {
     public static Scanner sc = new Scanner(System.in);
@@ -30,7 +32,7 @@ public class NewBookDialog implements EntityDialog<Book> {
             }
         }
         while (book.getYear() == 0) {
-            System.out.println("Publishing date (ex. 12.03.2022):");
+            System.out.println("Publishing date [ex. 12.03.2022]:");
             String ans;
             int year = 0;
             ans = sc.nextLine();
@@ -45,6 +47,63 @@ public class NewBookDialog implements EntityDialog<Book> {
                 book.setYear(year);
             }
         }
+
+        while (book.getPrice() == 0.0) {
+            System.out.println("Price [ex. 45.70]):");
+            String ans;
+            double price = 0.0;
+            ans = sc.nextLine();
+            try {
+                price = Double.parseDouble(ans);
+            } catch (NumberFormatException ex) {
+                System.out.println("Error: Invalid year format - numbers only.");
+            }
+            if (price < 0 || price > 1000) {
+                System.out.println("Error: Invalid price - try again.");
+            } else {
+                book.setPrice(price);
+            }
+        }
+
+        while (book.getPublisher() == null) {
+            System.out.println("Publisher [optional - press <Enter> to skip]:");
+            var ans = sc.nextLine();
+            if (ans.length() == 0) {
+                break;
+            }
+            if (ans.length() < 3) {
+                System.out.println("Error: The book publisher should be at least 3 characters long.");
+            } else {
+                book.setPublisher(ans);
+            }
+        }
+
+        while (book.getDescription() == null) {
+            System.out.println("Description [optional - press <Enter> to skip]:");
+            var ans = sc.nextLine();
+            if (ans.length() == 0) {
+                break;
+            }
+            if (ans.length() < 3) {
+                System.out.println("Error: The book publisher should be at least 3 characters long.");
+            } else {
+                book.setDescription(ans);
+            }
+        }
+
+        while (book.getTags() == null) {
+            System.out.println("Tags (comma separated):");
+            var ans = sc.nextLine().trim();
+            if (ans.length() == 0) {
+                break;
+            }
+            var tags = Arrays.stream(ans.split(","))
+                    .map(tag -> tag.trim())
+                    .collect(Collectors.toSet());
+
+            book.setTags(tags);
+        }
+
         return book;
     }
 }

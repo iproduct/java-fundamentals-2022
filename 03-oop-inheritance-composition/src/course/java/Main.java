@@ -1,12 +1,18 @@
 package course.java;
 
+import course.java.controller.BookController;
+import course.java.dao.BookRepository;
 import course.java.dao.UserRepository;
+import course.java.dao.impl.BookRepositoryMemoryImpl;
 import course.java.dao.impl.LongIdGenerator;
 import course.java.dao.impl.UserRepositoryMemoryImpl;
 import course.java.model.Role;
 import course.java.model.User;
 import course.java.model.UserBuilder;
+import course.java.service.BookService;
+import course.java.service.impl.BookServiceImpl;
 import course.java.view.Menu;
+import course.java.view.NewBookDialog;
 
 import java.util.List;
 
@@ -47,7 +53,13 @@ public class Main {
         }
 
         // Creeate ExitCommand
-        var exampleMenu = new Menu();
-        var exitCommand = exampleMenu.new ExitCommand();
+        // persitence layer
+        BookRepository bookRepo = new BookRepositoryMemoryImpl(new LongIdGenerator());
+        // domain business logic layer
+        BookService bookService = new BookServiceImpl(bookRepo);
+        // presentation layer - presentation logic and view
+        var addBookDialog = new NewBookDialog();
+        BookController bookController = new BookController(bookService, addBookDialog);
+        bookController.init();
     }
 }

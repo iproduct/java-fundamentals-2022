@@ -127,8 +127,8 @@ public class Menu {
             try {
                 result = options.get(choice - 1).getCommand().execute();
                 System.out.println(result);
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());;
+            } catch (Exception ex) {
+                System.out.println("Error: " + ex.getMessage());
             }
 
             if(choice == options.size()) { // Exit command chosen

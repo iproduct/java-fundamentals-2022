@@ -6,11 +6,15 @@ import course.java.exception.ConstraintViolationException;
 import course.java.exception.InvalidEntityDataException;
 import course.java.exception.NonexistingEntityException;
 import course.java.model.Book;
+import course.java.model.MockBooks;
 import course.java.service.BookService;
 import course.java.util.BookValidator;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
+import static course.java.model.MockBooks.MOCK_BOOKS;
 
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepo;
@@ -28,7 +32,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void loadData() {
-//        bookRepo.load();
+        Arrays.stream(MOCK_BOOKS).forEach(bookRepo::create);
     }
 
     @Override
