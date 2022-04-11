@@ -32,6 +32,9 @@ public class BookController {
                     return "Total book count: " + books.size();
                 }),
                 new Menu.Option("Add New Books", new Menu.Command() {
+                    {
+                        System.out.println("Instead of constructor - init object state here...");
+                    }
                     @Override
                     public String execute() throws Exception {
                         var book = addBookDialog.input();

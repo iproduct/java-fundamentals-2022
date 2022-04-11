@@ -25,7 +25,7 @@ public class Book implements Identifiable<Long> {
     private String publisher;
     private double price;
     private String description;
-    private Set<String> tags;
+    private Set<String> tags = Collections.emptySet();
 
     // Overloaded constructors
     // No args constructor

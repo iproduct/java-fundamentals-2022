@@ -32,7 +32,7 @@ public class NewBookDialog implements EntityDialog<Book> {
             }
         }
         while (book.getYear() == 0) {
-            System.out.println("Publishing date [ex. 12.03.2022]:");
+            System.out.println("Publishing year [ex. 2018]:");
             String ans;
             int year = 0;
             ans = sc.nextLine();
@@ -91,7 +91,7 @@ public class NewBookDialog implements EntityDialog<Book> {
             }
         }
 
-        while (book.getTags() == null) {
+        do {
             System.out.println("Tags (comma separated):");
             var ans = sc.nextLine().trim();
             if (ans.length() == 0) {
@@ -102,7 +102,7 @@ public class NewBookDialog implements EntityDialog<Book> {
                     .collect(Collectors.toSet());
 
             book.setTags(tags);
-        }
+        } while (book.getTags().size() == 0);
 
         return book;
     }
