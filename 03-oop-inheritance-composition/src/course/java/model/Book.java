@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Book implements Identifiable<Long> {
     private static Random random;
@@ -137,6 +138,11 @@ public class Book implements Identifiable<Long> {
         sb.append(", tags=").append(tags);
         sb.append('}');
         return sb.toString();
+    }
+
+    public String format() {
+        return String.format("| %4d | %-20.20s | %-20.20s | %4d | %6.2f | %-20.20s |",
+                id, title, author, year, price, tags.stream().collect(Collectors.joining(", ")));
     }
 
     @Override

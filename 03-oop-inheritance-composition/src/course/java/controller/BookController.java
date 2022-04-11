@@ -24,7 +24,7 @@ public class BookController {
                 }),
                 new Menu.Option("Print All Books", () -> {
                     var books = bookService.getAllBooks();
-                    books.forEach(System.out::println);
+                    books.forEach(book -> System.out.println(book.format()));
                     return "Total book count: " + books.size();
                 }),
                 new Menu.Option("Add New Books", () -> {

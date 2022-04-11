@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
+    public interface Command {
+        String execute() throws Exception;
+    }
+
     public static class Option {
         private String text;
         private Command command;
@@ -33,10 +37,6 @@ public class Menu {
         }
     }
 
-    public interface Command {
-        String execute() throws InvalidEntityDataException;
-    }
-
     public class ExitCommand implements Command {
         @Override
         public String execute() {
@@ -46,7 +46,7 @@ public class Menu {
 
     // Main class methods and attributes.
     private String title;
-    private List<Option> options = List.of(new Option("Exit", new ExitCommand()));
+    private List<Option> options = List.of(new Option("Exit", this.new ExitCommand()));
     private Scanner scanner = new Scanner(System.in);
 
     public Menu() {
@@ -57,7 +57,7 @@ public class Menu {
         var oldOptions= this.options;
         this.options = new ArrayList<>();
         this.options.addAll(options);
-        this.options.addAll(oldOptions);
+        this.options.addAll(oldOptions); // add exit option as last option in menu
     }
 
     public String getTitle() {
@@ -126,10 +126,11 @@ public class Menu {
             String result = null;
             try {
                 result = options.get(choice - 1).getCommand().execute();
-            } catch (InvalidEntityDataException e) {
+                System.out.println(result);
+            } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());;
             }
-            System.out.println(result);
+
             if(choice == options.size()) { // Exit command chosen
                 break;
             }

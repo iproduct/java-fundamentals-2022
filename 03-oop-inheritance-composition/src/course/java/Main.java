@@ -6,6 +6,7 @@ import course.java.dao.impl.UserRepositoryMemoryImpl;
 import course.java.model.Role;
 import course.java.model.User;
 import course.java.model.UserBuilder;
+import course.java.view.Menu;
 
 import java.util.List;
 
@@ -44,5 +45,9 @@ public class Main {
         for (User user : userRepo.findAll()) {
             System.out.println(user.format());
         }
+
+        // Creeate ExitCommand
+        var exampleMenu = new Menu();
+        var exitCommand = exampleMenu.new ExitCommand();
     }
 }

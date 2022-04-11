@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class UserValidator {
+public class UserValidator implements EntityValidator<User>{
     public static final String USERNAME_REGEX = "\\w{2,15}";
 
 //            ^.*              : Start
@@ -22,6 +22,7 @@ public class UserValidator {
 //            .*$              : End
     public static final String PASSWORD_REGEX = "^.*(?=.{8,15})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&?]).*$";
 
+    @Override
     public void validate(User user) throws ConstraintViolationException {
         List<ConstraintViolation> violations = new ArrayList<>();
         var firstNameLength = user.getFirstName().trim().length();
