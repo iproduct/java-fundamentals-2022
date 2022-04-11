@@ -106,12 +106,12 @@ public class SimpleSorting {
         // sorting objects
         User[] users = {
                 new User("Ivan", "Petrov", 25, "ivan", "ivan123", Role.ADMIN, ""),
-                new User("Nadezda", "Todorova", 29, "nadia", "nadia123", Role.USER, ""),
+                new User("Nadezda", "Todorova", 29, "nadia", "nadia123", Role.READER, ""),
                 new User("Hristo", "Yanakiev", 23, "hristo", "hris123", Role.ADMIN, ""),
-                new User("Gorgi", "Petrov", 45, "georgi", "gogo123", Role.USER, ""),
-                new User("Petko", "Yanakiev", 23, "hristo", "hris123", Role.MANAGER, ""),
+                new User("Gorgi", "Petrov", 45, "georgi", "gogo123", Role.READER, ""),
+                new User("Petko", "Yanakiev", 23, "hristo", "hris123", Role.AUTHOR, ""),
                 new User("Stoyan", "Petrov", 45, "georgi", "gogo123", Role.ADMIN, ""),
-                new User("Maria", "Manolova", 22, "maria", "mari123", Role.MANAGER, "")
+                new User("Maria", "Manolova", 22, "maria", "mari123", Role.AUTHOR, "")
         };
 
         selectionSort(users, new UserRoleFirstNameComparator());
