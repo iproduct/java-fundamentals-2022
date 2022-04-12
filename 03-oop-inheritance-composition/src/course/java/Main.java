@@ -5,35 +5,28 @@ import course.java.dao.BookRepository;
 import course.java.dao.UserRepository;
 import course.java.dao.impl.BookRepositoryMemoryImpl;
 import course.java.dao.impl.LongIdGenerator;
+import course.java.dao.impl.RepositoryMemoryImpl;
 import course.java.dao.impl.UserRepositoryMemoryImpl;
 import course.java.model.Role;
 import course.java.model.User;
 import course.java.model.UserBuilder;
 import course.java.service.BookService;
+import course.java.service.UserService;
 import course.java.service.impl.BookServiceImpl;
+import course.java.service.impl.UserServiceImpl;
+import course.java.util.BookValidator;
+import course.java.util.UserValidator;
 import course.java.view.Menu;
 import course.java.view.NewBookDialog;
 
 import java.util.List;
 
+import static course.java.model.MockUsers.MOCK_USERS;
+
 public class Main {
     public static void main(String[] args) {
-        User[] users = {
-                new User("Ivan", "Petrov", 25, "ivan", "ivan123", Role.ADMIN,
-                        "+(359) 887 894356"),
-                new User("Nadezda", "Todorova", 29, "nadia", "nadia123", Role.READER,
-                        "+(359) 889 123456"),
-                new User("Hristo", "Yanakiev", 23, "hristo", "hris123", Role.ADMIN, ""),
-                new User("Gorgi", "Petrov", 45, "georgi", "gogo123", Role.READER,
-                        "+(1) 456778898"),
-                new User("Petko", "Yanakiev", 23, "hristo", "hris123", Role.AUTHOR,
-                        "+(11) 56457567"),
-                new User("Stoyan", "Petrov", 45, "georgi", "gogo123", Role.ADMIN,
-                        "+(91) 456456456"),
-                new User("Maria", "Manolova", 22, "maria", "mari123", Role.AUTHOR, "")
-        };
         UserRepository userRepo = new UserRepositoryMemoryImpl(new LongIdGenerator());
-        for (var user : users) {
+        for (var user : MOCK_USERS) {
             userRepo.create(user);
         }
         var newUser = new UserBuilder().setName("Stefan Dimitrov").setAge(43)
@@ -56,7 +49,8 @@ public class Main {
         // persitence layer
         BookRepository bookRepo = new BookRepositoryMemoryImpl(new LongIdGenerator());
         // domain business logic layer
-        BookService bookService = new BookServiceImpl(bookRepo);
+        BookService bookService = new BookServiceImpl(bookRepo, new BookValidator());
+        UserService userService = new UserServiceImpl(userRepo, new UserValidator());
         // presentation layer - presentation logic and view
         var addBookDialog = new NewBookDialog();
         BookController bookController = new BookController(bookService, addBookDialog);

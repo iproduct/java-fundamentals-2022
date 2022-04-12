@@ -20,11 +20,6 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepo;
     private final BookValidator bookValidator;
 
-    public BookServiceImpl(BookRepository bookRepository) {
-        this.bookRepo = bookRepository;
-        this.bookValidator = new BookValidator();
-    }
-
     public BookServiceImpl(BookRepository bookRepository, BookValidator bookValidator) {
         this.bookRepo = bookRepository;
         this.bookValidator = bookValidator;
