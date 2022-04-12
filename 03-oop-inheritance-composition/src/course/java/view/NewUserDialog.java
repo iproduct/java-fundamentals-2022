@@ -10,8 +10,7 @@ import java.util.StringJoiner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static course.java.util.UserValidator.PASSWORD_REGEX;
-import static course.java.util.UserValidator.USERNAME_REGEX;
+import static course.java.util.UserValidator.*;
 
 public class NewUserDialog implements EntityDialog<User> {
     public static Scanner sc = new Scanner(System.in);
@@ -73,6 +72,40 @@ public class NewUserDialog implements EntityDialog<User> {
                 user.setRole(Role.values()[choice-1]);
             }
         }
+        while (user.getAge() == 0) {
+            System.out.println("Age [optional - press <Enter> to skip]:");
+            String ans;
+            int age = -1;
+            ans = sc.nextLine();
+            if (ans.length() == 0) {
+                break;
+            }
+            try {
+                age = Integer.parseInt(ans);
+            } catch (NumberFormatException ex) {
+                System.out.println("Error: Invalid age data - should be an integer number.");
+            }
+            if (age < 0 || age > 150) {
+                System.out.println("Error: Invalid age - try again.");
+            } else {
+                user.setAge(age);
+            }
+        }
+        while (user.getPhone() == null) {
+            System.out.println("Phone [optional - press <Enter> to skip]:");
+            String ans;
+            int age = -1;
+            ans = sc.nextLine();
+            if (ans.length() == 0) {
+                break;
+            }
+            if (!Pattern.matches(PHONE_REGEX, ans)) {
+                System.out.println("Error: Invalid phone number format - ex.: +(359) 2 324 789");
+            } else {
+                user.setPhone(ans);
+            }
+        }
+
         System.out.println("User Info [optional - press <Enter> to skip]:");
         var ans = sc.nextLine();
         if (ans.length() > 0) {
