@@ -60,8 +60,13 @@ public class NewUserDialog implements EntityDialog<User> {
             for(Role r :Role.values()) {
                   sj.add(++i + ") " + r.name());
             }
-            System.out.printf("Role [%s]:%n", sj);
-            var ans = sc.nextLine();
+            System.out.printf("Role [ %s , <Enter> for help]:%n", sj);
+            var ans = sc.nextLine().trim();
+            if(ans.length() == 0){
+                Arrays.stream(Role.values()).map(role -> role.name() + ": " + role.getDescription())
+                        .forEach(System.out::println);
+                continue;
+            }
             var choice = -1;
             try {
                 choice = Integer.parseInt(ans);
