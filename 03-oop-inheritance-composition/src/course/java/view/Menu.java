@@ -38,27 +38,25 @@ public class Menu {
         }
     }
 
-    public class ExitCommand implements Command {
-        @Override
-        public String execute() {
-            return String.format("Exiting menu '%s'.", Menu.this.title);
-        }
-    }
-
     // Main class methods and attributes.
     private String title;
-    private List<Option> options = List.of(new Option("Exit", this.new ExitCommand()));
+    private List<Option> options;
     private Scanner scanner = new Scanner(System.in);
 
     public Menu() {
     }
 
-    public Menu(String title, List<Option> options) {
+    public Menu(final String menuTitle, List<Option> options) {
+//        menuTitle += ":";
+        class ExitCommand implements Command {
+            @Override
+            public String execute() {
+                return String.format("Exiting menu '%s'.", menuTitle);
+            }
+        }
         this.title = title;
-        var oldOptions= this.options;
-        this.options = new ArrayList<>();
-        this.options.addAll(options);
-        this.options.addAll(oldOptions); // add exit option as last option in menu
+        this.options = new ArrayList<>(options);
+        this.options.add(new Option("Exit", new ExitCommand())); // add exit option as last option in menu
     }
 
     public String getTitle() {

@@ -7,14 +7,18 @@ import java.util.Random;
 public class MultiDimArray {
     public static final int NUM_BOOKS = 5;
     public static final int NUM_MONTHS = 12;
-    private static Random rand = new Random();
+    private static final Random rand;
 
+    static {
+        rand = new Random();
+    }
 
     public static String formatAsTable(int[][] data) {
         return ""; // TODO Your code here
     }
 
     public static String formatAsTableWithTotals(int[][] data) {
+
         StringBuilder sb = new StringBuilder();
         int grandTotal = 0;
         int rowSum = 0;
