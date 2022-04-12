@@ -5,13 +5,13 @@ import course.java.model.Book;
 import course.java.service.BookService;
 import course.java.view.EntityDialog;
 import course.java.view.Menu;
-import course.java.view.NewBookDialog;
 
 import java.util.List;
 
 public class BookController {
     private BookService bookService;
     private EntityDialog<Book> addBookDialog;
+    private Menu menu;
 
     public BookController(BookService bookService, EntityDialog<Book> addBookDialog) {
         this.bookService = bookService;
@@ -20,7 +20,7 @@ public class BookController {
 
     public void init() {
 //        bookService.loadData();
-        var menu = new Menu("Books Menu", List.of(
+        menu = new Menu("Books Menu", List.of(
                 new Menu.Option("Load Books", () -> {
                     System.out.println("Loading books ...");
                     bookService.loadData();
@@ -35,6 +35,7 @@ public class BookController {
                     {
                         System.out.println("Instead of constructor - init object state here...");
                     }
+
                     @Override
                     public String execute() throws Exception {
                         var book = addBookDialog.input();
@@ -44,6 +45,10 @@ public class BookController {
                     }
                 })
         ));
+        showMenu();
+    }
+
+    public void showMenu() {
         menu.show();
     }
 

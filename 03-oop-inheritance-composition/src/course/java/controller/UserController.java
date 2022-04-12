@@ -11,6 +11,7 @@ import java.util.List;
 public class UserController {
     private UserService userService;
     private EntityDialog<User> addUserDialog;
+    private Menu menu;
 
     public UserController(UserService userService, EntityDialog<User> addUserDialog) {
         this.userService = userService;
@@ -19,7 +20,7 @@ public class UserController {
 
     public void init() {
 //        userService.loadData();
-        var menu = new Menu("Users Menu", List.of(
+        menu = new Menu("Users Menu", List.of(
                 new Menu.Option("Load Users", () -> {
                     System.out.println("Loading users ...");
                     userService.loadData();
@@ -37,6 +38,10 @@ public class UserController {
                             created.getId(), created.getUsername());
                 })
         ));
+        showMenu();
+    }
+
+    public void showMenu() {
         menu.show();
     }
 
