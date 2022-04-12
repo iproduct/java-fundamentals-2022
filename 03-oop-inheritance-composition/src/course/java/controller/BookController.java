@@ -16,6 +16,7 @@ public class BookController {
     public BookController(BookService bookService, EntityDialog<Book> addBookDialog) {
         this.bookService = bookService;
         this.addBookDialog = addBookDialog;
+        init();
     }
 
     public void init() {
@@ -45,7 +46,6 @@ public class BookController {
                     }
                 })
         ));
-        showMenu();
     }
 
     public void showMenu() {

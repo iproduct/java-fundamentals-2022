@@ -20,7 +20,7 @@ public class UserValidator implements EntityValidator<User>{
 //            (?=.*\d)         : Digits
 //            (?=.*[!#$%&? "]) : Special characters " +
 //            .*$              : End
-    public static final String PASSWORD_REGEX = "^.*(?=.{8,15})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&?]).*$";
+    public static final String PASSWORD_REGEX = "^.*(?=.{8,15})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&?+]).*$";
 
     @Override
     public void validate(User user) throws ConstraintViolationException {

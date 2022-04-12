@@ -50,9 +50,9 @@ public class NewUserDialog implements EntityDialog<User> {
             System.out.println("Password:");
             var ans = sc.nextLine().trim();
             if (!Pattern.matches(PASSWORD_REGEX, ans)) {
-                System.out.println("Error: The username should be between 8 and 15 characters long and should have atleast one small, capital letter, special symbol and digit.");
+                System.out.println("Error: The password should be between 8 and 15 characters long and should have atleast one small, capital letter, special symbol and digit.");
             } else {
-                user.setUsername(ans);
+                user.setPassword(ans);
             }
         }
         while (user.getRole() == null) {

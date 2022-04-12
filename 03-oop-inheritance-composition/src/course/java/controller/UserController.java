@@ -16,6 +16,7 @@ public class UserController {
     public UserController(UserService userService, EntityDialog<User> addUserDialog) {
         this.userService = userService;
         this.addUserDialog = addUserDialog;
+        init();
     }
 
     public void init() {
@@ -38,7 +39,6 @@ public class UserController {
                             created.getId(), created.getUsername());
                 })
         ));
-        showMenu();
     }
 
     public void showMenu() {

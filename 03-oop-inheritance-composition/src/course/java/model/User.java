@@ -6,7 +6,7 @@ import java.util.StringJoiner;
 public class User extends Person{
     private String username;
     private String password;
-    private Role role = Role.READER; // default value - init during declaration
+    private Role role; // default value - init during declaration
     private boolean active = true;
     private String info;
     private LocalDateTime created = LocalDateTime.now();
@@ -121,7 +121,7 @@ public class User extends Person{
 
     @Override
     public String format() {
-        return String.format("%s %-15.15s | %-15.15s | %-5.5s | %-4s |", super.format(), username, password, role, active);
+        return String.format("%s %-15.15s | %-15.15s | %-6.6s | %-4s |", super.format(), username, password, role, active);
     }
 
     // utility methods

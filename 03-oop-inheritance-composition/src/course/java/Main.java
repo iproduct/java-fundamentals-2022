@@ -1,6 +1,8 @@
 package course.java;
 
 import course.java.controller.BookController;
+import course.java.controller.MainController;
+import course.java.controller.UserController;
 import course.java.dao.BookRepository;
 import course.java.dao.UserRepository;
 import course.java.dao.impl.BookRepositoryMemoryImpl;
@@ -18,6 +20,7 @@ import course.java.util.BookValidator;
 import course.java.util.UserValidator;
 import course.java.view.Menu;
 import course.java.view.NewBookDialog;
+import course.java.view.NewUserDialog;
 
 import java.util.List;
 
@@ -45,7 +48,6 @@ public class Main {
             System.out.println(user.format());
         }
 
-        // Creeate ExitCommand
         // persitence layer
         BookRepository bookRepo = new BookRepositoryMemoryImpl(new LongIdGenerator());
         // domain business logic layer
@@ -53,7 +55,10 @@ public class Main {
         UserService userService = new UserServiceImpl(userRepo, new UserValidator());
         // presentation layer - presentation logic and view
         var addBookDialog = new NewBookDialog();
+        var addUserDialog = new NewUserDialog();
         BookController bookController = new BookController(bookService, addBookDialog);
-        bookController.init();
+        UserController userController = new UserController(userService, addUserDialog);
+        MainController mainController = new MainController(bookController, userController);
+        mainController.showMenu();
     }
 }

@@ -9,7 +9,11 @@ import course.java.service.UserService;
 import course.java.util.EntityValidator;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
+
+import static course.java.model.MockBooks.MOCK_BOOKS;
+import static course.java.model.MockUsers.MOCK_USERS;
 
 public class UserServiceImpl implements UserService {
     private UserRepository userRepo;
@@ -22,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void loadData() {
-
+        Arrays.stream(MOCK_USERS).forEach(userRepo::create);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package course.java.view;
 
+import course.java.exception.ConstraintViolationException;
 import course.java.exception.InvalidEntityDataException;
 
 import java.util.ArrayList;
@@ -127,6 +128,11 @@ public class Menu {
             try {
                 result = options.get(choice - 1).getCommand().execute();
                 System.out.println(result);
+            } catch (InvalidEntityDataException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                if(ex.getCause() != null && ex.getCause() instanceof ConstraintViolationException){
+                    ((ConstraintViolationException) ex.getCause()).getFieldViolations().forEach(System.out::println);
+                }
             } catch (Exception ex) {
                 System.out.println("Error: " + ex.getMessage());
             }
