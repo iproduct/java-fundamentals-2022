@@ -41,6 +41,5 @@ public class StreamsDemo01 {
                 .map(line -> line.substring(2).trim())
 //                .sorted(String::compareToIgnoreCase)
                 .forEach(System.out::println);
-
     }
 }
