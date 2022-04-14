@@ -3,14 +3,13 @@ package course.java.streams;
 import course.java.model.Book;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static course.java.model.MockBooks.MOCK_BOOKS;
 
-public class StreamDemo03 {
+public class StreamsDemo03 {
     public static void main(String[] args) {
         var words = Arrays.stream(MOCK_BOOKS)
                 .map(Book::getTitle)
