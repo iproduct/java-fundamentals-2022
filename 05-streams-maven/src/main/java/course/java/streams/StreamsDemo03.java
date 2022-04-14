@@ -4,7 +4,9 @@ import course.java.model.Book;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
 import static course.java.model.MockBooks.MOCK_BOOKS;
@@ -19,6 +21,7 @@ public class StreamsDemo03 {
                         Collectors.groupingBy(String::toLowerCase, Collectors.counting()),
                         wordCountMap -> wordCountMap.entrySet().stream()
                                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+//                                .findAny()
 //                                .findFirst()
                                 .limit(2).collect(Collectors.toList())
                         )
@@ -41,5 +44,31 @@ public class StreamsDemo03 {
         var count = IntStream.of(1, 12, 3, 45, 72, 8, 15)
                 .reduce(0, (acc, newVal) -> acc + 1);
         System.out.println(count);
+
+        DoubleStream.generate(Math::random)
+                .map(r -> (int)(r * 10000 + 0.5) / 100.0)
+                .limit(10)
+                .forEach(System.out::println);
+
+        IntPredicate isPrime = n -> {
+            int limit = (int) Math.sqrt(n);
+            for(int i = 2; i < limit; i++){
+                if(n % i == 0){
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        var LIMIT = 10000000;
+        var start=System.nanoTime();
+        int[] a = IntStream.iterate(2, n -> n + 1)
+                .parallel()
+                .filter(isPrime)
+                .takeWhile(n -> n < LIMIT)
+                .toArray();
+        var end=System.nanoTime();
+        System.out.printf("Generating prime numbers < %d - time: %f ms%n", LIMIT, (end-start) / 1000000.0);
+        System.out.println("Sum = " + Arrays.stream(a).sum());
     }
 }
