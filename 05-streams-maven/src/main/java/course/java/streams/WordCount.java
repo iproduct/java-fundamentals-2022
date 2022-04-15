@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static java.util.function.Predicate.not;
 
 public class WordCount {
     public static final Set<String> STOP_WORDS = Set.of(
@@ -26,23 +30,18 @@ public class WordCount {
             "after", "before", "most", "off", "mustn", "won't");
     public static final int KEYWORDS_COUNT = 20;
 
-    public static List<Map.Entry<String, Integer>> findTopKeywords(String filename, int count) throws IOException{
-        Map<String, Integer> wordCounts = new HashMap<>();
+    public static List<Map.Entry<String, Long>> findTopKeywords(String filename, int count) throws IOException{
         Path path = Path.of(filename);
-        Files.lines(path).forEach(line -> {
-            var words = line.split("[\\s.?!:\\\\/\"\',;\\[\\]\\-\\d\\(\\)\\{\\}]+");
-            for(var word : words) {
-                word = word.toLowerCase();
-                if(word.length() < 2 || STOP_WORDS.contains(word)){
-                    continue;
-                }
-                wordCounts.put(word, wordCounts.getOrDefault(word, 0) + 1);
-            }
-//            System.out.println(Arrays.toString(words));
-        });
-        var results = new ArrayList<>(wordCounts.entrySet());
-        results.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
-        return results.subList(0, count);
+        var wordCounts = Files.lines(path).flatMap(line ->
+            Arrays.stream(line.split("[\\s.?!:\\\\/\"\',;\\[\\]\\-\\d\\(\\)\\{\\}]+")))
+                .filter(word -> word.length() > 2)
+                .filter(not(STOP_WORDS::contains))
+                .collect(Collectors.groupingBy(String::toLowerCase, Collectors.counting()));
+
+        return wordCounts.entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(15)
+                .collect(Collectors.toList());
     }
 
     public static void main(String[] args) {
