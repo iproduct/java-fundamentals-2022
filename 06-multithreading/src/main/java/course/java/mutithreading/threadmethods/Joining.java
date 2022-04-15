@@ -7,6 +7,7 @@ class Sleeper extends Thread {
     this.duration = duration;
     start();
   }
+  @Override
   public void run() {
     try {
       sleep(duration);
@@ -26,6 +27,7 @@ class Joiner extends Thread {
     this.sleeper = sleeper;
     start();
   }
+  @Override
   public void run() {
    try {
       sleeper.join();
