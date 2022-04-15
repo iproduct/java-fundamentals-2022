@@ -1,4 +1,4 @@
-package course.java.mutithreading;
+package course.java.mutithreading.executors;
 
 public class RocketStart implements Runnable {
     private int rocketNumber;

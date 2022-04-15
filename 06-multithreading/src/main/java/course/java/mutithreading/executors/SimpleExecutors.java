@@ -1,7 +1,5 @@
 package course.java.mutithreading.executors;
 
-import course.java.mutithreading.RocketStart;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
