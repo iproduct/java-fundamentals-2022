@@ -16,11 +16,11 @@ class Pizza {
     }
 }
 
-class WaitPerson implements Runnable {
+class Waiter implements Runnable {
     private RestaurantDemo restaurant;
     private String name;
 
-    public WaitPerson(RestaurantDemo r, String name) {
+    public Waiter(RestaurantDemo r, String name) {
         this.restaurant = r;
         this.name = name;
     }
@@ -47,11 +47,11 @@ class WaitPerson implements Runnable {
     }
 }
 
-class Chef implements Runnable {
+class Cook implements Runnable {
     private RestaurantDemo restaurant;
     private int orderNumber = 0;
 
-    public Chef(RestaurantDemo r) {
+    public Cook(RestaurantDemo r) {
         restaurant = r;
     }
 
@@ -83,9 +83,9 @@ class Chef implements Runnable {
 public class RestaurantDemo {
     Pizza pizza;
     ExecutorService exec = Executors.newCachedThreadPool();
-    WaitPerson waitPerson = new WaitPerson(this, "PESHO");
+    Waiter waitPerson = new Waiter(this, "PESHO");
     //                waitPerson2 = new WaitPerson(this, "TOSHO");
-    Chef chef = new Chef(this);
+    Cook chef = new Cook(this);
 
     public RestaurantDemo() {
         exec.execute(chef);
