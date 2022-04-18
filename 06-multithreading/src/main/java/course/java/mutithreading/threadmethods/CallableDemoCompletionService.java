@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.*;
 
-
-
-public class CallableDemo {
+public class CallableDemoCompletionService {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         var executor = Executors.newCachedThreadPool();
         var completionService = new ExecutorCompletionService<String>(executor);
