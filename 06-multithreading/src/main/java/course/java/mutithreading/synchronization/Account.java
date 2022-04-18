@@ -12,7 +12,7 @@ public class Account {
         this.ballanceInCents = ballanceInCents;
     }
 
-    public long getBallanceInCents() {
+    synchronized public long getBallanceInCents() {
         return ballanceInCents;
     }
 
@@ -20,7 +20,7 @@ public class Account {
         return id;
     }
 
-    public void setBallanceInCents(long ballanceInCents) {
+    synchronized public void setBallanceInCents(long ballanceInCents) {
         this.ballanceInCents = ballanceInCents;
     }
 }

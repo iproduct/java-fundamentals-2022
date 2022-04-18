@@ -28,15 +28,15 @@ class Client implements Runnable {
 
     @Override
     public void run() {
-        while(!canceled && !Thread.interrupted()) {
-            bank.transferAmountInCents(rand.nextInt(100) + 1L,
-                    from, to);
-            try {
+        try {
+            while (!canceled) {
+                bank.transferAmountInCents(rand.nextInt(100) + 1L, from, to);
                 Thread.sleep(rand.nextInt(100));
-            } catch (InterruptedException e) {
-                System.out.printf("Client No. %d was interrupted.", id); ;
             }
+        } catch (InterruptedException e) {
+            System.out.printf("Client No. %d was interrupted.", id);
         }
+        System.out.printf("!!!!!!!!!!!!!!! Client No. %d was finished.", id);
     }
 }
 
@@ -55,22 +55,47 @@ public class Bank {
     }
 
     public boolean transferAmountInCents(long amount, Account from, Account to) {
-        if (from.getBallanceInCents() < amount) {
-            System.out.printf("Insufficient ballance in account %s : %d cents%n",
-                    from.getId(), from.getBallanceInCents());
-            return false; // not enough money
+        if (from.getId().compareTo(to.getId()) < 0) {
+            synchronized (from) {
+                if (from.getBallanceInCents() < amount) {
+                    System.out.printf("Insufficient ballance in account %s : %d cents%n",
+                            from.getId(), from.getBallanceInCents());
+                    return false; // not enough money
+                }
+                synchronized (to) {
+                    from.setBallanceInCents(from.getBallanceInCents() - amount);
+                    to.setBallanceInCents(to.getBallanceInCents() + amount);
+                }
+            }
+        } else {
+            synchronized (to) {
+                synchronized (from) {
+                    if (from.getBallanceInCents() < amount) {
+                        System.out.printf("Insufficient ballance in account %s : %d cents%n",
+                                from.getId(), from.getBallanceInCents());
+                        return false; // not enough money
+                    }
+                    from.setBallanceInCents(from.getBallanceInCents() - amount);
+                    to.setBallanceInCents(to.getBallanceInCents() + amount);
+                }
+            }
         }
-        from.setBallanceInCents(from.getBallanceInCents() - amount);
-        to.setBallanceInCents(to.getBallanceInCents() + amount);
+
         System.out.printf("Transfer from %s to %s: %8.2f Euro%n",
                 from.getId(), to.getId(), amount / 100.0);
         return true;
     }
 
-    public boolean checkAmountsTotal() {
-        return accountA.getBallanceInCents() + accountB.getBallanceInCents() ==
-                ACCOUNT_A_AMOUNT + ACCOUNT_B_AMOUNT;
+    public Tuple<Long, Long> checkAmountsTotal() {
+        synchronized (accountA) {
+            synchronized (accountB) {
+                return new Tuple(
+                        accountA.getBallanceInCents() + accountB.getBallanceInCents(),
+                        ACCOUNT_A_AMOUNT + ACCOUNT_B_AMOUNT);
+            }
+        }
     }
+
 
     public static void main(String[] args) throws InterruptedException {
         var bank = new Bank();
@@ -87,23 +112,26 @@ public class Bank {
             clientData.add(new Tuple<>(clientTask, future));
         }
         var checkerFuture = executor.submit(() -> {
-            while (!Thread.interrupted()) {
-                if (!bank.checkAmountsTotal()) {
-                    System.out.printf("PANIC: Constant money constraint violated: should be: %d cents, actual %d cents%n",
-                            ACCOUNT_A_AMOUNT + ACCOUNT_B_AMOUNT,
-                            bank.getAccountA().getBallanceInCents() + bank.getAccountA().getBallanceInCents());
-                }
-                try {
+            try {
+                while (!Thread.interrupted()) {
+                    var totals = bank.checkAmountsTotal();
+                    if (!totals.getV1().equals(totals.getV2())) {
+                        System.out.printf("PANIC: Constant money constraint violated: should be: %d cents, actual %d cents%n",
+                                totals.getV2(), totals.getV1());
+                    }
+
                     Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    System.out.println("Checker thread is interrupted - finishing ...");
                 }
+            } catch (InterruptedException e) {
+                System.out.println("Checker thread is interrupted - finishing ...");
             }
+            System.out.println("Checker thread is finishing ...");
         });
-        Thread.sleep(60000);
+        Thread.sleep(10000);
         for (int i = 0; i < clientData.size(); i++) {
+            clientData.get(i).getV1().cancel();
             clientData.get(i).getV2().cancel(true);
-            System.out.printf("Client %d canceled.", clientData.get(i).getV1());
+            System.out.printf("Client %s canceled.", clientData.get(i).getV1());
         }
         checkerFuture.cancel(true);
         executor.shutdown();
