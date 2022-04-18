@@ -8,9 +8,14 @@ public class SearchTask implements Callable<String> {
         public SearchTask(String keywords) {
             this.keywords = keywords;
         }
-        @Override
+
+    @Override
         public String call() throws Exception {
-            Thread.sleep(new Random().nextInt(10000));
-            return String.format("Search search for '%s' ...%n", keywords);
+            try {
+                Thread.sleep(new Random().nextInt(10000));
+            } catch(InterruptedException ex){
+                throw new InterruptedException("Task [" + keywords + "] was canceled.");
+            }
+            return String.format("Search result for '%s' ...%n", keywords);
         }
     }
