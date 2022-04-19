@@ -13,7 +13,7 @@ interface Printable {
 }
 
 interface Formattable {
-    String format(int pageNumber);
+    String formatPage(int pageNumber);
 }
 
 interface Pageable {
@@ -58,9 +58,15 @@ class Document implements Printable {
 }
 
 class FancyDocument extends Document implements Formattable, Pageable {
+    public FancyDocument() {
+    }
+
+    public FancyDocument(String title, String text) {
+        super(title, text);
+    }
 
     @Override
-    public String format(int pageNumber) {
+    public String formatPage(int pageNumber) {
         StringJoiner sj = new StringJoiner("\n",
                 "Page " + pageNumber + "\n------------------------------",
                 "\n------------------------------");
@@ -80,4 +86,5 @@ class FancyDocument extends Document implements Formattable, Pageable {
 }
 
 public class ClassObject {
+
 }
