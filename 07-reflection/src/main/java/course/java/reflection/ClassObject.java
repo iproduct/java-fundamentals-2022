@@ -1,6 +1,7 @@
 package course.java.reflection;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -79,6 +80,18 @@ class FancyDocument extends Document implements Formattable, Pageable {
 
     @Override
     public List<String> getPages() {
+       return doPagingImpl();
+    }
+
+    @Override
+    public void print() {
+        var pages = getPages();
+        for(int i = 0; i < pages.size(); i ++) {
+            System.out.println(formatPage(i, pages.get(i)));
+        }
+    }
+
+    private List<String> doPagingImpl() {
         AtomicInteger count = new AtomicInteger();
         return Arrays.stream(getText().split("\n")).collect(
                         Collectors.groupingBy(line -> count.getAndIncrement() / 3)
@@ -100,19 +113,17 @@ public class ClassObject {
             System.out.println("Superclass: " + cls.getSuperclass());
             System.out.println(Arrays.toString(cls.getInterfaces()));
             System.out.println(Arrays.toString(cls.getSuperclass().getInterfaces()));
-            Method[] methods = cls.getMethods();
+            Method[] methods = cls.getDeclaredMethods();
             Constructor[] constructors = cls.getConstructors();
             printMethods(methods);
             printConstructors(constructors);
             System.out.println();
 
-            FancyDocument doc = (FancyDocument) cls.newInstance();
+            FancyDocument doc = (FancyDocument) cls.getDeclaredConstructor().newInstance();
             doc.setTitle("Hello Java Reflection");
             doc.setText("Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\n");
-            var pages = doc.getPages();
-            for(int i = 0; i < pages.size(); i ++) {
-                System.out.println(doc.formatPage(i, pages.get(i)));
-            }
+            doc.print();
+
             System.out.println(doc.getClass().getName());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -120,13 +131,17 @@ public class ClassObject {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public static void printMethods(Method[] methods){
         if(methods.length < 1) return;
         System.out.printf("\nClass '%s' methods:%n------------------------------------%n",
-                methods[0].getDeclaringClass().getSimpleName());
+                methods[0].getDeclaringClass().getName());
         Arrays.stream(methods).forEach(System.out::println);
     }
     public static void printConstructors(Constructor[] constructors){
