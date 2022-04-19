@@ -1,5 +1,7 @@
 package course.java.reflection;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -93,8 +95,17 @@ public class ClassObject {
         Class cls = null;
         try {
             cls = Class.forName("course.java.reflection.FancyDocument");
+//            cls = Class.forName(FancyDocument.class.getName());
+            System.out.println(cls.getName());
+            System.out.println("Superclass: " + cls.getSuperclass());
             System.out.println(Arrays.toString(cls.getInterfaces()));
             System.out.println(Arrays.toString(cls.getSuperclass().getInterfaces()));
+            Method[] methods = cls.getMethods();
+            Constructor[] constructors = cls.getConstructors();
+            printMethods(methods);
+            printConstructors(constructors);
+            System.out.println();
+
             FancyDocument doc = (FancyDocument) cls.newInstance();
             doc.setTitle("Hello Java Reflection");
             doc.setText("Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\n");
@@ -102,7 +113,7 @@ public class ClassObject {
             for(int i = 0; i < pages.size(); i ++) {
                 System.out.println(doc.formatPage(i, pages.get(i)));
             }
-
+            System.out.println(doc.getClass().getName());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (InstantiationException e) {
@@ -110,5 +121,18 @@ public class ClassObject {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void printMethods(Method[] methods){
+        if(methods.length < 1) return;
+        System.out.printf("\nClass '%s' methods:%n------------------------------------%n",
+                methods[0].getDeclaringClass().getSimpleName());
+        Arrays.stream(methods).forEach(System.out::println);
+    }
+    public static void printConstructors(Constructor[] constructors){
+        if(constructors.length < 1) return;
+        System.out.printf("\nClass '%s' constructors:%n------------------------------------%n",
+                constructors[0].getDeclaringClass().getSimpleName());
+        Arrays.stream(constructors).forEach(System.out::println);
     }
 }
