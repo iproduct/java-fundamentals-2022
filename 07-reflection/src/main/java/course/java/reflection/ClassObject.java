@@ -13,7 +13,7 @@ interface Printable {
 }
 
 interface Formattable {
-    String formatPage(int pageNumber);
+    String formatPage(int pageNumber, String page);
 }
 
 interface Pageable {
@@ -66,12 +66,13 @@ class FancyDocument extends Document implements Formattable, Pageable {
     }
 
     @Override
-    public String formatPage(int pageNumber) {
+    public String formatPage(int pageNumber, String page) {
         StringJoiner sj = new StringJoiner("\n",
-                "Page " + pageNumber + "\n------------------------------",
-                "\n------------------------------");
+                "Page " + pageNumber + "\n------------------------------\n",
+                "\n------------------------------\n");
+        sj.add(page);
 
-        return null;
+        return sj.toString();
     }
 
     @Override
@@ -86,5 +87,28 @@ class FancyDocument extends Document implements Formattable, Pageable {
 }
 
 public class ClassObject {
+    public static void main(String[] args) {
+        System.out.println(Integer.class);
+        System.out.println(Integer.TYPE);
+        Class cls = null;
+        try {
+            cls = Class.forName("course.java.reflection.FancyDocument");
+            System.out.println(Arrays.toString(cls.getInterfaces()));
+            System.out.println(Arrays.toString(cls.getSuperclass().getInterfaces()));
+            FancyDocument doc = (FancyDocument) cls.newInstance();
+            doc.setTitle("Hello Java Reflection");
+            doc.setText("Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\n");
+            var pages = doc.getPages();
+            for(int i = 0; i < pages.size(); i ++) {
+                System.out.println(doc.formatPage(i, pages.get(i)));
+            }
 
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
