@@ -3,9 +3,11 @@ package org.iproduct.di;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 import javax.inject.Inject;
 
+import dynamicproxy.*;
 import org.iproduct.di.exceptions.BeanInstantiationException;
 
 import io.github.classgraph.AnnotationInfo;
@@ -45,12 +47,11 @@ public class DIProxy implements InvocationHandler {
 			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 				throw new BeanInstantiationException("Error injecting field '" + f.getName() + "' with value: " + injected, e);
 			}
-			
+
 //			Map<String, AnnotationParameterValue> params = injectInfo.getParameterValues().asMap();
 //			params.get(arg0)
 
 		}
-		
 	}
 
 	@Override
@@ -62,4 +63,24 @@ public class DIProxy implements InvocationHandler {
 		return result;
 	}
 
+	public static void main(String[] args) {
+		UserRepository instance = new UserRepositoryImpl();
+		UserRepository proxy = (UserRepository) Proxy.newProxyInstance(UserRepository.class.getClassLoader(),
+				new Class[] { UserRepository.class  },
+				new DIProxy(null, instance, null));
+		proxy.addUser(new User(1, "Ivan Petrov", "ivan@gmail.com"));
+		proxy.addUser(new User(2, "John Doe", "john.doe@gmail.com"));
+		proxy.addUser(new User(2, "Jane Doe", "jane.doe@gmail.com"));
+		System.out.println(proxy.findAll());
+		System.out.println(proxy.findAll());
+
+		System.out.println("\n============================================================\n\nController profiling:\n");
+
+		UserController ucInstance = new UserControllerImpl();
+		ucInstance.setRepo(proxy);
+		UserController ucProxy = (UserController) Proxy.newProxyInstance(UserController.class.getClassLoader(),
+				new Class[] { UserController.class  },
+				new DIProxy(null, ucInstance, null));
+		ucProxy.findAllUsers();
+	}
 }

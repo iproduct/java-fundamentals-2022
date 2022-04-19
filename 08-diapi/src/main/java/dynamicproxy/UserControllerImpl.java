@@ -5,6 +5,9 @@ import javax.inject.Inject;
 import org.iproduct.di.annotations.Component;
 import org.iproduct.di.annotations.JaxbRepository;
 
+import java.util.Collection;
+import java.util.List;
+
 @Component
 public class UserControllerImpl implements UserController {
 	@Inject @JaxbRepository
@@ -14,8 +17,14 @@ public class UserControllerImpl implements UserController {
 		return repo;
 	}
 
+
 	public void setRepo(UserRepository repo) {
 		this.repo = repo;
+	}
+
+	@Override
+	public Collection<User> findAllUsers() {
+		return repo.findAll();
 	}
 	
 }

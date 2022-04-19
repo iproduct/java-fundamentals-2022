@@ -177,7 +177,7 @@ public class ApplicationContext implements Context {
 		
 		UserController ctrl = ctx.getBean(UserController.class);
 		System.out.println("\nUserController:");
-		System.out.println(ctrl.getRepo().findAll());
+		System.out.println(ctrl.findAllUsers());
 
 //		assertThat(classInfos).extracting(ClassInfo::getName).contains(UserRepositoryImpl.class.getName());
 
