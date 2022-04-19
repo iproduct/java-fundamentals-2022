@@ -83,14 +83,14 @@ class Cook implements Runnable {
 public class RestaurantDemo {
     Pizza pizza;
     ExecutorService exec = Executors.newCachedThreadPool();
-    Waiter waitPerson = new Waiter(this, "PESHO");
-    //                waitPerson2 = new WaitPerson(this, "TOSHO");
+    Waiter waitPerson = new Waiter(this, "PESHO"),
+            waitPerson2 = new Waiter(this, "TOSHO");
     Cook chef = new Cook(this);
 
     public RestaurantDemo() {
         exec.execute(chef);
         exec.execute(waitPerson);
-//            exec.execute(waitPerson2);
+        exec.execute(waitPerson2);
     }
 
     public static void main(String[] args) {
