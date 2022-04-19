@@ -4,11 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 interface Printable {
@@ -85,6 +83,8 @@ class FancyDocument extends Document implements Formattable, Pageable {
 
     @Override
     public void print() {
+        System.out.println(getTitle());
+        System.out.println("=============================");
         var pages = getPages();
         for(int i = 0; i < pages.size(); i ++) {
             System.out.println(formatPage(i, pages.get(i)));
@@ -119,10 +119,24 @@ public class ClassObject {
             printConstructors(constructors);
             System.out.println();
 
-            FancyDocument doc = (FancyDocument) cls.getDeclaredConstructor().newInstance();
-            doc.setTitle("Hello Java Reflection");
-            doc.setText("Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\n");
-            doc.print();
+            Object doc = cls.getDeclaredConstructor(String.class, String.class)
+                    .newInstance("Hello Java Reflection", "Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\n");
+
+//            if(doc instanceof Printable) {
+//                ((Printable) doc).print();
+//            }
+
+            // Set private field demo
+            var titleFiled = doc.getClass().getSuperclass().getDeclaredField("title");
+            titleFiled.setAccessible(true);
+            titleFiled.set(doc, "MY NEW TITLE - RESET PRIVATE !!!");
+
+            // Dynamic method invokation demo
+            if(cls.isInstance(doc)) {
+                cls.cast(doc);
+                var printMethod = cls.getMethod("print");
+                printMethod.invoke(doc); // invoke print() method dynamically using reflection
+            }
 
             System.out.println(doc.getClass().getName());
         } catch (ClassNotFoundException e) {
@@ -134,6 +148,8 @@ public class ClassObject {
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
