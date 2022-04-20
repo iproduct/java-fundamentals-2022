@@ -53,6 +53,7 @@ public class BookServiceImpl implements BookService {
         return newBook;
     }
 
+
     @Override
     public Book updateBook(Book book) throws NonexistingEntityException, InvalidEntityDataException {
         try {
