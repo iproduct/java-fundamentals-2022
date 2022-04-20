@@ -8,6 +8,13 @@ import java.util.Properties;
 
 public class RepoFactoryInMemoryImpl implements RepoFactory {
     public static final String CONFIG_REPO_ID_GENERATOR_CLASS = "repository.id.generatorclass";
+    private static RepoFactoryInMemoryImpl theInstance;
+    public static  RepoFactoryInMemoryImpl getInstance() {
+        if(theInstance == null) {
+            theInstance = new RepoFactoryInMemoryImpl();
+        }
+        return theInstance;
+    }
     @Override
     public UserRepository createUserRepository(Properties options) {
         return getRepoInstance(options, UserRepositoryMemoryImpl.class);
@@ -18,6 +25,7 @@ public class RepoFactoryInMemoryImpl implements RepoFactory {
         return getRepoInstance(options, BookRepositoryMemoryImpl.class);
     }
 
+    @SuppressWarnings({"unchecked"})
     private static <V, K, R extends Repository<V,K>> R getRepoInstance(Properties options, Class<R> repoClass) {
         String idGenClassName =  options.getProperty(CONFIG_REPO_ID_GENERATOR_CLASS);
         try {

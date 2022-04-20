@@ -4,10 +4,10 @@ import course.java.controller.BookController;
 import course.java.controller.MainController;
 import course.java.controller.UserController;
 import course.java.dao.BookRepository;
+import course.java.dao.RepoFactory;
+import course.java.dao.UserRepoFactory;
 import course.java.dao.UserRepository;
-import course.java.dao.impl.BookRepositoryMemoryImpl;
-import course.java.dao.impl.LongIdGenerator;
-import course.java.dao.impl.UserRepositoryMemoryImpl;
+import course.java.dao.impl.*;
 import course.java.model.Role;
 import course.java.model.User;
 import course.java.model.UserBuilder;
@@ -20,11 +20,20 @@ import course.java.util.UserValidator;
 import course.java.view.NewBookDialog;
 import course.java.view.NewUserDialog;
 
+import java.util.Properties;
+
+import static course.java.dao.impl.RepoFactoryInMemoryImpl.CONFIG_REPO_ID_GENERATOR_CLASS;
 import static course.java.model.MockUsers.MOCK_USERS;
 
 public class Main {
     public static void main(String[] args) {
-        UserRepository userRepo = new UserRepositoryMemoryImpl(new LongIdGenerator());
+        // persistence layer
+        RepoFactory repoFactory = RepoFactoryInMemoryImpl.getInstance();
+        var props = new Properties();
+        props.put(CONFIG_REPO_ID_GENERATOR_CLASS, LongIdGenerator.class.getName());
+        var bookRepo = repoFactory.createBookRepository(props);
+        var userRepo = repoFactory.createUserRepository(props);
+
         for (var user : MOCK_USERS) {
             userRepo.create(user);
         }
@@ -44,11 +53,10 @@ public class Main {
             System.out.println(user.format());
         }
 
-        // persitence layer
-        BookRepository bookRepo = new BookRepositoryMemoryImpl(new LongIdGenerator());
         // domain business logic layer
         BookService bookService = new BookServiceImpl(bookRepo, new BookValidator());
         UserService userService = new UserServiceImpl(userRepo, new UserValidator());
+
         // presentation layer - presentation logic and view
         var addBookDialog = new NewBookDialog();
         var addUserDialog = new NewUserDialog();
