@@ -6,11 +6,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.iproduct.di.BeanScope;
+import org.iproduct.di.annotations.InMemory;
 import org.iproduct.di.annotations.Repository;
 import org.iproduct.di.annotations.Scope;
 
 @Scope(BeanScope.SINGLETON)
 @Repository
+@InMemory
 public class UserRepositoryImpl implements UserRepository{
 	Map<Long, User> users = new ConcurrentHashMap<Long, User>();
 	AtomicLong sequence = new AtomicLong();
