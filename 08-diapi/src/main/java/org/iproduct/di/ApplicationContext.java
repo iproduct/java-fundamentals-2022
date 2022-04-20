@@ -2,6 +2,7 @@ package org.iproduct.di;
 
 import static org.iproduct.di.BeanScope.SINGLETON;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,9 +80,9 @@ public class ApplicationContext implements Context {
 		} else {
 			try {
 				return Proxy.newProxyInstance(bd.getClassInfo().loadClass().getClassLoader(), new Class[] { cls },
-						new DIProxy(this, bd.getClassInfo().loadClass().newInstance(), bd));
+						new DIProxy(this, bd.getClassInfo().loadClass().getDeclaredConstructor().newInstance(), bd));
 
-			} catch (InstantiationException | IllegalAccessException e) {
+			} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 				throw new BeanInstantiationException(
 						"Error instantiating prototype scoped bean '" + bd.getName() + "':", e);
 			}
@@ -141,7 +142,7 @@ public class ApplicationContext implements Context {
 						try {
 							desc.setInstance(
 								Proxy.newProxyInstance(beanClass.getClassLoader(), interfaces,
-									new DIProxy(this, beanClass.newInstance(), desc)));
+									new DIProxy(this, beanClass.getDeclaredConstructor().newInstance(), desc)));
 						} catch (InstantiationException | IllegalAccessException e) {
 							new BeanInstantiationException(
 									"Error instantiating singleton scoped bean '" + ci.getName() + "':", e);
@@ -169,7 +170,7 @@ public class ApplicationContext implements Context {
 			System.out.println(r.findAll());
 		}
 
-		UserRepository repo = ctx.getBean(UserRepository.class);
+		UserRepository repo = ctx.getBean(UserRepository.class); // service locator pattern
 		System.out.println(repo);
 		repo.addUser(new User("Ivan Petrov", "ivan@abv.bg"));
 		repo.addUser(new User("Dimitar Simeonov", "mitko@gmail.com"));
