@@ -1,8 +1,8 @@
 package course.java.dao;
 
-import java.util.Map;
 import java.util.Properties;
 
-public interface UserRepoFactory {
+public interface RepoFactory {
     UserRepository createUserRepository(Properties options);
+    BookRepository createBookRepository(Properties options);
 }

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class RepositoryMemoryImpl<V extends Identifiable<K>, K> implements Repository<V, K> {
+class RepositoryMemoryImpl<V extends Identifiable<K>, K> implements Repository<V, K> {
     private long nextId = 0;
     private Map<K, V> entities = new HashMap<>();
     private IdGenerator<K> idGenerator;

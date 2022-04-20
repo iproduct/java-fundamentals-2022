@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class UserRepositoryMemoryImpl extends RepositoryMemoryImpl<User, Long> implements UserRepository {
+class UserRepositoryMemoryImpl extends RepositoryMemoryImpl<User, Long> implements UserRepository {
     private long nextId = 0;
     private Map<Long, User> entities = new HashMap<>();
 

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Collections.disjoint;
 
-public class BookRepositoryMemoryImpl extends RepositoryMemoryImpl<Book, Long> implements BookRepository {
+class BookRepositoryMemoryImpl extends RepositoryMemoryImpl<Book, Long> implements BookRepository {
 
     public BookRepositoryMemoryImpl(IdGenerator<Long> idGenerator) {
         super(idGenerator);
