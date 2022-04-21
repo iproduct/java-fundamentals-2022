@@ -1,4 +1,4 @@
-package course.java.observer;
+package course.java.observer.impl;
 
 import lombok.Data;
 import lombok.Value;
