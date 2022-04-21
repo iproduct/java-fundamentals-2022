@@ -8,12 +8,18 @@ import course.java.dao.RepoFactory;
 import course.java.dao.UserRepoFactory;
 import course.java.dao.UserRepository;
 import course.java.dao.impl.*;
+import course.java.exception.InvalidEntityDataException;
+import course.java.exception.NonexistingEntityException;
 import course.java.model.Role;
 import course.java.model.User;
 import course.java.model.UserBuilder;
+import course.java.observer.Observer;
+import course.java.observer.impl.EventPublisher;
 import course.java.service.BookService;
+import course.java.service.ObservableUserService;
 import course.java.service.UserService;
 import course.java.service.impl.BookServiceImpl;
+import course.java.service.impl.ObservableUserServiceImpl;
 import course.java.service.impl.UserServiceImpl;
 import course.java.util.BookValidator;
 import course.java.util.UserValidator;
@@ -55,7 +61,20 @@ public class Main {
 
         // domain business logic layer
         BookService bookService = new BookServiceImpl(bookRepo, new BookValidator());
-        UserService userService = new UserServiceImpl(userRepo, new UserValidator());
+        ObservableUserService userService = new ObservableUserServiceImpl(userRepo, new UserValidator(), new EventPublisher<>());
+
+        // Observer pattern demo
+        Observer<User> userEventListener = event -> System.out.println("EVENT: User created/updated: " + event.getPayload());
+        userService.subscribe(userEventListener );
+        try {
+            var jane = userService.addUser(new User("Jane", "Doe", 35, "jane", "jane123A&",
+                    Role.AUTHOR, "+359 887345612"));
+            jane.setPassword("joan789B#");
+            userService.updateUser(jane);
+        } catch (InvalidEntityDataException | NonexistingEntityException e) {
+            System.out.println("Error creating/updating user: "+ e.getMessage());
+        }
+//        userService.unsubscribe(userEventListener);
 
         // presentation layer - presentation logic and view
         var addBookDialog = new NewBookDialog();
@@ -64,5 +83,7 @@ public class Main {
         UserController userController = new UserController(userService, addUserDialog);
         MainController mainController = new MainController(bookController, userController);
         mainController.showMenu();
+
+
     }
 }

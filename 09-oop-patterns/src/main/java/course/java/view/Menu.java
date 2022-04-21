@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    public interface Command {
-        String execute() throws Exception;
-    }
 
     public static class Option {
         private String text;

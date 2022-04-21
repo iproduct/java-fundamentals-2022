@@ -3,6 +3,7 @@ package course.java.controller;
 
 import course.java.model.Book;
 import course.java.service.BookService;
+import course.java.view.Command;
 import course.java.view.EntityDialog;
 import course.java.view.Menu;
 
@@ -32,7 +33,7 @@ public class BookController {
                     books.forEach(book -> System.out.println(book.format()));
                     return "Total book count: " + books.size();
                 }),
-                new Menu.Option("Add New Books", new Menu.Command() {
+                new Menu.Option("Add New Books", new Command() {
                     {
                         System.out.println("Instead of constructor - init object state here...");
                     }
