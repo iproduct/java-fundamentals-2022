@@ -23,7 +23,7 @@ public class EventPublisher<T> implements Observable<T> {
         userObservers.remove(observer);
     }
 
-    protected void notfyObservers(Event<T> event) {
+    public void notfyObservers(Event<T> event) {
         for(var observer : userObservers) {
             observer.update(event);
         }

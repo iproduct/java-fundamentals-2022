@@ -32,11 +32,25 @@ public class ObservableUserServiceImpl extends  UserServiceImpl implements Obser
 
     @Override
     public void subscribe(Observer<User> observer) {
-
+        userEventPublisher.subscribe(observer);
     }
 
     @Override
     public void unsubscribe(Observer<User> observer) {
+        userEventPublisher.unsubscribe(observer);
+    }
 
+    @Override
+    public User addUser(User user) throws InvalidEntityDataException {
+        var created = super.addUser(user);
+        userEventPublisher.notfyObservers(new Event<>(this, created));
+        return created;
+    }
+
+    @Override
+    public User updateUser(User user) throws NonexistingEntityException, InvalidEntityDataException {
+        var updated = super.updateUser(user);
+        userEventPublisher.notfyObservers(new Event<>(this, updated));
+        return updated;
     }
 }
