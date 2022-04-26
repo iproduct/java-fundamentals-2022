@@ -1,6 +1,7 @@
 package course.java.state;
 
 import course.java.exception.InvalidEntityDataException;
+import course.java.exception.InvalidOperationException;
 import course.java.model.Book;
 import course.java.model.Order;
 import course.java.service.OrderService;
@@ -16,7 +17,7 @@ public sealed abstract class OrderState permits CreatedState, PendingState, Paye
     private final Order order;
     private final OrderService orderService;
 
-    public abstract String next() throws InvalidEntityDataException;
+    public abstract String next() throws InvalidOperationException;
 
     public abstract String addProduct(Book product, int quantity);
 

@@ -1,5 +1,6 @@
 package course.java.state;
 
+import course.java.exception.InvalidOperationException;
 import course.java.model.Book;
 import course.java.model.Order;
 import course.java.service.OrderService;
@@ -10,9 +11,8 @@ public final class DeliveredState extends OrderState {
     }
 
     @Override
-    public String next() {
-        getOrder().setState(new PendingState(getOrder(), getOrderService()));
-        return "Order complete and payment is pending.";
+    public String next() throws InvalidOperationException {
+        throw new InvalidOperationException("Order is already delivered - no further state transitions available.");
     }
 
     @Override
