@@ -1,6 +1,5 @@
 package course.java.service.impl;
 
-import course.java.dao.BookRepository;
 import course.java.dao.OrderRepository;
 import course.java.model.Book;
 import course.java.model.Order;
@@ -14,16 +13,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class OrderServiceImpl implements OrderService {
-    private final OrderRepository bookRepo;
+    private final OrderRepository orderRepository;
 
     public OrderServiceImpl(OrderRepository bookRepo) {
-        this.bookRepo = bookRepo;
+        this.orderRepository = bookRepo;
     }
 
     @Override
     public Order createOrder(User client) {
-        var order =  new Order(client);
+        var order = new Order(client);
         order.setState(new CreatedState(order, this));
+        orderRepository.create(order);
         return order;
     }
 
@@ -36,27 +36,41 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order addProduct(Order order, Book product) {
-        return order;
+    public void addProduct(Order order, Book product) {
+        addProduct(order, product, 1);
     }
 
     @Override
-    public Order addProduct(Order order, Book product, int quantity) {
-        return null;
+    public void addProduct(Order order, Book product, int quantity) {
+        var lines = order.getOrderLines();
+        var productLine = lines.stream()
+                .filter(line -> line.getProduct().getId().equals(product.getId())).findAny();
+        if (productLine.isPresent()) {
+            var oldQuantity = productLine.get().getQuantity();
+            productLine.get().setQuantity(oldQuantity + quantity);
+        } else {
+            order.getOrderLines().add(new OrderLine(product, quantity));
+        }
     }
 
     @Override
-    public Order removeProduct(Order order, Book product) {
-        return null;
+    public boolean removeProduct(Order order, Book product) {
+        var lines = order.getOrderLines();
+        var productLine = lines.stream()
+                .filter(line -> line.getProduct().getId().equals(product.getId())).findAny();
+        if (productLine.isPresent()) {
+            return order.getOrderLines().remove(new OrderLine(product, 0));
+        }
+        return false;
     }
 
     @Override
     public Collection<Order> getAllOrders() {
-        return null;
+        return orderRepository.findAll();
     }
 
     @Override
     public Optional<Order> getOrderById(long id) {
-        return Optional.empty();
+        return orderRepository.findById(id);
     }
 }

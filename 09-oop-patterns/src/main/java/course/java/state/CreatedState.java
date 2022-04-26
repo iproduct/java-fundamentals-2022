@@ -17,12 +17,16 @@ public final class CreatedState extends OrderState {
 
     @Override
     public String addProduct(Book product, int quantity) {
-        return null;
+        getOrderService().addProduct(getOrder(), product, quantity);
+        return String.format("Product '%s' added successfully to order %d.%n",
+                product, getOrder().getId());
     }
 
     @Override
     public String removeProduct(Book product) {
-        return null;
+        getOrderService().removeProduct(getOrder(), product);
+        return String.format("Product '%s' added successfully to order %d.%n",
+                product, getOrder().getId());
     }
 
     @Override
