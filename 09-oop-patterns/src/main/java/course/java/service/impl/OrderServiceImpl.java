@@ -73,11 +73,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void payOrder(Order order) throws InvalidOperationException {
         order.getState().pay();
+        nextOrderState(order);
     }
 
     @Override
     public void deliverOrder(Order order) throws InvalidOperationException {
         order.getState().deliver();
+        nextOrderState(order);
     }
 
     @Override

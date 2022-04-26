@@ -9,6 +9,7 @@ import course.java.dao.UserRepoFactory;
 import course.java.dao.UserRepository;
 import course.java.dao.impl.*;
 import course.java.exception.InvalidEntityDataException;
+import course.java.exception.InvalidOperationException;
 import course.java.exception.NonexistingEntityException;
 import course.java.model.Role;
 import course.java.model.User;
@@ -32,6 +33,7 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 import static course.java.dao.impl.RepoFactoryInMemoryImpl.CONFIG_REPO_ID_GENERATOR_CLASS;
+import static course.java.model.MockBooks.MOCK_BOOKS;
 import static course.java.model.MockUsers.MOCK_USERS;
 
 public class Main {
@@ -46,6 +48,9 @@ public class Main {
 
         for (var user : MOCK_USERS) {
             userRepo.create(user);
+        }
+        for (var book : MOCK_BOOKS) {
+            bookRepo.create(book);
         }
         var newUser = new UserBuilder().setName("Stefan Dimitrov").setAge(43)
                 .setUsername("stefan").setPassword("stef123").setRole(Role.READER)
@@ -86,7 +91,15 @@ public class Main {
         var order = orderService.createOrder(jane);
         bookService.getAllBooks().stream().limit(3)
                 .forEach(product -> orderService.addProduct(order, product));
-
+        try {
+            orderService.nextOrderState(order); // Advance to PendingState
+            orderService.payOrder(order);
+//            orderService.payOrder(order); // ERROR
+            orderService.deliverOrder(order);
+            System.out.println("Order STATUS: " + order.getState().getStatus());
+        } catch (InvalidOperationException e) {
+            System.out.println("ERROR: " + e.getMessage());;
+        }
 
         // presentation layer - presentation logic and view
         var addBookDialog = new NewBookDialog();
