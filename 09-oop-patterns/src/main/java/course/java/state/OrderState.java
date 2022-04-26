@@ -19,13 +19,13 @@ public sealed abstract class OrderState permits CreatedState, PendingState, Paye
 
     public abstract String next() throws InvalidOperationException;
 
-    public abstract String addProduct(Book product, int quantity);
+    public abstract String addProduct(Book product, int quantity) throws InvalidOperationException;
 
-    public abstract String removeProduct(Book product);
+    public abstract String removeProduct(Book product) throws InvalidOperationException;
 
-    public abstract String pay();
+    public abstract String pay() throws InvalidOperationException;
 
-    public abstract String deliver();
+    public abstract String deliver() throws InvalidOperationException;
 
     public String getStatus() {
         return new StringJoiner(", ", "Order [" + getClass().getSimpleName() + "]: ", "")

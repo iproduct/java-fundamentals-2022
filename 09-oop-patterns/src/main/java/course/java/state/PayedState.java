@@ -1,5 +1,6 @@
 package course.java.state;
 
+import course.java.exception.InvalidOperationException;
 import course.java.model.Book;
 import course.java.model.Order;
 import course.java.service.OrderService;
@@ -16,22 +17,22 @@ public final class PayedState extends OrderState {
     }
 
     @Override
-    public String addProduct(Book product, int quantity) {
-        return null;
+    public String addProduct(Book product, int quantity) throws InvalidOperationException {
+        throw new InvalidOperationException("Order is complete and more products can not be added.");
     }
 
     @Override
-    public String removeProduct(Book product) {
-        return null;
+    public String removeProduct(Book product) throws InvalidOperationException {
+        throw new InvalidOperationException("Order is complete and products can not be removed.");
     }
-
     @Override
-    public String pay() {
-        return null;
+    public String pay() throws InvalidOperationException {
+        throw new InvalidOperationException("Order is already payed.");
     }
 
     @Override
     public String deliver() {
-        return null;
+        // TODO payment process orchestration here ...
+        return "Order delivered successfully";
     }
 }

@@ -1,6 +1,7 @@
 package course.java.service.impl;
 
 import course.java.dao.OrderRepository;
+import course.java.exception.InvalidOperationException;
 import course.java.model.Book;
 import course.java.model.Order;
 import course.java.model.OrderLine;
@@ -62,6 +63,21 @@ public class OrderServiceImpl implements OrderService {
             return order.getOrderLines().remove(new OrderLine(product, 0));
         }
         return false;
+    }
+
+    @Override
+    public void nextOrderState(Order order) throws InvalidOperationException {
+        order.getState().next();
+    }
+
+    @Override
+    public void payOrder(Order order) throws InvalidOperationException {
+        order.getState().pay();
+    }
+
+    @Override
+    public void deliverOrder(Order order) throws InvalidOperationException {
+        order.getState().deliver();
     }
 
     @Override

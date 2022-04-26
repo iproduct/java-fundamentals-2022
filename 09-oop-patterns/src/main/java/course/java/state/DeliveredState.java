@@ -16,22 +16,21 @@ public final class DeliveredState extends OrderState {
     }
 
     @Override
-    public String addProduct(Book product, int quantity) {
-        return null;
+    public String addProduct(Book product, int quantity) throws InvalidOperationException {
+        throw new InvalidOperationException("Order is complete and more products can not be added.");
     }
 
     @Override
-    public String removeProduct(Book product) {
-        return null;
+    public String removeProduct(Book product) throws InvalidOperationException {
+        throw new InvalidOperationException("Order is complete and products can not be removed.");
+    }
+    @Override
+    public String pay() throws InvalidOperationException {
+        throw new InvalidOperationException("Order is already payed.");
+    }
+    @Override
+    public String deliver() throws InvalidOperationException {
+        throw new InvalidOperationException("Order is already delivered.");
     }
 
-    @Override
-    public String pay() {
-        return null;
-    }
-
-    @Override
-    public String deliver() {
-        return null;
-    }
 }

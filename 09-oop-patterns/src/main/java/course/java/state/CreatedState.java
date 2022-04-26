@@ -1,5 +1,6 @@
 package course.java.state;
 
+import course.java.exception.InvalidOperationException;
 import course.java.model.Book;
 import course.java.model.Order;
 import course.java.service.OrderService;
@@ -30,12 +31,12 @@ public final class CreatedState extends OrderState {
     }
 
     @Override
-    public String pay() {
-        return null;
+    public String pay() throws InvalidOperationException {
+        throw new InvalidOperationException("Order not complete and can not be payed.");
     }
 
     @Override
-    public String deliver() {
-        return null;
+    public String deliver() throws InvalidOperationException {
+        throw new InvalidOperationException("Order not complete and can not be delivered.");
     }
 }
