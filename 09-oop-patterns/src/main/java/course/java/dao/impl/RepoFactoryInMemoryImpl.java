@@ -25,6 +25,11 @@ public class RepoFactoryInMemoryImpl implements RepoFactory {
         return getRepoInstance(options, BookRepositoryMemoryImpl.class);
     }
 
+    @Override
+    public OrderRepository createOrderRepository(Properties options) {
+        return getRepoInstance(options, OrderRepositoryMemoryImpl.class);
+    }
+
     @SuppressWarnings({"unchecked"})
     private static <V, K, R extends Repository<V,K>> R getRepoInstance(Properties options, Class<R> repoClass) {
         String idGenClassName =  options.getProperty(CONFIG_REPO_ID_GENERATOR_CLASS);

@@ -1,8 +1,10 @@
 package course.java.model;
 
+import course.java.dao.Identifiable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.lang.annotation.Inherited;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -12,7 +14,7 @@ import java.util.StringJoiner;
 
 @Data
 @NoArgsConstructor
-public class Order {
+public class Order implements Identifiable<Long> {
     public static final double VAT_PERCENTAGE = 20;
 
     private Long id;
