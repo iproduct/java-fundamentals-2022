@@ -7,6 +7,7 @@ import course.java.model.Order;
 import course.java.model.OrderLine;
 import course.java.model.User;
 import course.java.service.OrderService;
+import course.java.state.CreatedState;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -21,13 +22,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order createOrder(User client) {
-        return new Order(client);
+        var order =  new Order(client);
+        order.setState(new CreatedState(order, this));
+        return order;
     }
 
     @Override
     public Order createOrder(User client, Collection<Book> products) {
+        var order = createOrder(client);
         var lines = products.stream().map(p -> new OrderLine(p, 1)).collect(Collectors.toList());
-        return new Order(client, lines);
+        order.setOrderLines(lines);
+        return order;
     }
 
     @Override

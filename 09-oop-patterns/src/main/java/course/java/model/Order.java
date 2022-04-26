@@ -1,6 +1,7 @@
 package course.java.model;
 
 import course.java.dao.Identifiable;
+import course.java.state.OrderState;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ public class Order implements Identifiable<Long> {
     private LocalDateTime dateTime;
     private User client;
     private List<OrderLine> orderLines = new ArrayList<>();
+    private OrderState state;
 
     public Order(User client) {
         this.client = client;

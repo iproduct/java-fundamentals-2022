@@ -4,14 +4,14 @@ import course.java.model.Book;
 import course.java.model.Order;
 import course.java.service.OrderService;
 
-public final class CreatedState extends OrderState {
-    public CreatedState(Order order, OrderService orderService) {
+public final class PendingState extends OrderState {
+    public PendingState(Order order, OrderService orderService) {
         super(order, orderService);
     }
 
     @Override
     public String next() {
-        getOrder().setState(new PendingState(getOrder(), getOrderService()));
+        getOrder().setState(new PayedState(getOrder(), getOrderService()));
         return "Order complete and payment is pending.";
     }
 

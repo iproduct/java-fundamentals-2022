@@ -7,11 +7,12 @@ import course.java.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.awt.*;
 import java.util.StringJoiner;
 
 @Data
 @AllArgsConstructor
-public abstract class OrderState {
+public sealed abstract class OrderState permits CreatedState, PendingState {
     private final Order order;
     private final OrderService orderService;
 
