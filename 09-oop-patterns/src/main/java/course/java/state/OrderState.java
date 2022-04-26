@@ -12,7 +12,7 @@ import java.util.StringJoiner;
 
 @Data
 @AllArgsConstructor
-public sealed abstract class OrderState permits CreatedState, PendingState {
+public sealed abstract class OrderState permits CreatedState, PendingState, PayedState, DeliveredState {
     private final Order order;
     private final OrderService orderService;
 
