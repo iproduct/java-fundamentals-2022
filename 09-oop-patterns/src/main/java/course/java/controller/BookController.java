@@ -12,11 +12,14 @@ import java.util.List;
 public class BookController {
     private BookService bookService;
     private EntityDialog<Book> addBookDialog;
+
+    private LoginController loginController;
     private Menu menu;
 
-    public BookController(BookService bookService, EntityDialog<Book> addBookDialog) {
+    public BookController(BookService bookService, EntityDialog<Book> addBookDialog, LoginController loginController) {
         this.bookService = bookService;
         this.addBookDialog = addBookDialog;
+        this.loginController = loginController;
         init();
     }
 
@@ -46,7 +49,7 @@ public class BookController {
                                 created.getId(), created.getTitle());
                     }
                 })
-        ));
+        ), loginController);
     }
 
     public void showMenu() {

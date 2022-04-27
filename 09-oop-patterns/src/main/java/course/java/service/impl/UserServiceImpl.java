@@ -43,6 +43,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByUsername(String username) throws NonexistingEntityException {
+        return userRepo.findByUsername(username).orElseThrow(()->
+                new NonexistingEntityException("Username or password incorrect."));
+    }
+
+    @Override
     public User addUser(User user) throws InvalidEntityDataException {
         if(userRepo.findByUsername(user.getUsername()).isPresent()){
             throw new InvalidEntityDataException(

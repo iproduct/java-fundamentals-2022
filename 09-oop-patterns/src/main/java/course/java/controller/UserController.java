@@ -11,11 +11,13 @@ import java.util.List;
 public class UserController {
     private UserService userService;
     private EntityDialog<User> addUserDialog;
+    private LoginController loginController;
     private Menu menu;
 
-    public UserController(UserService userService, EntityDialog<User> addUserDialog) {
+    public UserController(UserService userService, EntityDialog<User> addUserDialog, LoginController loginController) {
         this.userService = userService;
         this.addUserDialog = addUserDialog;
+        this.loginController = loginController;
         init();
     }
 
@@ -38,7 +40,7 @@ public class UserController {
                     return String.format("User ID:%s: '%s' added successfully.",
                             created.getId(), created.getUsername());
                 })
-        ));
+        ), loginController);
     }
 
     public void showMenu() {

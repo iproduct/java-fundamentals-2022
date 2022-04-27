@@ -1,6 +1,7 @@
 package course.java;
 
 import course.java.controller.BookController;
+import course.java.controller.LoginController;
 import course.java.controller.MainController;
 import course.java.controller.UserController;
 import course.java.dao.BookRepository;
@@ -26,6 +27,7 @@ import course.java.service.impl.OrderServiceImpl;
 import course.java.service.impl.UserServiceImpl;
 import course.java.util.BookValidator;
 import course.java.util.UserValidator;
+import course.java.view.CredentialsDialog;
 import course.java.view.NewBookDialog;
 import course.java.view.NewUserDialog;
 
@@ -60,7 +62,7 @@ public class Main {
         if(ivanOptional.isPresent()) {
             var ivan = ivanOptional.get();
             ivan.setLastName("Hristov");
-            ivan.setPassword("new_pass");
+//            ivan.setPassword("new_pass");
             userRepo.update(ivan);
         }
         userRepo.deleteById(2L);
@@ -104,11 +106,12 @@ public class Main {
         // presentation layer - presentation logic and view
         var addBookDialog = new NewBookDialog();
         var addUserDialog = new NewUserDialog();
-        BookController bookController = new BookController(bookService, addBookDialog);
-        UserController userController = new UserController(userService, addUserDialog);
-        MainController mainController = new MainController(bookController, userController);
+        var credentialsDialog = new CredentialsDialog();
+        LoginController loginController = new LoginController(userService);
+        BookController bookController = new BookController(bookService, addBookDialog, loginController);
+        UserController userController = new UserController(userService, addUserDialog, loginController);
+        MainController mainController = new MainController(bookController, userController, loginController, credentialsDialog);
         mainController.showMenu();
-
 
     }
 }
