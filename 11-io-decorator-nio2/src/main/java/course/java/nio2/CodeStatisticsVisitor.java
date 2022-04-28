@@ -19,13 +19,6 @@ public class CodeStatisticsVisitor implements FileVisitor {
         return totalCodeLines;
     }
 
-    public static void main(String[] args) throws IOException {
-        Path projectPath = Paths.get(".");
-        var visitor = new CodeStatisticsVisitor();
-        Files.walkFileTree(projectPath, visitor);
-        System.out.println("Number of code lines in project: " + visitor.getTotalCodeLines());
-    }
-
     @Override
     public FileVisitResult preVisitDirectory(Object dir, BasicFileAttributes attrs) throws IOException {
         var path = (Path) dir;
@@ -65,5 +58,12 @@ public class CodeStatisticsVisitor implements FileVisitor {
             return FileVisitResult.TERMINATE;
         }
         return FileVisitResult.CONTINUE;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Path projectPath = Paths.get(".");
+        var visitor = new CodeStatisticsVisitor();
+        Files.walkFileTree(projectPath, visitor);
+        System.out.println("Number of code lines in project: " + visitor.getTotalCodeLines());
     }
 }
