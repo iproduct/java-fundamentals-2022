@@ -1,11 +1,18 @@
 package course.java.simple;
 
 import course.java.model.Person;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.math.BigInteger;
+import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
+@Slf4j
 public class AssertionsDemo {
     private Calculator calculator;
 
@@ -44,10 +51,53 @@ public class AssertionsDemo {
                     // Executed only if actualFirstName is not null
                     assertAll("First name should be valid",
                             () -> assertTrue(actualFirstName.startsWith("J"), "First name should start with 'J'"),
-                            () -> assertTrue(actualFirstName.endsWith("n"), "First name should end with 'n''")
+                            () -> assertTrue(actualFirstName.endsWith("e"), "First name should end with 'n''")
                     );
                 });
     }
 
+    @Test
+    public void givenXandZero_whenDivide_thenThrowsArtithmeticException() {
+        // verify Exception thrown
+        var exception = assertThrows(ArithmeticException.class,
+                () -> calculator.divide(23, 0), "Should throw ArtithmenticException");
+        assertEquals("/ by zero", exception.getMessage(), "Messsage should be '/ by zero'");
+    }
+
+    @Test
+    void timeoutNotExceeded() {
+        assertTimeout(Duration.ofMillis(17), () -> {
+            var prime = calculator.generateNextPrime(new BigInteger("100000000000000000000000"));
+            log.info("Prime generated: {}", prime);
+        });
+    }
+
+    @Test
+    void timeoutNotExceededWithResult() {
+        var prime = assertTimeout(Duration.ofMillis(5), () ->
+                calculator.generateNextPrime(new BigInteger("100000000000000000000000"))
+        );
+        log.info("Prime generated: {}", prime);
+    }
+
+    @Test
+    void timeoutNotExceededWithPreemptiveTermination() {
+        var prime = assertTimeoutPreemptively(Duration.ofMillis(5), () ->
+                calculator.generateNextPrime(new BigInteger("100000000000000000000000"))
+        );
+        log.info("Prime generated: {}", prime);
+    }
+
+    @Test
+    void hamcrestAssertions() {
+        assertThat(calculator.add(2, 3), is(lessThan(5)));
+    }
+
+    @Test
+    void assertjAssertions() {
+        org.assertj.core.api.AssertionsForClassTypes.assertThat(calculator.add(2, 3))
+                .as("check Calculator.add(%d, %d)", 2, 3)
+                .isLessThan(5);
+    }
 
 }

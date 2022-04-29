@@ -13,23 +13,23 @@ public class CalculatorTest {
     private Calculator calculator;
 
     @BeforeAll
-    public void beforeAll(){
+    public void beforeAll() {
         log.info("Before all tests");
     }
 
     @AfterAll
-    public void afterAll(){
+    public void afterAll() {
         log.info("After all tests");
     }
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         calculator = new Calculator();
         log.info("Setup Calculator test");
     }
 
     @AfterEach
-    public void cleanup(){
+    public void cleanup() {
         calculator = null;
         log.info("Cleanup Calculator after test");
     }
@@ -61,7 +61,7 @@ public class CalculatorTest {
         assertEquals(-4, result, "Regular division should work");
     }
 
-     @Test
+    @Test
     public void givenXandZero_whenDivide_thenThrowsArtithmeticException() {
         log.info("Testing divide by zero - assertThrowing()");
         // verify Exception thrown
