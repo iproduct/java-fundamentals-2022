@@ -1,13 +1,12 @@
 package course.java.simple;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.EmptyStackException;
+import java.util.List;
 import java.util.Stack;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestingAStackDemo {
@@ -55,6 +54,25 @@ public class TestingAStackDemo {
         void returnsElementWhenPoped() {
             assertEquals(anElement, stack.pop());
             assertTrue(stack.isEmpty(), "Stack should be empty after pop()");
+        }
+    }
+
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @DisplayName("after pushing 3 elements")
+    class AfterPushing3Elems {
+        List<String> elements = List.of("one", "two", "three");
+
+        @BeforeAll
+        void createNewStack() {
+            stack = new Stack<>();
+            elements.forEach(stack::push);
+        }
+
+        @RepeatedTest(value = 3, name = "{displayName} {currentRepetition}/{totalRepetitions}")
+        @DisplayName("returns element when poped ")
+        void returnsElementWhenPoped() {
+            assertThat(stack.pop()).isInstanceOf(String.class).isIn(elements);
         }
     }
 }
