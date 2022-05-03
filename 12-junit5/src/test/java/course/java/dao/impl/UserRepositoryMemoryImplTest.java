@@ -4,6 +4,7 @@ import course.java.model.Role;
 import course.java.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("dao")
 class UserRepositoryMemoryImplTest {
     private UserRepositoryMemoryImpl repository;
 
@@ -30,7 +32,7 @@ class UserRepositoryMemoryImplTest {
                 .isNotEmpty();
         assertThat(actual.get().getUsername())
 //                .as("Finding user by username '%s' using findByUsername(\"%1$s\").getUsername()", username)
-                .isEqualTo(username+"1");
+                .isEqualTo(username);
     }
 
     @Test
@@ -44,7 +46,7 @@ class UserRepositoryMemoryImplTest {
         assertThat(actual.get())
 //                .as("Finding user by username '%s' using findByUsername(\"%1$s\")", username)
                 .extracting("username")
-                .isEqualTo(username+"1");
+                .isEqualTo(username);
     }
 
     public static final List<User> SAMPLE_USERS = List.of(

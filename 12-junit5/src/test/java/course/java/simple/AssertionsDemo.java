@@ -3,6 +3,7 @@ package course.java.simple;
 import course.java.model.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+@Tag("service")
 @Slf4j
 public class AssertionsDemo {
     private Calculator calculator;
@@ -29,6 +31,7 @@ public class AssertionsDemo {
         assertTrue(calculator.add(2, 3) < calculator.multiply(2, 3));
     }
 
+    @Tag("fast")
     @Test
     void groupedAssertions() {
         //setup
@@ -82,7 +85,7 @@ public class AssertionsDemo {
 
     @Test
     void timeoutNotExceededWithPreemptiveTermination() {
-        var prime = assertTimeoutPreemptively(Duration.ofMillis(5), () ->
+        var prime = assertTimeoutPreemptively(Duration.ofMillis(15), () ->
                 calculator.generateNextPrime(new BigInteger("100000000000000000000000"))
         );
         log.info("Prime generated: {}", prime);
@@ -90,14 +93,14 @@ public class AssertionsDemo {
 
     @Test
     void hamcrestAssertions() {
-        assertThat(calculator.add(2, 3), is(lessThan(5)));
+        assertThat(calculator.add(2, 3), is(lessThan(6)));
     }
 
     @Test
     void assertjAssertions() {
         org.assertj.core.api.AssertionsForClassTypes.assertThat(calculator.add(2, 3))
                 .as("check Calculator.add(%d, %d)", 2, 3)
-                .isLessThan(5);
+                .isLessThan(6);
     }
 
 }

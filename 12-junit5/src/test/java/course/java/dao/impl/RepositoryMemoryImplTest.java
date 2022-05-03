@@ -3,10 +3,7 @@ package course.java.dao.impl;
 import course.java.exception.InvalidEntityDataException;
 import course.java.model.Role;
 import course.java.model.User;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -20,6 +17,7 @@ import static jdk.dynalink.linker.support.Guards.isNotNull;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("dao")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RepositoryMemoryImplTest {
     private RepositoryMemoryImpl<User, Long> usersRepo;
@@ -123,7 +121,7 @@ class RepositoryMemoryImplTest {
     public static final List<User> SAMPLE_USERS2 = List.of(
             new User("Ivan", "Petrov", 25, "ivan", "Ivan123#", Role.ADMIN,
                     "+(359) 887 894356"),
-            new User("Nadezda", "Todorova", 29, "nadia2", "nadia123", Role.READER,
+            new User("Nadezda", "Todorova", 29, "nadia", "nadia123", Role.READER,
                     "+(359) 889 123456"),
             new User("Hristo", "Yanakiev", 23, "hristo", "hris123", Role.ADMIN,
                     "")
