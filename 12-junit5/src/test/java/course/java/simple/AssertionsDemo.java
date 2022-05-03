@@ -1,10 +1,12 @@
 package course.java.simple;
 
+import course.java.extensions.TimingExtension;
 import course.java.model.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.math.BigInteger;
 import java.time.Duration;
@@ -13,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+@ExtendWith(TimingExtension.class)
 @Tag("service")
 @Slf4j
 public class AssertionsDemo {
