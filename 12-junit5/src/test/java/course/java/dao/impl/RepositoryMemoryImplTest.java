@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("dao")
+@Tag("generic")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RepositoryMemoryImplTest {
     private RepositoryMemoryImpl<User, Long> usersRepo;
