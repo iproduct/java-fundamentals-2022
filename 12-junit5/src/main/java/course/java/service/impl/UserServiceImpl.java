@@ -17,6 +17,7 @@ import static course.java.model.MockUsers.MOCK_USERS;
 
 @Slf4j
 public class UserServiceImpl implements UserService {
+    public static final String INVALID_USER_DATA_FOR_USER = "Invalid user data for user";
     private UserRepository userRepo;
     private EntityValidator<User> userValidator;
 
@@ -79,7 +80,7 @@ public class UserServiceImpl implements UserService {
             userValidator.validate(user);
         } catch (ConstraintViolationException cve) {
             throw new InvalidEntityDataException(
-                    String.format("Invalid user data for user '%s'.", user.getUsername()),
+                    INVALID_USER_DATA_FOR_USER + user.getUsername(),
                     cve
             );
         }
