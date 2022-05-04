@@ -19,7 +19,7 @@ public class ParameterizedSimpleTest {
         assertTrue(StringUtils.isPalindrome(candidate));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name="#{index} - Test with argument: {0} -> expected: {1}")
     @MethodSource("stringAndBooleanResultProvider")
     void testPalindromsMethodSource(String candidate, boolean expectedResult) {
         assertEquals(expectedResult, StringUtils.isPalindrome(candidate));
