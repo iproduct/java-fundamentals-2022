@@ -20,6 +20,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.mockito.Mock;
@@ -77,12 +78,8 @@ class UserServiceImplTest {
     }
 
     @ParameterizedTest(name="#{index} - Test with arguments: {0}, {1}, {2}, {3}, {4}, {5}, {6}")
-    @CsvSource({
-            "Ivan, Petrov, 25, ivan, Ivan123#, ANONYMOUS, +(359) 887 894356",
-            "J, Doe, 35, john, John123#, READER, +(1) 456676778",
-            "Jane, doe, 28, jane, Jane123, AUTHOR, +(19) 6573788329"
-    })
-    void addUser(String fName, String lName, int age, String username, String password, String roleStr, String phone) throws InvalidEntityDataException {
+    @CsvFileSource(resources = "/invalid_user_data.csv", numLinesToSkip = 1)
+    void addUserThrowsWhenUserDataInvalid(String fName, String lName, int age, String username, String password, String roleStr, String phone) throws InvalidEntityDataException {
         var user = new User(fName, lName, age, username, password, Role.valueOf(roleStr), phone);
         when(mockUserRepo.findByUsername(anyString())).thenReturn(Optional.empty());
 
@@ -102,7 +99,7 @@ class UserServiceImplTest {
             "John, Doe, 35, john, John123#, READER, +(1) 456676778",
             "Jane, doe, 28, jane, Jane123#, AUTHOR, +(19) 6573788329"
     })
-    void addUserThrowsWhenUserDataInvalid(String fName, String lName, int age, String username, String password, String roleStr, String phone) throws InvalidEntityDataException {
+    void addUser(String fName, String lName, int age, String username, String password, String roleStr, String phone) throws InvalidEntityDataException {
         var user = new User(fName, lName, age, username, password, Role.valueOf(roleStr), phone);
         var created = new User(1L, fName, lName, age, username, password, Role.valueOf(roleStr), true, phone);
         when(mockUserRepo.create(user)).thenReturn(created);
