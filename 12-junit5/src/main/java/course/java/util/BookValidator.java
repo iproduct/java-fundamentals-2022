@@ -13,7 +13,7 @@ public class BookValidator {
     public void validate(Book book) throws ConstraintViolationException {
         List<ConstraintViolation> violations = new ArrayList<>();
         var titleLength = book.getTitle().trim().length();
-        if(titleLength < 2 || titleLength > 50){
+        if(titleLength < 2 || titleLength > 60){
             violations.add(
                     new ConstraintViolation(book.getClass().getName(), "title", book.getTitle(),
                             "Book title length should be between 2 and 50 characters"));
