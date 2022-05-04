@@ -60,7 +60,7 @@ class BookServiceImplTest {
             var actual = bookService.addBook(SAMPLE_BOOK);
             assertThat(actual).extracting("id").isNotNull();
             assertThat(actual).usingRecursiveComparison()
-                    .ignoringFields("id", "created", "modified")
+                    .ignoringFields("id")
                     .ignoringAllOverriddenEquals()
                     .isEqualTo(SAMPLE_BOOK);
         }));
