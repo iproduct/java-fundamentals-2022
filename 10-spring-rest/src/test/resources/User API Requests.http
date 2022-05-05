@@ -10,8 +10,8 @@ Content-Type: application/json
   "firstName": "Dimo",
   "lastName": "Petrov",
   "age": 35,
-  "username": "dimo3",
-  "password":"Dimo123#",
+  "username": "dimo5",
+  "password":"Dimo123",
   "role": "ADMIN",
   "phone": "+(359) 887 894356"
 }

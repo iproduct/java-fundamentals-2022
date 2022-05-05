@@ -1,6 +1,10 @@
 package course.java.web;
 
+import course.java.exception.ConstraintViolation;
+import course.java.exception.ConstraintViolationException;
 import course.java.exception.InvalidEntityDataException;
+import course.java.exception.NonexistingEntityException;
+import course.java.model.ErrorResponseDto;
 import course.java.model.User;
 import course.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -18,7 +25,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public Collection<User> getAllUsers(){
+    public Collection<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -30,7 +37,27 @@ public class UserController {
                 ServletUriComponentsBuilder.fromCurrentRequest().pathSegment("{id}")
                         .buildAndExpand(created.getId()).toUri()
         ).body(created);
-
     }
 
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseDto> handleNonexistingEntityException(NonexistingEntityException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponseDto(HttpStatus.NOT_FOUND.value(), ex.getMessage(), null));
+
+    }
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseDto> handleInvalidEntityDataException(InvalidEntityDataException e) {
+        Throwable ex = e;
+        List<String> violations = null;
+        while(ex != null && !(ex instanceof ConstraintViolationException)) {
+            ex = ex.getCause();
+        }
+        if(ex != null) {
+            violations = ((ConstraintViolationException) ex).getFieldViolations().stream()
+                    .map(ConstraintViolation::toString)
+                    .collect(Collectors.toList());
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), violations));
+    }
 }
