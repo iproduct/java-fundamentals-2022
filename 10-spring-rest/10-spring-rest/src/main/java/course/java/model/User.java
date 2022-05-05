@@ -1,8 +1,10 @@
 package course.java.model;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
+@Entity
 public class User extends Person{
     private String username;
     private String password;

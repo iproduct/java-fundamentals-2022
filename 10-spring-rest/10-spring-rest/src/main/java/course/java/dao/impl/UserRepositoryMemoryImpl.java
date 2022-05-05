@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Repository
+//@Repository
 class UserRepositoryMemoryImpl extends RepositoryMemoryImpl<User, Long> implements UserRepository {
 
     public UserRepositoryMemoryImpl(IdGenerator<Long> idGenerator) {

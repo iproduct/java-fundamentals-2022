@@ -1,6 +1,7 @@
 package course.java.service.impl;
 
 import course.java.dao.UserRepository;
+import course.java.dao.UserRepositoryDataJPA;
 import course.java.exception.ConstraintViolationException;
 import course.java.exception.InvalidEntityDataException;
 import course.java.exception.NonexistingEntityException;
@@ -22,11 +23,11 @@ import static course.java.model.MockUsers.MOCK_USERS;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepo;
+    private UserRepositoryDataJPA userRepo;
     private EntityValidator<User> userValidator;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepo, EntityValidator<User> userValidator) {
+    public UserServiceImpl(UserRepositoryDataJPA userRepo, EntityValidator<User> userValidator) {
         this.userRepo = userRepo;
         this.userValidator = userValidator;
     }
@@ -34,7 +35,9 @@ public class UserServiceImpl implements UserService {
     @PostConstruct
     @Override
     public void loadData() {
-        Arrays.stream(MOCK_USERS).forEach(userRepo::create);
+        if(userRepo.count() == 0) {
+            userRepo.saveAll(Arrays.asList(MOCK_USERS));
+        }
     }
 
     @Override
@@ -63,7 +66,7 @@ public class UserServiceImpl implements UserService {
                     cve
             );
         }
-        var created = userRepo.create(user);
+        var created = userRepo.save(user);
         log.info("Successfully created User: {}", created);
         return created;
     }
@@ -86,14 +89,16 @@ public class UserServiceImpl implements UserService {
         }
         user.setCreated(old.getCreated());
         user.setModified(LocalDateTime.now());
-        return userRepo.update(user);
+        return userRepo.save(user);
     }
 
     @Override
     public User deleteUserById(Long id) throws NonexistingEntityException {
-        return userRepo.deleteById(id).orElseThrow(() ->
+        var old = userRepo.findById(id).orElseThrow(() ->
                 new NonexistingEntityException(
                         String.format("User with ID='%s' does not exist.", id)));
+        userRepo.deleteById(id);
+        return old;
     }
 
     @Override
