@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 class UserRepositoryMemoryImpl extends RepositoryMemoryImpl<User, Long> implements UserRepository {
-    private Map<Long, User> entities = new HashMap<>();
 
     public UserRepositoryMemoryImpl(IdGenerator<Long> idGenerator) {
         super(idGenerator);
@@ -25,7 +24,7 @@ class UserRepositoryMemoryImpl extends RepositoryMemoryImpl<User, Long> implemen
 //            }
 //        }
 //        return Optional.empty();
-        return entities.values().stream()
+        return findAll().stream()
                 .filter(user -> user.getUsername().equals(username))
                 .findAny();
     }

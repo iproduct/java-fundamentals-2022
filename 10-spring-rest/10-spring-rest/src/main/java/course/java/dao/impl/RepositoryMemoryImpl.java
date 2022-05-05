@@ -8,10 +8,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 class RepositoryMemoryImpl<V extends Identifiable<K>, K> implements Repository<V, K> {
     private long nextId = 0;
-    private Map<K, V> entities = new HashMap<>();
+    private Map<K, V> entities = new ConcurrentHashMap<>();
     private IdGenerator<K> idGenerator;
 
     public RepositoryMemoryImpl(IdGenerator<K> idGenerator) {
