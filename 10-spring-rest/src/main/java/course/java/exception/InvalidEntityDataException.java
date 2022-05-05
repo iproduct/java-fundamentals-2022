@@ -1,6 +1,6 @@
 package course.java.exception;
 
-public class InvalidEntityDataException extends Exception{
+public class InvalidEntityDataException extends RuntimeException{
     public InvalidEntityDataException() {
     }
 
