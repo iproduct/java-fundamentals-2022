@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ws_spring_blogs2?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/spring_blogs_2022?createDatabaseIfNotExist=true
     username: root
     password: root
   #JPA Properties
@@ -16,7 +16,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
-        generate_statistics: true
+#        generate_statistics: true
     #        metadata_builder_contributor: course.hibernate.spring.util.SqlFunctionsMetadataBuilderContributor
     hibernate:
       ddl-auto: create
@@ -57,6 +57,8 @@ info:
 logging:
   level:
     root: INFO
+    course:
+      java: DEBUG
     org:
       springframework:
         test:
@@ -65,9 +67,6 @@ logging:
       hibernate:
 #        type: trace
 #        stat: debug
-blog:
-  api:
-    prefix: /api/v2
 
 jwt:
   secret: ${JWT_SECRET:not_a_secret}
