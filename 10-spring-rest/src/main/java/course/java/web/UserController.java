@@ -4,7 +4,10 @@ import course.java.exception.InvalidEntityDataException;
 import course.java.model.User;
 import course.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Collection;
 
@@ -20,8 +23,14 @@ public class UserController {
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+//    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        var created = userService.addUser(user);
+        return ResponseEntity.created(
+                ServletUriComponentsBuilder.fromCurrentRequest().pathSegment("{id}")
+                        .buildAndExpand(created.getId()).toUri()
+        ).body(created);
+
     }
 
 }
