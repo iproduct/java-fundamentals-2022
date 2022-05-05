@@ -1,5 +1,6 @@
 package course.java.model;
 
+import course.java.exception.ConstraintViolation;
 import lombok.Value;
 
 import java.util.List;
@@ -8,5 +9,5 @@ import java.util.List;
 public class ErrorResponseDto {
     private int status;
     private String message;
-    private List<String> violations;
+    private List<ConstraintViolation> violations;
 }

@@ -6,15 +6,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public class Person implements Identifiable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min=2, max=15)
     private String firstName;
+    @Size(min=2, max=15)
     private String lastName;
+    @Positive
     private int age;
+    @Pattern(regexp = "^[+()\\d\\s]{8,16}$", message = "Phone should contain only digits, spaces, '(', ')' and '+' characters")
     private String phone;
 
     public Person() {

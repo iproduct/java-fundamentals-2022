@@ -58,14 +58,14 @@ public class UserServiceImpl implements UserService {
             throw new InvalidEntityDataException(
                     String.format("Username '%s' already exists.", user.getUsername()));
         }
-        try {
-            userValidator.validate(user);
-        } catch (ConstraintViolationException cve) {
-            throw new InvalidEntityDataException(
-                    String.format("Invalid user data for user '%s'.", user.getUsername()),
-                    cve
-            );
-        }
+//        try {
+//            userValidator.validate(user);
+//        } catch (ConstraintViolationException cve) {
+//            throw new InvalidEntityDataException(
+//                    String.format("Invalid user data for user '%s'.", user.getUsername()),
+//                    cve
+//            );
+//        }
         var created = userRepo.save(user);
         log.info("Successfully created User: {}", created);
         return created;
@@ -79,14 +79,14 @@ public class UserServiceImpl implements UserService {
                     String.format("Username '%s' can not be changed to '%s'.",
                             old.getUsername(), user.getUsername()));
         }
-        try {
-            userValidator.validate(user);
-        } catch (ConstraintViolationException cve) {
-            throw new InvalidEntityDataException(
-                    String.format("Invalid user data for user '%s'.", user.getUsername()),
-                    cve
-            );
-        }
+//        try {
+//            userValidator.validate(user);
+//        } catch (ConstraintViolationException cve) {
+//            throw new InvalidEntityDataException(
+//                    String.format("Invalid user data for user '%s'.", user.getUsername()),
+//                    cve
+//            );
+//        }
         user.setCreated(old.getCreated());
         user.setModified(LocalDateTime.now());
         return userRepo.save(user);

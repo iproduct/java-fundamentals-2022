@@ -1,12 +1,17 @@
 package course.java.model;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
 @Entity
 public class User extends Person{
+    @Size(min=2, max=15)
     private String username;
+    @Pattern(regexp = "^.*(?=.{8,15})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&?+]).*$",
+            message = "Password should contain at least 8 characters, at least one digit, capital letter, and none-letter character")
     private String password;
     private Role role; // default value - init during declaration
     private boolean active = true;
