@@ -15,6 +15,7 @@
     <description>10-spring-rest</description>
     <properties>
         <java.version>11</java.version>
+        <hibernate.version>5.6.5.Final</hibernate.version>
     </properties>
     <dependencies>
         <dependency>

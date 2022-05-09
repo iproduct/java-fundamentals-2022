@@ -9,9 +9,11 @@ import java.util.Collection;
 public interface UserService {
     void loadData();
     Collection<User> getAllUsers();
+    Collection<User> getUsersByLastName(String lastNamePart);
     User getUserById(Long id) throws NonexistingEntityException;
     User addUser(User user) throws InvalidEntityDataException;
     User updateUser(User user) throws NonexistingEntityException, InvalidEntityDataException;
     User deleteUserById(Long id) throws NonexistingEntityException;
     long count();
+
 }

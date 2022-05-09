@@ -2,7 +2,7 @@ package course.java.service.impl;
 
 
 import course.java.dao.BookRepository;
-import course.java.exception.ConstraintViolationException;
+import course.java.exception.InvalidConstraintException;
 import course.java.exception.InvalidEntityDataException;
 import course.java.exception.NonexistingEntityException;
 import course.java.model.Book;
@@ -42,7 +42,7 @@ public class BookServiceImpl implements BookService {
     public Book addBook(Book book) throws InvalidEntityDataException {
         try {
             bookValidator.validate(book);
-        } catch (ConstraintViolationException ex) {
+        } catch (InvalidConstraintException ex) {
             throw new InvalidEntityDataException(
                     String.format("Error creating book '%s'", book.getTitle()),
                     ex
@@ -58,7 +58,7 @@ public class BookServiceImpl implements BookService {
     public Book updateBook(Book book) throws NonexistingEntityException, InvalidEntityDataException {
         try {
             bookValidator.validate(book);
-        } catch (ConstraintViolationException ex) {
+        } catch (InvalidConstraintException ex) {
             throw new InvalidEntityDataException(
                     String.format("Error creating book '%s'", book.getTitle()),
                     ex

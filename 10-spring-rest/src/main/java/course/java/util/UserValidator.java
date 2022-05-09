@@ -2,7 +2,7 @@ package course.java.util;
 
 
 import course.java.exception.ConstraintViolation;
-import course.java.exception.ConstraintViolationException;
+import course.java.exception.InvalidConstraintException;
 import course.java.model.User;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,7 @@ public class UserValidator implements EntityValidator<User> {
     public static final String PHONE_REGEX = "^[+()\\d\\s]{8,}$";
 
     @Override
-    public void validate(User user) throws ConstraintViolationException {
+    public void validate(User user) throws InvalidConstraintException {
         List<ConstraintViolation> violations = new ArrayList<>();
         var firstNameLength = user.getFirstName().trim().length();
         if (firstNameLength < 2 || firstNameLength > 15) {
@@ -51,7 +51,7 @@ public class UserValidator implements EntityValidator<User> {
         }
 
         if(violations.size() > 0) {
-            throw new ConstraintViolationException("Invalid user field", violations);
+            throw new InvalidConstraintException("Invalid user field", violations);
         }
     }
 }

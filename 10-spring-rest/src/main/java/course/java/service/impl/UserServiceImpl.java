@@ -1,8 +1,6 @@
 package course.java.service.impl;
 
-import course.java.dao.UserRepository;
 import course.java.dao.UserRepositoryDataJPA;
-import course.java.exception.ConstraintViolationException;
 import course.java.exception.InvalidEntityDataException;
 import course.java.exception.NonexistingEntityException;
 import course.java.model.User;
@@ -43,6 +41,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Collection<User> getAllUsers() {
         return userRepo.findAll();
+    }
+
+    @Override
+    public Collection<User> getUsersByLastName(String lastNamePart) {
+        return userRepo.findByLastNameContaining(lastNamePart);
     }
 
     @Override

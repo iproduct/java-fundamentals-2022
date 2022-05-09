@@ -1,21 +1,25 @@
 package course.java.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
 @Entity
-public class User extends Person{
-    @Size(min=2, max=15)
+@Table(name = "users",
+        uniqueConstraints = @UniqueConstraint(name = "UC_username", columnNames = {"username"}))
+public class User extends Person {
+    @Size(min = 2, max = 15)
+    @Basic(optional = false)
+//    @Column(unique = true)
     private String username;
     @Pattern(regexp = "^.*(?=.{8,15})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&?+]).*$",
             message = "Password should contain at least 8 characters, at least one digit, capital letter, and none-letter character")
     private String password;
+    @Enumerated(EnumType.STRING)
     private Role role; // default value - init during declaration
     private boolean active = true;
-    private String info;
     private LocalDateTime created = LocalDateTime.now();
     private LocalDateTime modified = LocalDateTime.now();
 
@@ -23,7 +27,7 @@ public class User extends Person{
 //        super();
     }
 
-    public User(String firstName, String lastName, int age,  String username, String password, Role role, String phone) {
+    public User(String firstName, String lastName, int age, String username, String password, Role role, String phone) {
         super(firstName, lastName, age, phone);
         this.username = username;
         this.password = password;
@@ -38,13 +42,12 @@ public class User extends Person{
         this.active = active;
     }
 
-    public User(Long id, String firstName, String lastName, int age, String phone, String username, String password, Role role, boolean active, String info, LocalDateTime created, LocalDateTime modified) {
+    public User(Long id, String firstName, String lastName, int age, String phone, String username, String password, Role role, boolean active, LocalDateTime created, LocalDateTime modified) {
         super(id, firstName, lastName, age, phone);
         this.username = username;
         this.password = password;
         this.role = role;
         this.active = active;
-        this.info = info;
         this.created = created;
         this.modified = modified;
     }
@@ -98,14 +101,7 @@ public class User extends Person{
     }
 
     public String getInfo() {
-        if(info == null) { // lazy init - not thread safe!
-            info = fetchInfo();
-        }
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
+        return fetchInfo();
     }
 
     @Override
@@ -120,7 +116,7 @@ public class User extends Person{
                 .add("password='" + password + "'")
                 .add("role=" + role)
                 .add("active=" + active)
-                .add("info='" + info + "'")
+                .add("info='" + getInfo() + "'")
                 .add("created=" + created)
                 .add("modified=" + modified)
                 .toString();

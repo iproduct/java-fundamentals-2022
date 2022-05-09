@@ -2,7 +2,7 @@ package course.java.util;
 
 
 import course.java.exception.ConstraintViolation;
-import course.java.exception.ConstraintViolationException;
+import course.java.exception.InvalidConstraintException;
 import course.java.model.Book;
 
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookValidator {
-    public void validate(Book book) throws ConstraintViolationException {
+    public void validate(Book book) throws InvalidConstraintException {
         List<ConstraintViolation> violations = new ArrayList<>();
         var titleLength = book.getTitle().trim().length();
         if(titleLength < 2 || titleLength > 50){
@@ -29,7 +29,7 @@ public class BookValidator {
                             "Book price can not be negative"));
         }
         if(violations.size() > 0) {
-            throw new ConstraintViolationException("Invalid book field", violations);
+            throw new InvalidConstraintException("Invalid book field", violations);
         }
     }
 }

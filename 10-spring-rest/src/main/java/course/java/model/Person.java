@@ -21,7 +21,7 @@ public class Person implements Identifiable<Long> {
     private String lastName;
     @Positive
     private int age;
-    @Pattern(regexp = "^[+()\\d\\s]{8,16}$", message = "Phone should contain only digits, spaces, '(', ')' and '+' characters")
+    @Pattern(regexp = "^[\\+()\\d\\s]{8,20}$", message = "Phone should contain only digits, spaces, '(', ')' and '+' characters")
     private String phone;
 
     public Person() {
