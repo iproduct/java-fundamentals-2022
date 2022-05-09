@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@Valid @RequestBody User user, Errors errors, @PathVariable("id") Long id) {
+    public User updateUser(@Valid  @RequestBody User user, Errors errors, @PathVariable("id") Long id) {
         if(!id.equals(user.getId())) {
             throw new InvalidEntityDataException(
                     String.format("User ID in URL = '%d' does not match ID in message body = '%d'",
