@@ -25,7 +25,6 @@ public class ArticleProviderDefaultImpl implements ArticleProvider, Initializing
 
 
     public ArticleProviderDefaultImpl() {
-
     }
 
     @Autowired
