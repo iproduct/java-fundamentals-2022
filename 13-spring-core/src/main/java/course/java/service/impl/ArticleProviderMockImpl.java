@@ -2,16 +2,19 @@ package course.java.service.impl;
 
 import course.java.dao.ArticleRepository;
 import course.java.model.Article;
+import course.java.qualifiers.Mock;
 import course.java.service.ArticleProvider;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-@Service
+@Mock
+@Order(2)
+@Service("mockProvider")
 public class ArticleProviderMockImpl implements ArticleProvider{
     public static final List<Article> MOCK_ARTICLES = List.of(
             new Article("Intro to Spring", "Spring MVC is easy ...",

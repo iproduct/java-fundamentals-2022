@@ -2,6 +2,7 @@ package course.java.service.impl;
 
 import course.java.dao.ArticleRepository;
 import course.java.model.Article;
+import course.java.qualifiers.Default;
 import course.java.service.ArticleProvider;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-@Service
+@Default
+@Service("defaultProvider")
 public class ArticleProviderDefaultImpl implements ArticleProvider, InitializingBean {
     public static final List<Article> DEFAULT_ARTICLES = List.of(
             new Article("Spring Data JPA Intro", "Spring Data JPA is easy ...",
