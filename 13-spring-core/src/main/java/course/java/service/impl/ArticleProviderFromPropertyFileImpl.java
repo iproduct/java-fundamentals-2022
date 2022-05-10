@@ -15,10 +15,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @FromPropertySource
-@Order(1)
+@Order(2)
 @Service("propertiesProvider")
 public class ArticleProviderFromPropertyFileImpl implements ArticleProvider {
-    @Value("${blogs.titles}")
+    @Value("${blogs.titles:Default Article1, Default Article 2}")
     private String[] titles;
     private List<Article> articles;
 
