@@ -4,9 +4,7 @@ import course.java.dao.IdGenerator;
 import course.java.dao.Repository;
 import course.java.model.Identifiable;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class RepositoryMemoryImpl<K, V extends Identifiable<K>> implements Repository<K,V> {
@@ -18,8 +16,8 @@ public class RepositoryMemoryImpl<K, V extends Identifiable<K>> implements Repos
     }
 
     @Override
-    public Collection<V> findAll() {
-        return entities.values();
+    public List<V> findAll() {
+        return new ArrayList<>(entities.values());
     }
 
     @Override
