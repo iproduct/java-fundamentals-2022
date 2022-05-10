@@ -5,7 +5,7 @@ import course.java.service.Presenter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("articlePresenter")
 public class ConsoleArticlePresenter implements Presenter {
     private ArticleProvider provider;
 
