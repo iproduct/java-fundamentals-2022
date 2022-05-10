@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ArticleProvider {
     List<Article> getArticles();
+
     List<Article> getArticlesByTitleContaining(String titlePart);
 }

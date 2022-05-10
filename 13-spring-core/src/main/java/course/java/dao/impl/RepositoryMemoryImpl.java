@@ -7,7 +7,7 @@ import course.java.model.Identifiable;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RepositoryMemoryImpl<K, V extends Identifiable<K>> implements Repository<K,V> {
+public class RepositoryMemoryImpl<K, V extends Identifiable<K>> implements Repository<K, V> {
     private Map<K, V> entities = new ConcurrentHashMap<>();
     private IdGenerator<K> idGenerator;
 
@@ -35,7 +35,7 @@ public class RepositoryMemoryImpl<K, V extends Identifiable<K>> implements Repos
     @Override
     public Optional<V> update(V entity) {
         var old = entities.get(entity.getId());
-        if(old == null) {
+        if (old == null) {
             return Optional.empty();
         }
         entities.put(entity.getId(), entity);
