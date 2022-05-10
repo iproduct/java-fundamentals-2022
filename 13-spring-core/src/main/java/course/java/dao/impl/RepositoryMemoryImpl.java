@@ -19,31 +19,38 @@ public class RepositoryMemoryImpl<K, V extends Identifiable<K>> implements Repos
 
     @Override
     public Collection<V> findAll() {
-        return null;
+        return entities.values();
     }
 
     @Override
     public Optional<V> findById(K id) {
-        return Optional.empty();
+        return Optional.ofNullable(entities.get(id));
     }
 
     @Override
     public V create(V entity) {
-        return null;
+        entity.setId(idGenerator.getNextId());
+        entities.put(entity.getId(), entity);
+        return entity;
     }
 
     @Override
     public Optional<V> update(V entity) {
-        return Optional.empty();
+        var old = entities.get(entity.getId());
+        if(old == null) {
+            return Optional.empty();
+        }
+        entities.put(entity.getId(), entity);
+        return Optional.of(entity);
     }
 
     @Override
     public Optional<V> deleteById(K id) {
-        return Optional.empty();
+        return Optional.ofNullable(entities.remove(id));
     }
 
     @Override
     public long count() {
-        return 0;
+        return entities.size();
     }
 }
