@@ -27,6 +27,8 @@ import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -77,6 +79,8 @@ class UserAppTests {
                 .ignoringAllOverriddenEquals()
                 .isEqualTo(EXPECTED_USERS);
 
+        then(userRepo).should(times(1)).findAll();
+//        then(userRepo).shouldHaveNoMoreInteractions();
     }
 
     public List<User> MOCK_USERS = List.of(
