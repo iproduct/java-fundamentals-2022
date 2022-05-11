@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static course.java.model.Role.*;
 
-@Service
+@Service("userProvider")
 public class UserProviderDefaultImpl implements UserProvider {
     public static final List<User> DEFAULT_ARTICLES = List.of(
             new User("Default", "Admin", "admin", "Admin123#", Set.of(ADMIN, AUTHOR, READER)),

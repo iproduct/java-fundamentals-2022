@@ -8,5 +8,24 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
+    <context:annotation-config/>
+    <context:component-scan base-package="course.java"/>
+    <context:property-placeholder location="blog.properties" />
+    <bean id="idGenerator" scope="prototype" class="course.java.dao.impl.LongIdGenerator"/>
+<!--    <bean id="mockProvider" class="course.java.service.impl.ArticleProviderMockImpl"/>-->
+<!--    <bean id="articleRepository" class="course.java.dao.impl.ArticleRepositoryMemoryImpl"-->
+<!--          c:idGenerator-ref="idGenerator"/>-->
+    <bean id="defaultProviderFactory" depends-on="idGenerator" class="course.java.service.impl.DefaultProviderFactory"
+          c:repo-ref="articleRepository" />
+<!--    <bean id="defaultProvider" class="course.java.service.impl.ArticleProviderDefaultImpl"-->
+<!--          factory-bean="defaultProviderFactory"-->
+<!--          factory-method="createDefaultArticleProvider" />-->
+<!--          c:articleRepo-ref="articleRepository" />-->
+<!--          p:articleRepo-ref="articleRepository"/>-->
+    <!--        <property name="articleRepo" ref="articleRepository" />-->
+<!--    <bean id="articlePresenter" class="course.java.service.impl.ConsoleArticlePresenter">-->
+<!--        <constructor-arg index="0" name="provider" type="course.java.service.ArticleProvider">-->
+<!--            <ref bean="defaultProvider"/>-->
+<!--        </constructor-arg>-->
+<!--    </bean>-->
 </beans>

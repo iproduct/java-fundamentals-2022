@@ -9,8 +9,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
-//@Component
-//@Scope(SCOPE_PROTOTYPE)
+@Component
+@Scope(SCOPE_PROTOTYPE)
 public class LongIdGenerator implements IdGenerator<Long> {
     private AtomicLong sequence = new AtomicLong();
 

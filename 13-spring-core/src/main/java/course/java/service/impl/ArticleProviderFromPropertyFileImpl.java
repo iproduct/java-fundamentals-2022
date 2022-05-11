@@ -5,6 +5,7 @@ import course.java.qualifiers.FromPropertySource;
 import course.java.qualifiers.Mock;
 import course.java.service.ArticleProvider;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 
 @FromPropertySource
 @Order(2)

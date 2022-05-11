@@ -20,9 +20,9 @@ import org.springframework.core.annotation.Order;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
-@Configuration
-@PropertySource("classpath:blog.properties")
-@ComponentScan(basePackageClasses = course.java.Main.class)
+//@Configuration
+//@PropertySource("classpath:blog.properties")
+//@ComponentScan(basePackageClasses = course.java.Main.class)
 public class AppConfig {
     @Mock
     @Order(1)

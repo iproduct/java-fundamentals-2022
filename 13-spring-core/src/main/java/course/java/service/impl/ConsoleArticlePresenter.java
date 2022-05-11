@@ -6,17 +6,19 @@ import course.java.service.ArticleProvider;
 import course.java.service.Presenter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 
-//@Service("articlePresenter")
+@Service("articlePresenter")
+//@DependsOn({"defaultProvider"})
 public class ConsoleArticlePresenter implements Presenter {
 //    private List<ArticleProvider> providers;
     private ArticleProvider provider;
 
-//    @Autowired
+    @Autowired
     public ConsoleArticlePresenter(ArticleProvider provider) {
         this.provider = provider;
     }

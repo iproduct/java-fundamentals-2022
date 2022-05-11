@@ -14,8 +14,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 //@Mock
-//@Order(2)
-//@Service("mockProvider")
+@Order(2)
+@Service("mockProvider")
 public class ArticleProviderMockImpl implements ArticleProvider{
     public static final List<Article> MOCK_ARTICLES = List.of(
             new Article("Intro to Spring", "Spring MVC is easy ...",

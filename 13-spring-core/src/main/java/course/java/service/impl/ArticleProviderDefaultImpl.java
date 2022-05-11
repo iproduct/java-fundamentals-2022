@@ -6,14 +6,22 @@ import course.java.qualifiers.Default;
 import course.java.service.ArticleProvider;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+@Primary
 //@Default
-//@Service("defaultProvider")
+@Service("defaultProvider")
 public class ArticleProviderDefaultImpl implements ArticleProvider, InitializingBean {
+    public static ArticleProvider createDefaultArticleProvider(ArticleRepository articleRepo) {
+        var provider = new ArticleProviderDefaultImpl();
+        provider.setArticleRepo(articleRepo);
+        return provider;
+    }
     public static final List<Article> DEFAULT_ARTICLES = List.of(
             new Article("Spring Data JPA Intro", "Spring Data JPA is easy ...",
                     "Trayan Iliev", Set.of("spring", "mvc", "boot", "intro")),

@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//@Repository
+@Repository("articleRepository")
 public class ArticleRepositoryMemoryImpl extends RepositoryMemoryImpl<Long, Article>
         implements ArticleRepository {
     public ArticleRepositoryMemoryImpl(IdGenerator<Long> idGenerator) {
