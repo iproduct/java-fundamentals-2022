@@ -7,10 +7,14 @@ import course.java.dao.UserRepository;
 import course.java.dao.impl.ArticleRepositoryMemoryImpl;
 import course.java.dao.impl.LongIdGenerator;
 import course.java.dao.impl.UserRepositoryMemoryImpl;
+import course.java.qualifiers.Default;
 import course.java.qualifiers.Mock;
 import course.java.service.ArticleProvider;
+import course.java.service.Presenter;
 import course.java.service.impl.ArticleProviderDefaultImpl;
 import course.java.service.impl.ArticleProviderMockImpl;
+import course.java.service.impl.ConsoleArticlePresenter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.core.annotation.Order;
 
@@ -37,10 +41,17 @@ public class AppConfig {
         return new ArticleRepositoryMemoryImpl(idGenerator);
     }
 
-    @Bean("defaultProvider")
+    @Bean
+    @Default
     public ArticleProvider defaultProvider(ArticleRepository articleRepo){
         var provider =  new ArticleProviderDefaultImpl();
+//        provider.setArticleRepo(articleRepository(longIdGenerator()));
         provider.setArticleRepo(articleRepo);
         return provider;
+    }
+
+    @Bean
+    public Presenter articlePresenter(@Mock ArticleProvider provider) {
+        return new ConsoleArticlePresenter(provider);
     }
 }
