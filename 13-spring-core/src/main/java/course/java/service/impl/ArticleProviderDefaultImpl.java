@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-@Default
-@Service("defaultProvider")
+//@Default
+//@Service("defaultProvider")
 public class ArticleProviderDefaultImpl implements ArticleProvider, InitializingBean {
     public static final List<Article> DEFAULT_ARTICLES = List.of(
             new Article("Spring Data JPA Intro", "Spring Data JPA is easy ...",
