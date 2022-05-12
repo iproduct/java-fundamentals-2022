@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -26,15 +28,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @Slf4j
+@ActiveProfiles("test")
 class UserAppTests {
     @Autowired
     private MockMvc mockMvc;
@@ -67,11 +73,12 @@ class UserAppTests {
 
 
         var body = response.andReturn().getResponse().getContentAsString();
-        TypeReference<List<User>> personList = new TypeReference<List<User>>() {};
+        TypeReference<List<User>> personList = new TypeReference<>() {
+        };
         var userList = mapper.readValue(body, personList);
 
         org.hamcrest.MatcherAssert.assertThat(userList,
-                Matchers.hasItems(MOCK_USERS.stream().map(u -> Matchers.samePropertyValuesAs(u))
+                Matchers.hasItems(MOCK_USERS.stream().map(u -> Matchers.samePropertyValuesAs(u, "created", "modified"))
                         .collect(Collectors.toList()).toArray(new Matcher[]{})));
 
         assertThat(userList).usingRecursiveComparison()
@@ -80,7 +87,46 @@ class UserAppTests {
                 .isEqualTo(EXPECTED_USERS);
 
         then(userRepo).should(times(1)).findAll();
-//        then(userRepo).shouldHaveNoMoreInteractions();
+        then(userRepo).shouldHaveNoMoreInteractions();
+    }
+
+    @Test
+    void givenUser_whenPostUser_thenStatus201LocationAndJsonObject() throws Exception {
+        given(userRepo.save(any(User.class))).willReturn(CREATED_USER);
+
+        var response = mockMvc.perform(
+                post("/api/users")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(mapper.writeValueAsString(NEW_USER))
+                        .accept(MediaType.APPLICATION_JSON));
+
+        response.andExpect(status().isCreated())
+                .andExpect(header().string("location", Matchers.endsWith("/api/users/1")))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andDo(print())
+                .andDo(result -> log.info("HTTP Resposne: {}", result.getResponse().getContentAsString()))
+                .andExpect(jsonPath("$.firstName").value(CREATED_USER.getFirstName()))
+                .andExpect(jsonPath("$.lastName").value(CREATED_USER.getLastName()))
+                .andExpect(jsonPath("$.username").value(CREATED_USER.getUsername())) // ...
+                .andExpect(jsonPath("$", Matchers.hasEntry("firstName", CREATED_USER.getFirstName())));
+
+
+        var body = response.andReturn().getResponse().getContentAsString();
+
+        var user = mapper.readValue(body, User.class);
+
+        org.hamcrest.MatcherAssert.assertThat(user,
+               Matchers.samePropertyValuesAs(CREATED_USER, "created", "modified"));
+
+
+        assertThat(user).usingRecursiveComparison()
+                .ignoringFields("id", "created", "modified")
+                .ignoringAllOverriddenEquals()
+                .isEqualTo(CREATED_USER);
+
+        then(userRepo).should(times(1)).findByUsername("georgi");
+        then(userRepo).should(times(1)).save(NEW_USER);
+        then(userRepo).shouldHaveNoMoreInteractions();
     }
 
     public List<User> MOCK_USERS = List.of(
@@ -99,4 +145,9 @@ class UserAppTests {
             new User(3L, "Hristo", "Yanakiev", 23, "hristo", "Hris123#",
                     Role.ADMIN, true, null)
     );
+
+    public static User NEW_USER = new User("Gorgi", "Petrov", 45,
+            "georgi", "Gogo123#", Role.READER, "+(1) 456778898");
+    public static User CREATED_USER = new User(1L, "Gorgi", "Petrov", 45,
+            "georgi", "Gogo123#", Role.READER, true, "+(1) 456778898");
 }

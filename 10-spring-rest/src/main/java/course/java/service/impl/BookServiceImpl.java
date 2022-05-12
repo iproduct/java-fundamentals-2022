@@ -11,6 +11,7 @@ import course.java.util.BookValidator;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static course.java.model.MockBooks.MOCK_BOOKS;
 
@@ -52,6 +53,11 @@ public class BookServiceImpl implements BookService {
 //        bookRepo.save();
         return newBook;
     }
+
+//    @Override
+//    public List<Book> addBooksBatch(List<Book> books) {
+//        return bookRepo.saveAll(books);
+//    }
 
 
     @Override

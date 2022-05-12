@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static course.java.model.MockUsers.MOCK_USERS;
 
@@ -30,13 +32,6 @@ public class UserServiceImpl implements UserService {
         this.userValidator = userValidator;
     }
 
-    @PostConstruct
-    @Override
-    public void loadData() {
-        if(userRepo.count() == 0) {
-            userRepo.saveAll(Arrays.asList(MOCK_USERS));
-        }
-    }
 
     @Override
     public Collection<User> getAllUsers() {
@@ -72,6 +67,12 @@ public class UserServiceImpl implements UserService {
         var created = userRepo.save(user);
         log.info("Successfully created User: {}", created);
         return created;
+    }
+
+    @Override
+    @Transactional
+    public List<User> addUsersBatch(List<User> users) {
+        return userRepo.saveAll(users);
     }
 
     @Override
