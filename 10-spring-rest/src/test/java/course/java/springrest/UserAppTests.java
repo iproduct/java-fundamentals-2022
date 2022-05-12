@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -32,8 +33,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -116,7 +117,7 @@ class UserAppTests {
         var user = mapper.readValue(body, User.class);
 
         org.hamcrest.MatcherAssert.assertThat(user,
-               Matchers.samePropertyValuesAs(CREATED_USER, "created", "modified"));
+                Matchers.samePropertyValuesAs(CREATED_USER, "created", "modified"));
 
 
         assertThat(user).usingRecursiveComparison()
@@ -126,6 +127,68 @@ class UserAppTests {
 
         then(userRepo).should(times(1)).findByUsername("georgi");
         then(userRepo).should(times(1)).save(NEW_USER);
+        then(userRepo).shouldHaveNoMoreInteractions();
+    }
+
+    @Test
+    void givenUserWithSameUsernameExists_whenPostUser_thenStatus400ErrorJsonObject() throws Exception {
+        given(userRepo.findByUsername("georgi")).willReturn(Optional.of(CREATED_USER));
+
+        mockMvc.perform(
+                        post("/api/users")
+                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                .content(mapper.writeValueAsString(NEW_USER))
+                                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(header().doesNotExist("location"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andDo(print())
+                .andDo(result -> log.info("HTTP Resposne: {}", result.getResponse().getContentAsString()))
+                .andExpect(jsonPath("$.status").value(BAD_REQUEST.value()))
+                .andExpect(jsonPath("$.message").value("Username 'georgi' already exists."))
+                .andExpect(jsonPath("$.violations").isEmpty());
+
+        then(userRepo).should(times(1)).findByUsername("georgi");
+        then(userRepo).shouldHaveNoMoreInteractions();
+    }
+
+
+    @Test
+    void givenUser_whenPutUser_thenStatus200JsonObject() throws Exception {
+        given(userRepo.findById(UPDATED_USER.getId())).willReturn(Optional.of(CREATED_USER));
+        given(userRepo.save(UPDATED_USER)).willReturn(UPDATED_USER);
+
+        var response = mockMvc.perform(
+                put("/api/users/{userId}", UPDATED_USER.getId())
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(mapper.writeValueAsString(UPDATED_USER))
+                        .accept(MediaType.APPLICATION_JSON));
+
+        response.andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andDo(print())
+                .andDo(result -> log.info("HTTP Resposne: {}", result.getResponse().getContentAsString()))
+                .andExpect(jsonPath("$.id").value(UPDATED_USER.getId()))
+                .andExpect(jsonPath("$.firstName").value(UPDATED_USER.getFirstName()))
+                .andExpect(jsonPath("$.lastName").value(UPDATED_USER.getLastName()))
+                .andExpect(jsonPath("$.password").value(UPDATED_USER.getPassword()))
+                .andExpect(jsonPath("$.age").value(UPDATED_USER.getAge()))
+                .andExpect(jsonPath("$.role").value(UPDATED_USER.getRole().name()));
+
+
+        var body = response.andReturn().getResponse().getContentAsString();
+        var user = mapper.readValue(body, User.class);
+
+        org.hamcrest.MatcherAssert.assertThat(user,
+                Matchers.samePropertyValuesAs(UPDATED_USER, "created", "modified"));
+
+        assertThat(user).usingRecursiveComparison()
+                .ignoringFields("created", "modified")
+                .ignoringAllOverriddenEquals()
+                .isEqualTo(UPDATED_USER);
+
+        then(userRepo).should(times(1)).findById(UPDATED_USER.getId());
+        then(userRepo).should(times(1)).save(UPDATED_USER);
         then(userRepo).shouldHaveNoMoreInteractions();
     }
 
@@ -150,4 +213,6 @@ class UserAppTests {
             "georgi", "Gogo123#", Role.READER, "+(1) 456778898");
     public static User CREATED_USER = new User(1L, "Gorgi", "Petrov", 45,
             "georgi", "Gogo123#", Role.READER, true, "+(1) 456778898");
+    public static User UPDATED_USER = new User(1L, "George", "Peev", 25,
+            "georgi", "George123#", Role.ADMIN, true, "+(1) 456778898");
 }
