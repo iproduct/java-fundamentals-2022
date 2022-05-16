@@ -11,7 +11,7 @@
     <groupId>course.java</groupId>
     <artifactId>spring-rest</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>10-spring-rest</name>
+    <name>14-sql-jdbc</name>
     <description>10-spring-rest</description>
     <properties>
         <java.version>11</java.version>
