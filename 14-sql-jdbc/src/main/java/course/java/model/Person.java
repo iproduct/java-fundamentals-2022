@@ -10,10 +10,10 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-@MappedSuperclass
+//@MappedSuperclass
 public class Person implements Identifiable<Long> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Size(min=2, max=15)
     private String firstName;

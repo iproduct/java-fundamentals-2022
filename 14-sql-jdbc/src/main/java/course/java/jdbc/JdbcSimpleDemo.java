@@ -1,13 +1,17 @@
 package course.java.jdbc;
 
+import course.java.model.User;
+import course.java.util.JdbcUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 @Slf4j
@@ -35,9 +39,11 @@ public class JdbcSimpleDemo {
              var stmt = con.createStatement()) {
             log.info("DB connection created successfully to schema: {}", con.getCatalog());
             ResultSet rs = stmt.executeQuery(SELECT_ALL_USERS);
-
-        } catch (SQLException e) {
-            log.error("Error connecting to DB driver class not found: ", e);
+            List<User> users = JdbcUtil.getEntities(rs, User.class);
+            users.forEach(System.out::println);
+        } catch (SQLException | NoSuchMethodException | InvocationTargetException | InstantiationException |
+                 IllegalAccessException e) {
+            log.error("Error connecting to DB driver class not found or error processing results: ", e);
             throw new RuntimeException(e);
         }
     }

@@ -3,6 +3,7 @@ package course.java.util;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ public class JdbcUtil {
     public static <T> List<T> getEntities(ResultSet rs, Class<T> entityClass) throws SQLException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         List<T> entities = new ArrayList<>();
         var methods = entityClass.getMethods();
-        var propMethodMap = Arrays.stream(methods).filter(method -> method.getName().startsWith("set"))
+        var propMethodMap = Arrays.stream(methods)
+                .filter(method -> method.getName().startsWith("set") &&
+                        !(method.getName().equals("setId") && method.getParameterTypes()[0] == Object.class))
                 .collect(Collectors.toMap(method -> {
                     var propName = method.getName().substring(3);
                     propName = Character.toLowerCase(propName.charAt(0)) + propName.substring(1);
@@ -32,8 +35,8 @@ public class JdbcUtil {
                 if(propClass.isEnum()) {
                     var valueStr = rs.getString(prop);
                     try {
-                        var valuesMethod = propClass.getDeclaredMethod("valueOf");
-                        Object result = valuesMethod.invoke(new Object[] {propClass, valueStr});
+                        var valuesMethod = propClass.getDeclaredMethod("valueOf", String.class);
+                        Object result = valuesMethod.invoke(propClass, new Object[] {valueStr});
                         value = propClass.cast(result);
                     } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                         throw new RuntimeException(e);
@@ -51,7 +54,8 @@ public class JdbcUtil {
                     case "String": value = rs.getString(prop); break;
                     case "Date": value = rs.getDate(prop); break;
                     case "LocalDate": value = rs.getDate(prop).toLocalDate(); break;
-                    case "LocalDateTime": value = LocalDateTime.ofInstant(rs.getDate(prop).toInstant(), ZoneId.systemDefault()); break;
+                    case "LocalDateTime": value = LocalDateTime.ofInstant(rs.getTimestamp(prop).toInstant(),
+                            ZoneId.systemDefault()); break;
                 }
                 System.out.println(value);
                 setter.invoke(entity, value);

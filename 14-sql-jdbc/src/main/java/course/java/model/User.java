@@ -6,18 +6,18 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
-@Entity
-@Table(name = "users",
-        uniqueConstraints = @UniqueConstraint(name = "UC_username", columnNames = {"username"}))
+//@Entity
+//@Table(name = "users",
+//        uniqueConstraints = @UniqueConstraint(name = "UC_username", columnNames = {"username"}))
 public class User extends Person {
     @Size(min = 2, max = 15)
-    @Basic(optional = false)
+//    @Basic(optional = false)
 //    @Column(unique = true)
     private String username;
     @Pattern(regexp = "^.*(?=.{8,15})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&?+]).*$",
             message = "Password should contain at least 8 characters, at least one digit, capital letter, and none-letter character")
     private String password;
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     private Role role; // default value - init during declaration
     private boolean active = true;
     private LocalDateTime created = LocalDateTime.now();
