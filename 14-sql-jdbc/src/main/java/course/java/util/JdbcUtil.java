@@ -43,11 +43,11 @@ public class JdbcUtil {
                     case "Long":
                     case "long": value = rs.getObject(prop, Long.class); break;
                     case "Integer":
-                    case "int": value = rs.getInt(prop); break;
+                    case "int": value = rs.getObject(prop, Integer.class); break;
                     case "Double":
-                    case "double": value = rs.getDouble(prop); break;
+                    case "double": value = rs.getObject(prop, Double.class); break;
                     case "Boolean":
-                    case "boolean": value = rs.getBoolean(prop); break;
+                    case "boolean": value = rs.getObject(prop, Boolean.class); break;
                     case "String": value = rs.getString(prop); break;
                     case "Date": value = rs.getDate(prop); break;
                     case "LocalDate": value = rs.getDate(prop).toLocalDate(); break;
