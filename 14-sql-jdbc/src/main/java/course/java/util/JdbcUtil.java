@@ -22,7 +22,6 @@ public class JdbcUtil {
                 .collect(Collectors.toMap(method -> {
                     var propName = method.getName().substring(3);
                     propName = Character.toLowerCase(propName.charAt(0)) + propName.substring(1);
-                    System.out.println(propName);
                     return propName;
                 }, Function.identity()));
 
@@ -52,16 +51,14 @@ public class JdbcUtil {
                     case "Boolean":
                     case "boolean": value = rs.getObject(prop, Boolean.class); break;
                     case "String": value = rs.getString(prop); break;
-                    case "Date": value = rs.getDate(prop); break;
+                    case "Date": value = new java.util.Date(rs.getDate(prop).getTime()); break;
                     case "LocalDate": value = rs.getDate(prop).toLocalDate(); break;
                     case "LocalDateTime": value = LocalDateTime.ofInstant(rs.getTimestamp(prop).toInstant(),
                             ZoneId.systemDefault()); break;
                 }
-                System.out.println(value);
                 setter.invoke(entity, value);
             }
             entities.add(entity);
-            System.out.println(entity);
         }
         return entities;
     }

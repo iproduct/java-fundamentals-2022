@@ -24,3 +24,7 @@ CREATE TABLE `fundamentals_bookstore_2022`.`users`
 
 INSERT INTO `fundamentals_bookstore_2022`.`users` (`firstName`, `lastName`, `age`, `username`, `password`, `role`, `active`)
 VALUES ('Deafult', 'Admin', '1', 'admin', 'Admin123#', 'ADMIN', b'1');
+INSERT INTO `fundamentals_bookstore_2022`.`users` (`firstName`, `lastName`, `age`, `username`, `password`, `role`, `active`)
+VALUES ('Default', 'Author', '1', 'author', 'Author123#', 'AUTHOR', b'1');
+INSERT INTO `fundamentals_bookstore_2022`.`users` (`firstName`, `lastName`, `age`, `phone`, `username`, `password`, `role`, `active`)
+VALUES ('John', 'Doe', '45', '+(1) 43534543469', 'john', 'John123#', 'ADMIN', b'1');
