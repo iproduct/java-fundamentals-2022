@@ -5,23 +5,36 @@ import course.java.exception.PersistenceException;
 import course.java.model.User;
 import course.java.util.JdbcUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.logging.Level;
 
+@Repository
 @Slf4j
 public class UserRepositoryJdbc implements UserRepository {
-    private static final String FIND_ALL_USERS = "SELECT * FROM users; ";
-    private static final String FIND_USER_BY_ID = "SELECT * FROM users WHERE id=?; ";
+    private static final String USERS_TABLE = "`users`";
+    private static final String FIND_ALL_USERS = "SELECT * FROM " + USERS_TABLE + "; ";
+    private static final String FIND_USER_BY_ID = "SELECT * FROM " + USERS_TABLE + " WHERE id=?; ";
     public static final String INSERT_NEW_USER =
-            "INSERT INTO `users` " +
+            "INSERT INTO " + USERS_TABLE + " " +
                     "(`firstName`, `lastName`, `age`, `phone`, `username`, `password`, `role`, `active`, `created`, `modified`) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public static final String UPDATE_USER =
+            "UPDATE " + USERS_TABLE +
+                    " SET `firstName` = ?, `lastName` = ?, `age` = ?, `phone` = ?, `username` = ? , `password` = ? , " +
+                    "`role` = ? , `active` = ? , `created` = ? , `modified` = ? " +
+                    " WHERE id = ?; ";
+
+    public static final String DELETE_USER =
+            "DELETE FROM " + USERS_TABLE + " WHERE id = ?; ";
+
+    private static final String FIND_USER_BY_USERNAME = "SELECT * FROM " + USERS_TABLE + " WHERE `username` = ?; ";
+    private static final String FIND_USERS_COUNT = "SELECT COUNT(*) FROM " + USERS_TABLE  + "; ";
+
 
     private Connection connection;
 
@@ -91,24 +104,83 @@ public class UserRepositoryJdbc implements UserRepository {
             throw new PersistenceException("Error inserting User in database", e);
         }
     }
-
     @Override
-    public User update(User user) {
-        return null;
+    public Optional<User> update(User user) {
+        if(user.getId() == null) { // product Id should be present
+            return Optional.empty();
+        }
+        try {
+            PreparedStatement ps = connection.prepareStatement(UPDATE_USER);
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setInt(3, user.getAge());
+            ps.setString(4, user.getPhone());
+            ps.setString(5, user.getUsername());
+            ps.setString(6, user.getPassword());
+            ps.setString(7, user.getRole().name());
+            ps.setBoolean(8, user.isActive());
+            ps.setTimestamp(9, Timestamp.valueOf(user.getCreated()));
+            ps.setTimestamp(10, Timestamp.valueOf(user.getModified()));
+            ps.setLong(11, user.getId());
+            int numExecutedStatements = ps.executeUpdate();
+            if(numExecutedStatements > 0) {
+                log.info(String.format(
+                        "User {}: {} updated successfully", user.getId(), user.getUsername()));
+                return Optional.of(user);
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException("Error updating user: " + user.getUsername(), e);
+        }
     }
 
     @Override
     public Optional<User> deleteById(Long id) {
-        return Optional.empty();
+        Optional<User> user = findById(id);
+        if(user.isPresent()) {
+            try {
+                PreparedStatement ps = connection.prepareStatement(DELETE_USER);
+                ps.setLong(1, id);
+                var deletetRows = ps.executeUpdate();
+                if(deletetRows == 0) {
+                    return Optional.empty();
+                }
+            } catch (SQLException e) {
+                throw new PersistenceException("Error deleting user by ID= " + id, e);
+            }
+        }
+        return user;
     }
 
     @Override
     public long count() {
-        return 0;
+        try (var ps = connection.prepareStatement(FIND_USERS_COUNT)) {
+            var rs = ps.executeQuery();
+            try {
+                rs.next();
+                return rs.getLong(1);
+            } catch (SQLException e) {
+                throw new PersistenceException("Error fetching users count", e);
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException("Error executing database query", e);
+        }
     }
 
     @Override
     public Optional<User> findByUsername(String username) {
-        return Optional.empty();
+        try (var ps = connection.prepareStatement(FIND_USER_BY_USERNAME)) {
+            ps.setString(1, username);
+            var rs = ps.executeQuery();
+            var users = JdbcUtil.getEntities(rs, User.class);
+            if(users.size() > 0) {
+                return Optional.of(users.get(0));
+            }
+            return Optional.empty();
+        } catch (SQLException e) {
+            throw new PersistenceException("Error executing database query", e);
+        } catch (InvocationTargetException | NoSuchMethodException | InstantiationException |
+                 IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

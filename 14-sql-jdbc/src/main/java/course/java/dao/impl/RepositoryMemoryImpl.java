@@ -37,9 +37,9 @@ class RepositoryMemoryImpl<V extends Identifiable<K>, K> implements Repository<V
     }
 
     @Override
-    public V update(V entity) {
+    public Optional<V> update(V entity) {
         entities.put(entity.getId(), entity);
-        return entity;
+        return Optional.of(entity);
     }
 
     @Override
