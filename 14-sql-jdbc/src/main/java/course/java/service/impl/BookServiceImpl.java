@@ -66,13 +66,14 @@ public class BookServiceImpl implements BookService {
             bookValidator.validate(book);
         } catch (InvalidConstraintException ex) {
             throw new InvalidEntityDataException(
-                    String.format("Error creating book '%s'", book.getTitle()),
+                    String.format("Error updateing book '%s'", book.getTitle()),
                     ex
             );
         }
         var updated = bookRepo.update(book);
 //        bookRepo.save();
-        return updated;
+        return updated.orElseThrow(() -> new InvalidEntityDataException(
+                String.format("Error updating book '%s'", book.getTitle())));
     }
 
     @Override

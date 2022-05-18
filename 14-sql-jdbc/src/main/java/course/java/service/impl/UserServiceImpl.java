@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public List<User> addUsersBatch(List<User> users) {
         return userRepo.saveAll(users);
     }
