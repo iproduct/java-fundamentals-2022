@@ -1,6 +1,7 @@
 package course.java.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import course.java.exception.PersistenceException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 @Configuration
 @PropertySource("jdbc.properties")
@@ -36,7 +38,11 @@ public class JdbcConfig {
 
     @Bean
     public Connection getJdbcConnection() {
-        return null;
+        try {
+            return getDataSource().getConnection();
+        } catch (SQLException e) {
+            throw new PersistenceException("Error getting database connection", e);
+        }
     }
 
 }

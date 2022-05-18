@@ -128,6 +128,7 @@ public class UserRepositoryJdbc implements UserRepository {
                         "User {}: {} updated successfully", user.getId(), user.getUsername()));
                 return Optional.of(user);
             }
+            return Optional.empty();
         } catch (SQLException e) {
             throw new PersistenceException("Error updating user: " + user.getUsername(), e);
         }

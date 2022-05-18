@@ -1,6 +1,6 @@
 package course.java.service.impl;
 
-import course.java.dao.UserRepositoryDataJPA;
+import course.java.dao.UserRepository;
 import course.java.exception.InvalidEntityDataException;
 import course.java.exception.NonexistingEntityException;
 import course.java.model.User;
@@ -10,24 +10,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import static course.java.model.MockUsers.MOCK_USERS;
 
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    private UserRepositoryDataJPA userRepo;
+    private UserRepository userRepo;
     private EntityValidator<User> userValidator;
 
     @Autowired
-    public UserServiceImpl(UserRepositoryDataJPA userRepo, EntityValidator<User> userValidator) {
+    public UserServiceImpl(UserRepository userRepo, EntityValidator<User> userValidator) {
         this.userRepo = userRepo;
         this.userValidator = userValidator;
     }
@@ -38,10 +33,6 @@ public class UserServiceImpl implements UserService {
         return userRepo.findAll();
     }
 
-    @Override
-    public Collection<User> getUsersByLastName(String lastNamePart) {
-        return userRepo.findByLastNameContaining(lastNamePart);
-    }
 
     @Override
     public User getUserById(Long id) throws NonexistingEntityException {
@@ -64,7 +55,7 @@ public class UserServiceImpl implements UserService {
 //                    cve
 //            );
 //        }
-        var created = userRepo.save(user);
+        var created = userRepo.create(user);
         log.info("Successfully created User: {}", created);
         return created;
     }
@@ -93,7 +84,8 @@ public class UserServiceImpl implements UserService {
 //        }
         user.setCreated(old.getCreated());
         user.setModified(LocalDateTime.now());
-        return userRepo.save(user);
+        return userRepo.update(user).orElseThrow(() -> new InvalidEntityDataException(
+                String.format("Error updating user '%s'", user.getUsername())));
     }
 
     @Override

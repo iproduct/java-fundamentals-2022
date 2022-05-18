@@ -20,10 +20,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(params = "lastName")
-    public Collection<User> getAllUsersByLastName(@RequestParam("lastName") String lastName) {
-        return userService.getUsersByLastName(lastName);
-    }
     @GetMapping
     public Collection<User> getAllUsers() {
         return userService.getAllUsers();
