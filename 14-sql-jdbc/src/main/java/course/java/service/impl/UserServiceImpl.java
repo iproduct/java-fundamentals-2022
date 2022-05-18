@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
     @Override
 //    @Transactional
     public List<User> addUsersBatch(List<User> users) {
-        return userRepo.saveAll(users);
+        return userRepo.createBatch(users);
     }
 
     @Override
