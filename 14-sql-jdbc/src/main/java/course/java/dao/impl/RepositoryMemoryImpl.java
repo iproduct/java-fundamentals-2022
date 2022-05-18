@@ -4,11 +4,9 @@ import course.java.dao.IdGenerator;
 import course.java.dao.Identifiable;
 import course.java.dao.Repository;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 class RepositoryMemoryImpl<V extends Identifiable<K>, K> implements Repository<V, K> {
     private long nextId = 0;
@@ -34,6 +32,11 @@ class RepositoryMemoryImpl<V extends Identifiable<K>, K> implements Repository<V
         entity.setId(idGenerator.getNextId());
         entities.put(entity.getId(), entity);
         return entity;
+    }
+
+    @Override
+    public List<V> createBatch(List<V> entities) {
+        return entities.stream().map(this::create).collect(Collectors.toList());
     }
 
     @Override

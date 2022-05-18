@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 
@@ -104,6 +105,12 @@ public class UserRepositoryJdbc implements UserRepository {
             throw new PersistenceException("Error inserting User in database", e);
         }
     }
+
+    @Override
+    public List<User> createBatch(List<User> entities) {
+        return null;
+    }
+
     @Override
     public Optional<User> update(User user) {
         if(user.getId() == null) { // product Id should be present

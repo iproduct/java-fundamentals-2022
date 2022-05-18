@@ -2,6 +2,7 @@ package course.java.springrest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import course.java.dao.UserRepository;
 import course.java.dao.UserRepositoryDataJPA;
 import course.java.model.Person;
 import course.java.model.Role;
@@ -47,7 +48,7 @@ class UserAppTests {
     private MockMvc mockMvc;
 
     @MockBean
-    private UserRepositoryDataJPA userRepo;
+    private UserRepository userRepo;
 
     @Autowired
     ObjectMapper mapper;
@@ -93,7 +94,7 @@ class UserAppTests {
 
     @Test
     void givenUser_whenPostUser_thenStatus201LocationAndJsonObject() throws Exception {
-        given(userRepo.save(any(User.class))).willReturn(CREATED_USER);
+        given(userRepo.create(any(User.class))).willReturn(CREATED_USER);
 
         var response = mockMvc.perform(
                 post("/api/users")
@@ -126,7 +127,7 @@ class UserAppTests {
                 .isEqualTo(CREATED_USER);
 
         then(userRepo).should(times(1)).findByUsername("georgi");
-        then(userRepo).should(times(1)).save(NEW_USER);
+        then(userRepo).should(times(1)).create(NEW_USER);
         then(userRepo).shouldHaveNoMoreInteractions();
     }
 
@@ -156,7 +157,7 @@ class UserAppTests {
     @Test
     void givenUser_whenPutUser_thenStatus200JsonObject() throws Exception {
         given(userRepo.findById(UPDATED_USER.getId())).willReturn(Optional.of(CREATED_USER));
-        given(userRepo.save(UPDATED_USER)).willReturn(UPDATED_USER);
+        given(userRepo.update(UPDATED_USER)).willReturn(Optional.of(UPDATED_USER));
 
         var response = mockMvc.perform(
                 put("/api/users/{userId}", UPDATED_USER.getId())
@@ -188,7 +189,7 @@ class UserAppTests {
                 .isEqualTo(UPDATED_USER);
 
         then(userRepo).should(times(1)).findById(UPDATED_USER.getId());
-        then(userRepo).should(times(1)).save(UPDATED_USER);
+        then(userRepo).should(times(1)).update(UPDATED_USER);
         then(userRepo).shouldHaveNoMoreInteractions();
     }
 
