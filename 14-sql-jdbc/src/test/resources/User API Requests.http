@@ -7,10 +7,10 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "firstName": "Dimo",
+  "firstName": "Dimo7",
   "lastName": "Petrov",
   "age": 42,
-  "username": "dimo",
+  "username": "dimo7",
   "password":"Dimo123#",
   "role": "ADMIN",
   "phone": "+(359) 887 894356"
