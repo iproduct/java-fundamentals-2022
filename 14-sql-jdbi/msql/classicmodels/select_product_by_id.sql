@@ -1,0 +1,1 @@
+SELECT * FROM classicmodels.products WHERE `productCode`='S18_1749';
