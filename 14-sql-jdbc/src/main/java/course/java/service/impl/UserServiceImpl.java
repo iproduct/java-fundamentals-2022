@@ -43,10 +43,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) throws InvalidEntityDataException {
-        if(userRepo.findByUsername(user.getUsername()).isPresent()){
-            throw new InvalidEntityDataException(
-                    String.format("Username '%s' already exists.", user.getUsername()));
-        }
+//        if(userRepo.findByUsername(user.getUsername()).isPresent()){
+//            throw new InvalidEntityDataException(
+//                    String.format("Username '%s' already exists.", user.getUsername()));
+//        }
 //        try {
 //            userValidator.validate(user);
 //        } catch (ConstraintViolationException cve) {
