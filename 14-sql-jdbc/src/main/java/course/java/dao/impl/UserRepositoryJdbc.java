@@ -37,7 +37,7 @@ public class UserRepositoryJdbc implements UserRepository {
             "DELETE FROM " + USERS_TABLE + " WHERE id = ?; ";
 
     private static final String FIND_USER_BY_USERNAME = "SELECT * FROM " + USERS_TABLE + " WHERE `username` = ?; ";
-    private static final String FIND_USERS_COUNT = "SELECT COUNT(*) FROM " + USERS_TABLE  + "; ";
+    private static final String FIND_USERS_COUNT = "SELECT COUNT(*) FROM " + USERS_TABLE + "; ";
     private PreparedStatement insertUserPS;
 
     private Connection connection;
@@ -84,7 +84,7 @@ public class UserRepositoryJdbc implements UserRepository {
             ps.setLong(1, id);
             var rs = ps.executeQuery();
             var users = JdbcUtil.getEntities(rs, User.class);
-            if(users.size() > 0) {
+            if (users.size() > 0) {
                 return Optional.of(users.get(0));
             }
             return Optional.empty();
@@ -99,28 +99,8 @@ public class UserRepositoryJdbc implements UserRepository {
     @Override
     public User create(User user) {
         try {
-            insertUserPS.setString(1, user.getFirstName());
-            insertUserPS.setString(2, user.getLastName());
-            insertUserPS.setInt(3, user.getAge());
-            insertUserPS.setString(4, user.getPhone());
-            insertUserPS.setString(5, user.getUsername());
-            insertUserPS.setString(6, user.getPassword());
-            insertUserPS.setString(7, user.getRole().name());
-            insertUserPS.setBoolean(8, user.isActive());
-            insertUserPS.setTimestamp(9, Timestamp.valueOf(user.getCreated()));
-            insertUserPS.setTimestamp(10, Timestamp.valueOf(user.getModified()));
-            int numRecords = insertUserPS.executeUpdate();
-            if(numRecords > 0) {
-                var keys = insertUserPS.getGeneratedKeys();
-                try {
-                    keys.next();
-                    user.setId(keys.getLong(1));
-                    log.info("Successfully INSERTED {} records.", numRecords);
-                    return user;
-                } catch (SQLException e) {
-                    throw new PersistenceException("Error fetching generated key for User: " + user.getUsername(), e);
-                }
-            }
+            User user1 = insertUser(user);
+            if (user1 != null) return user1;
             throw new PersistenceException("Error creating user'" + user.getUsername() + "' in database");
         } catch (SQLException e) {
             throw new PersistenceException("Error inserting User in database", e);
@@ -132,8 +112,8 @@ public class UserRepositoryJdbc implements UserRepository {
         List<User> results = new ArrayList<>();
         try {
             connection.setAutoCommit(false);
-            for(User u : entities) {
-                results.add(create(u));
+            for (User u : entities) {
+                results.add(insertUser(u));
             }
             connection.commit();
             return results;
@@ -143,7 +123,7 @@ public class UserRepositoryJdbc implements UserRepository {
             } catch (SQLException ex) {
                 throw new PersistenceException("Error rolling back transaction, when creating users batch:", ex);
             }
-            throw new PersistenceException("Error excuting batch user create:", e);
+            throw new PersistenceException("Error exceuting batch user create:", e);
         } finally {
             try {
                 connection.setAutoCommit(true);
@@ -155,7 +135,7 @@ public class UserRepositoryJdbc implements UserRepository {
 
     @Override
     public Optional<User> update(User user) {
-        if(user.getId() == null) { // product Id should be present
+        if (user.getId() == null) { // product Id should be present
             return Optional.empty();
         }
         try {
@@ -172,7 +152,7 @@ public class UserRepositoryJdbc implements UserRepository {
             ps.setTimestamp(10, Timestamp.valueOf(user.getModified()));
             ps.setLong(11, user.getId());
             int numExecutedStatements = ps.executeUpdate();
-            if(numExecutedStatements > 0) {
+            if (numExecutedStatements > 0) {
                 log.info(String.format(
                         "User {}: {} updated successfully", user.getId(), user.getUsername()));
                 return Optional.of(user);
@@ -186,12 +166,12 @@ public class UserRepositoryJdbc implements UserRepository {
     @Override
     public Optional<User> deleteById(Long id) {
         Optional<User> user = findById(id);
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             try {
                 PreparedStatement ps = connection.prepareStatement(DELETE_USER);
                 ps.setLong(1, id);
                 var deletetRows = ps.executeUpdate();
-                if(deletetRows == 0) {
+                if (deletetRows == 0) {
                     return Optional.empty();
                 }
             } catch (SQLException e) {
@@ -222,7 +202,7 @@ public class UserRepositoryJdbc implements UserRepository {
             ps.setString(1, username);
             var rs = ps.executeQuery();
             var users = JdbcUtil.getEntities(rs, User.class);
-            if(users.size() > 0) {
+            if (users.size() > 0) {
                 return Optional.of(users.get(0));
             }
             return Optional.empty();
@@ -232,5 +212,28 @@ public class UserRepositoryJdbc implements UserRepository {
                  IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // helper methods
+    private User insertUser(User user) throws SQLException {
+        insertUserPS.setString(1, user.getFirstName());
+        insertUserPS.setString(2, user.getLastName());
+        insertUserPS.setInt(3, user.getAge());
+        insertUserPS.setString(4, user.getPhone());
+        insertUserPS.setString(5, user.getUsername());
+        insertUserPS.setString(6, user.getPassword());
+        insertUserPS.setString(7, user.getRole().name());
+        insertUserPS.setBoolean(8, user.isActive());
+        insertUserPS.setTimestamp(9, Timestamp.valueOf(user.getCreated()));
+        insertUserPS.setTimestamp(10, Timestamp.valueOf(user.getModified()));
+        int numRecords = insertUserPS.executeUpdate();
+        if (numRecords > 0) {
+            var keys = insertUserPS.getGeneratedKeys();
+            keys.next();
+            user.setId(keys.getLong(1));
+            log.info("Successfully INSERTED {} records.", numRecords);
+            return user;
+        }
+        return null;
     }
 }
