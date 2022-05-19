@@ -1,0 +1,18 @@
+GET http://localhost:8080/api/users
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Dimo15",
+  "lastName": "Petrov",
+  "age": 45,
+  "username": "dimo15",
+  "password":"Dimo123#",
+  "role": "READER",
+  "phone": "+(359) 887 894356"
+}
+
