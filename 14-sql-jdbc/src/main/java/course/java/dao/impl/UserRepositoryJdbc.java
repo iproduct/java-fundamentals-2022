@@ -7,8 +7,11 @@ import course.java.util.JdbcUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -35,12 +38,30 @@ public class UserRepositoryJdbc implements UserRepository {
 
     private static final String FIND_USER_BY_USERNAME = "SELECT * FROM " + USERS_TABLE + " WHERE `username` = ?; ";
     private static final String FIND_USERS_COUNT = "SELECT COUNT(*) FROM " + USERS_TABLE  + "; ";
-
+    private PreparedStatement insertUserPS;
 
     private Connection connection;
 
     public UserRepositoryJdbc(Connection connection) {
         this.connection = connection;
+    }
+
+    @PostConstruct
+    void init() {
+        try {
+            insertUserPS = connection.prepareStatement(INSERT_NEW_USER, Statement.RETURN_GENERATED_KEYS);
+        } catch (SQLException e) {
+            throw new PersistenceException("Error inserting User in database", e);
+        }
+    }
+
+    @PreDestroy
+    void cleanup() {
+        try {
+            insertUserPS.close();
+        } catch (SQLException e) {
+            throw new PersistenceException("Error inserting User in database", e);
+        }
     }
 
     @Override
@@ -77,20 +98,20 @@ public class UserRepositoryJdbc implements UserRepository {
 
     @Override
     public User create(User user) {
-        try (var ps = connection.prepareStatement(INSERT_NEW_USER, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, user.getFirstName());
-            ps.setString(2, user.getLastName());
-            ps.setInt(3, user.getAge());
-            ps.setString(4, user.getPhone());
-            ps.setString(5, user.getUsername());
-            ps.setString(6, user.getPassword());
-            ps.setString(7, user.getRole().name());
-            ps.setBoolean(8, user.isActive());
-            ps.setTimestamp(9, Timestamp.valueOf(user.getCreated()));
-            ps.setTimestamp(10, Timestamp.valueOf(user.getModified()));
-            int numRecords = ps.executeUpdate();
+        try {
+            insertUserPS.setString(1, user.getFirstName());
+            insertUserPS.setString(2, user.getLastName());
+            insertUserPS.setInt(3, user.getAge());
+            insertUserPS.setString(4, user.getPhone());
+            insertUserPS.setString(5, user.getUsername());
+            insertUserPS.setString(6, user.getPassword());
+            insertUserPS.setString(7, user.getRole().name());
+            insertUserPS.setBoolean(8, user.isActive());
+            insertUserPS.setTimestamp(9, Timestamp.valueOf(user.getCreated()));
+            insertUserPS.setTimestamp(10, Timestamp.valueOf(user.getModified()));
+            int numRecords = insertUserPS.executeUpdate();
             if(numRecords > 0) {
-                var keys = ps.getGeneratedKeys();
+                var keys = insertUserPS.getGeneratedKeys();
                 try {
                     keys.next();
                     user.setId(keys.getLong(1));
@@ -108,7 +129,28 @@ public class UserRepositoryJdbc implements UserRepository {
 
     @Override
     public List<User> createBatch(List<User> entities) {
-        return null;
+        List<User> results = new ArrayList<>();
+        try {
+            connection.setAutoCommit(false);
+            for(User u : entities) {
+                results.add(create(u));
+            }
+            connection.commit();
+            return results;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new PersistenceException("Error rolling back transaction, when creating users batch:", ex);
+            }
+            throw new PersistenceException("Error excuting batch user create:", e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new PersistenceException("Error setting autocommit transactions to 'true':", e);
+            }
+        }
     }
 
     @Override
