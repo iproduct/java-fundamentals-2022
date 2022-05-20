@@ -1,8 +1,10 @@
 package course.java.service.impl;
 
 import course.java.dao.UserRepository;
+import course.java.dao.UserRepositoryJdbi;
 import course.java.exception.InvalidEntityDataException;
 import course.java.exception.NonexistingEntityException;
+import course.java.exception.PersistenceException;
 import course.java.model.User;
 import course.java.service.UserService;
 import course.java.util.EntityValidator;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,11 +21,11 @@ import java.util.List;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepo;
+    private UserRepositoryJdbi userRepo;
     private EntityValidator<User> userValidator;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepo, EntityValidator<User> userValidator) {
+    public UserServiceImpl(UserRepositoryJdbi userRepo, EntityValidator<User> userValidator) {
         this.userRepo = userRepo;
         this.userValidator = userValidator;
     }
@@ -47,45 +50,41 @@ public class UserServiceImpl implements UserService {
 //            throw new InvalidEntityDataException(
 //                    String.format("Username '%s' already exists.", user.getUsername()));
 //        }
-//        try {
-//            userValidator.validate(user);
-//        } catch (ConstraintViolationException cve) {
-//            throw new InvalidEntityDataException(
-//                    String.format("Invalid user data for user '%s'.", user.getUsername()),
-//                    cve
-//            );
-//        }
-        var created = userRepo.create(user);
-        log.info("Successfully created User: {}", created);
-        return created;
+        if(userRepo.create(user)) {
+            log.info("Successfully created User: {}", user);
+            return user;
+        }
+        log.error("Error creating user: {}", user);
+        throw new PersistenceException("Error creating user: " + user);
     }
 
     @Override
 //    @Transactional
     public List<User> addUsersBatch(List<User> users) {
-        return userRepo.createBatch(users);
+        if (Arrays.stream(userRepo.createBatch(users)).allMatch(i -> i > 0)) {
+            log.info("Successfully created {} users in batch.", users.size());
+            return users;
+        }
+        log.error("Error creating users in batch: {}", users);
+        throw new PersistenceException("Error creating users in batch: " + users);
     }
 
     @Override
     public User updateUser(User user) throws NonexistingEntityException, InvalidEntityDataException {
         var old = getUserById(user.getId());
-        if(!old.getUsername().equals(user.getUsername())) {
+        if (!old.getUsername().equals(user.getUsername())) {
             throw new InvalidEntityDataException(
                     String.format("Username '%s' can not be changed to '%s'.",
                             old.getUsername(), user.getUsername()));
         }
-//        try {
-//            userValidator.validate(user);
-//        } catch (ConstraintViolationException cve) {
-//            throw new InvalidEntityDataException(
-//                    String.format("Invalid user data for user '%s'.", user.getUsername()),
-//                    cve
-//            );
-//        }
         user.setCreated(old.getCreated());
         user.setModified(LocalDateTime.now());
-        return userRepo.update(user).orElseThrow(() -> new InvalidEntityDataException(
-                String.format("Error updating user '%s'", user.getUsername())));
+        if(userRepo.update(user)) {
+            log.info("Successfully updated User: {}", user);
+            return user;
+        }
+        log.error("Error updating user: {}", user);
+        throw new InvalidEntityDataException(String.format("Error updating user '%s'", user.getUsername()));
     }
 
     @Override

@@ -58,17 +58,17 @@ public interface UserRepositoryJdbi {
             " (\"firstName\", \"lastName\", \"age\", \"phone\", \"username\", \"password\", \"role\", \"active\", \"created\", \"modified\") " +
             " VALUES (:firstName, :lastName, :age, :phone, :username, :password, :role, :active, :created, :modified) ")
     @GetGeneratedKeys
-    List<User> createBatch(@BindBean Iterable<User> users);
+    int[] createBatch(@BindBean Iterable<User> users);
 
     @SqlUpdate("UPDATE \"" + USERS_TABLE + "\" " +
             " SET \"firstName\" = :firstName, \"lastName\" = :lastName, \"age\" = :age, \"phone\" = :phone, " +
             "\"username\" = :username , \"password\" = :password , " +
             "\"role\" = :role , \"active\" = :active , \"created\" = :created , \"modified\" = :modified " +
             " WHERE id = :id;")
-    Optional<User> update(User entity);
+    boolean update(User entity);
 
     @SqlUpdate("DELETE FROM \"" + USERS_TABLE + "\" WHERE id = :id; ")
-    Optional<User> deleteById(Long id);
+    boolean deleteById(Long id);
 
     @SqlQuery("SELECT COUNT(*) FROM \"" + USERS_TABLE + "\";")
     long count();
