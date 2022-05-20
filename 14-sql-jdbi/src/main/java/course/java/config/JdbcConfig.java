@@ -27,7 +27,7 @@ public class JdbcConfig {
     private String password;
 
     @Bean
-    DataSource getDataSource() {
+    public DataSource getDataSource() {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName(driverClassname);
         dataSource.setJdbcUrl(url);//change url

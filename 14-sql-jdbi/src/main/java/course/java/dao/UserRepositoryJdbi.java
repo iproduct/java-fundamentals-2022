@@ -4,6 +4,7 @@ import course.java.model.User;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
+import org.jdbi.v3.sqlobject.statement.SqlBatch;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
@@ -36,9 +37,9 @@ public interface UserRepositoryJdbi {
     @SqlQuery("SELECT * FROM \"" + USERS_TABLE + "\" WHERE \"id\" = :id;")
     Optional<User> findById(@Bind("id") Long id);
 
-    @SqlUpdate("INSERT INTO " + USERS_TABLE +
+    @SqlUpdate("INSERT INTO \"" + USERS_TABLE + "\" " +
             "(\"firstName\", \"lastName\", \"age\", \"phone\", \"username\", \"password\", \"role\", \"active\", \"created\", \"modified\") " +
-            " VALUES (:firstName, :lastName, :age, :phone, :username, :password, :role, :active, :created, :modified) ")
+            " VALUES (:firstName, :lastName, :age, :phone, :username, :password, :role, :active, :created, :modified); ")
     @GetGeneratedKeys
     boolean createNamed(@Bind("firstName") int firstName, @Bind("lastName") String lastName,
                         @Bind("age") String age, @Bind("phone") String phone,
@@ -47,19 +48,28 @@ public interface UserRepositoryJdbi {
                         @Bind("created") String created, @Bind("modified") String modified
     );
 
-
-    @SqlUpdate("INSERT INTO " + USERS_TABLE +
+    @SqlUpdate("INSERT INTO \"" + USERS_TABLE + "\" " +
             " (\"firstName\", \"lastName\", \"age\", \"phone\", \"username\", \"password\", \"role\", \"active\", \"created\", \"modified\") " +
             " VALUES (:firstName, :lastName, :age, :phone, :username, :password, :role, :active, :created, :modified) ")
     @GetGeneratedKeys
     boolean create(@BindBean User user);
 
+    @SqlBatch("INSERT INTO \"" + USERS_TABLE + "\" " +
+            " (\"firstName\", \"lastName\", \"age\", \"phone\", \"username\", \"password\", \"role\", \"active\", \"created\", \"modified\") " +
+            " VALUES (:firstName, :lastName, :age, :phone, :username, :password, :role, :active, :created, :modified) ")
+    @GetGeneratedKeys
+    List<User> createBatch(@BindBean Iterable<User> users);
 
-    List<User> createBatch(List<User> entities);
-
+    @SqlUpdate("UPDATE \"" + USERS_TABLE + "\" " +
+            " SET \"firstName\" = :firstName, \"lastName\" = :lastName, \"age\" = :age, \"phone\" = :phone, " +
+            "\"username\" = :username , \"password\" = :password , " +
+            "\"role\" = :role , \"active\" = :active , \"created\" = :created , \"modified\" = :modified " +
+            " WHERE id = :id;")
     Optional<User> update(User entity);
 
+    @SqlUpdate("DELETE FROM \"" + USERS_TABLE + "\" WHERE id = :id; ")
     Optional<User> deleteById(Long id);
 
+    @SqlQuery("SELECT COUNT(*) FROM \"" + USERS_TABLE + "\";")
     long count();
 }
