@@ -3,6 +3,7 @@ package course.java.jdbitest;
 import course.java.model.User;
 import course.java.model.User2;
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class JdbiCoreTest {
     @Test
-    public void connectToDb(){
+    public void testJdbiCore(){
         Jdbi jdbi = Jdbi.create("jdbc:h2:mem:test");
         List<User2> users = jdbi.withHandle(handle -> {
             handle.execute("CREATE TABLE \"user\" (id INTEGER PRIMARY KEY, \"name\" VARCHAR)");
