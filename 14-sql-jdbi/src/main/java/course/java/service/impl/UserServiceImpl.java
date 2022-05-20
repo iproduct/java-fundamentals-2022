@@ -50,7 +50,9 @@ public class UserServiceImpl implements UserService {
 //            throw new InvalidEntityDataException(
 //                    String.format("Username '%s' already exists.", user.getUsername()));
 //        }
-        if(userRepo.create(user)) {
+        long id = userRepo.create(user);
+        if(id > 0) {
+            user.setId(id);
             log.info("Successfully created User: {}", user);
             return user;
         }
@@ -61,7 +63,11 @@ public class UserServiceImpl implements UserService {
     @Override
 //    @Transactional
     public List<User> addUsersBatch(List<User> users) {
-        if (Arrays.stream(userRepo.createBatch(users)).allMatch(i -> i > 0)) {
+        long[] ids = userRepo.createBatch(users);
+        if (Arrays.stream(ids).allMatch(i -> i > 0)) {
+            for(int i = 0; i < ids.length; i++) {
+                users.get(i).setId(ids[i]);
+            }
             log.info("Successfully created {} users in batch.", users.size());
             return users;
         }
