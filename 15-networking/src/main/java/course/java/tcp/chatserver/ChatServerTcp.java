@@ -1,9 +1,16 @@
 package course.java.tcp.chatserver;
 
+import course.java.tcp.server.TcpTimeServer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Slf4j
 class Handler implements Runnable {
@@ -30,7 +37,7 @@ class Handler implements Runnable {
 
             // 2) Read chat messages until <END> message is received
             var finished = false;
-            while(!finished) {
+            while(!finished && !Thread.interrupted()) {
                 // read request
                 message = in.readLine();
                 if (message.equals("<END>")) {
@@ -49,8 +56,44 @@ class Handler implements Runnable {
     }
 }
 
-public class ChatServerTcp {
+@Slf4j
+public class ChatServerTcp implements Runnable {
+    public static final int PORT = 9090;
+
+    private volatile boolean canceled = false;
+
+    private ExecutorService executor = Executors.newCachedThreadPool();
+
+    public void cancel() {
+        this.canceled = true;
+    }
+
+    @Override
+    public void run() {
+        try(ServerSocket ssoc = new ServerSocket(PORT, -1,
+                InetAddress.getByAddress(new byte[] {127, 0, 0, 1}))) {
+            log.info("Chat Server is listening for connections on: {}", ssoc);
+            while(!canceled && !Thread.interrupted()) {
+                try(Socket s = ssoc.accept()) {
+                    log.info("Time Server connection accepted: {}", s);
+                    executor.execute(new Handler(this, s));
+                }
+            }
+            log.info("Closing Chat Server.");
+        } catch (IOException e) {
+            log.error("Error running Chat Server:", e);
+            throw new RuntimeException(e);
+        } finally {
+            executor.shutdownNow();
+        }
+    }
 
     public void sendToAll(String message) {
     }
+
+    public static void main(String[] args) {
+        new TcpTimeServer().run();
+    }
+
+
 }
