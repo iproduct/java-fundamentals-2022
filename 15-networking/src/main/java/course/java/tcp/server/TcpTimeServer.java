@@ -1,4 +1,4 @@
-package course.java.server.tcp;
+package course.java.tcp.server;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,6 +10,7 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.zone.ZoneRulesException;
 
 @Slf4j
 public class TcpTimeServer implements Runnable {
@@ -30,19 +31,27 @@ public class TcpTimeServer implements Runnable {
                 try(Socket s = ssoc.accept()) {
                     log.info("Time Server connection accepted: {}", s);
                     var in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-                    var out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(s.getOutputStream())));
-                    // read request
-                    String zoneStr = in.readLine();
-                    log.info("Client time request for zone: {}", zoneStr);
-                    ZoneId zoneId;
-                    try {
-                        zoneId = ZoneId.of(zoneStr);
-                    } catch (DateTimeException ex) {
-                        log.error("Invalid zone Id: " + zoneStr +". Taking Greenwich zone instead;", ex);
-                        zoneId = ZoneId.of("Europe/London");
+                    var out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(s.getOutputStream())), true);
+                    var finished = false;
+                    while(!finished) {
+                        // read request
+                        String zoneStr = in.readLine();
+                        if (zoneStr.equals("<END>")) {
+                            finished = true;
+                            continue;
+                        }
+                        log.info("Client time request for zone: {}", zoneStr);
+                        ZoneId zoneId;
+                        try {
+                            zoneId = ZoneId.of(zoneStr);
+                        } catch (Exception ex) {
+                            log.error("Invalid zone Id: " + zoneStr + ". Taking Greenwich zone instead;", ex);
+                            zoneId = ZoneId.of("Europe/London");
+                        }
+                        LocalDateTime now = LocalDateTime.now(zoneId);
+                        out.println("Current time: " + now + " in " + zoneId);
                     }
-                    LocalDateTime now = LocalDateTime.now(zoneId);
-                    out.printf("Current time: %s in Zone: %s%n", now.format(DateTimeFormatter.BASIC_ISO_DATE), zoneId);
+                    log.info("Client request complete: {}", s);
                 }
             }
         } catch (IOException e) {
