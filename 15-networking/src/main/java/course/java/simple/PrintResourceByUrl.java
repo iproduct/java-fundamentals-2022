@@ -1,4 +1,4 @@
-package course.java;
+package course.java.simple;
 
 import java.io.BufferedReader;
 import java.io.IOException;
