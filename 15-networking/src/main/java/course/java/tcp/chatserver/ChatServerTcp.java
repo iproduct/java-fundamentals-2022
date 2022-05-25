@@ -9,6 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,8 +32,8 @@ class Handler implements Runnable {
     @Override
     public void run() {
         try {
-            var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            var out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
             String message = "";
             // chat application protocol: 1) read nickname as first message
             nickname = in.readLine();
@@ -44,7 +48,7 @@ class Handler implements Runnable {
                     finished = true;
                     continue;
                 }
-                server.sendToAll(message);
+                server.sendToAll(String.format("%s: %s",nickname, message));
             }
             // 3) Close session when <END> is received
             log.info("Closing session for user: {}", nickname);
@@ -53,6 +57,9 @@ class Handler implements Runnable {
             log.error("Error reading/writing from/to TCP socket:", e);
             throw new RuntimeException(e);
         }
+    }
+    public void sendMessage(String message) {
+        out.println(message);
     }
 }
 
@@ -63,6 +70,8 @@ public class ChatServerTcp implements Runnable {
     private volatile boolean canceled = false;
 
     private ExecutorService executor = Executors.newCachedThreadPool();
+//    private Collection<Handler> handlers = new CopyOnWriteArrayList<>();
+    private Collection<Handler> handlers = new ConcurrentSkipListSet<>();
 
     public void cancel() {
         this.canceled = true;
@@ -89,6 +98,9 @@ public class ChatServerTcp implements Runnable {
     }
 
     public void sendToAll(String message) {
+        for(var handler: handlers){
+            handler.sendMessage(message);
+        }
     }
 
     public static void main(String[] args) {
