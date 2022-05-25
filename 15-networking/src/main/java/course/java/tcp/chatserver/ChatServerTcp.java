@@ -44,15 +44,21 @@ class Handler implements Runnable {
             while(!finished && !Thread.interrupted()) {
                 // read request
                 message = in.readLine();
+                log.info("Message received: " + String.format("%s: %s",nickname, message));
                 if (message.equals("<END>")) {
                     finished = true;
                     continue;
                 }
-                server.sendToAll(String.format("%s: %s",nickname, message));
+                if(!message.isBlank()) {
+                    server.sendToAll(String.format("%s: %s", nickname, message));
+                }
             }
             // 3) Close session when <END> is received
             log.info("Closing session for user: {}", nickname);
+            in.close();
+            out.close();
             socket.close();
+            server.removeHandler(this);
         } catch (IOException e) {
             log.error("Error reading/writing from/to TCP socket:", e);
             throw new RuntimeException(e);
@@ -70,8 +76,8 @@ public class ChatServerTcp implements Runnable {
     private volatile boolean canceled = false;
 
     private ExecutorService executor = Executors.newCachedThreadPool();
-//    private Collection<Handler> handlers = new CopyOnWriteArrayList<>();
-    private Collection<Handler> handlers = new ConcurrentSkipListSet<>();
+    private Collection<Handler> handlers = new CopyOnWriteArrayList<>();
+//    private Collection<Handler> handlers = new ConcurrentSkipListSet<>();
 
     public void cancel() {
         this.canceled = true;
@@ -83,9 +89,14 @@ public class ChatServerTcp implements Runnable {
                 InetAddress.getByAddress(new byte[] {127, 0, 0, 1}))) {
             log.info("Chat Server is listening for connections on: {}", ssoc);
             while(!canceled && !Thread.interrupted()) {
-                try(Socket s = ssoc.accept()) {
+                try {
+                    Socket s = ssoc.accept();
                     log.info("Time Server connection accepted: {}", s);
-                    executor.execute(new Handler(this, s));
+                    var handler = new Handler(this, s);
+                    handlers.add(handler);
+                    executor.execute(handler);
+                }catch (IOException e) {
+                    log.error("Error accepting client connection:", e);
                 }
             }
             log.info("Closing Chat Server.");
@@ -103,8 +114,12 @@ public class ChatServerTcp implements Runnable {
         }
     }
 
+    public void removeHandler(Handler handler) {
+        handlers.remove(handler);
+    }
+
     public static void main(String[] args) {
-        new TcpTimeServer().run();
+        new ChatServerTcp().run();
     }
 
 
