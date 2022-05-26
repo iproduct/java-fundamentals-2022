@@ -4,15 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import course.java.model.jsonschemas.Books;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Arrays;
@@ -21,7 +18,7 @@ import java.util.stream.Collectors;
 
 import static java.lang.Math.min;
 
-public class SyncHttpClientGoogleBooks {
+public class AsyncHttpClientGoogleBooks {
     public static final String BOOKS_JSON_FILENAME = "schemas/books.json";
     public static final String GOOGLE_BOOKS_API_URI =
             "https://www.googleapis.com/books/v1/volumes?q=";
