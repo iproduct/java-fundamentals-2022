@@ -1,0 +1,1484 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 384,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "2UncsgEACAAJ",
+      "etag": "fZqX3rw7fH0",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/2UncsgEACAAJ",
+      "volumeInfo": {
+        "title": "Java Testing with Spock",
+        "authors": [
+          "Konstantinos Kapelonis"
+        ],
+        "publisher": "Manning Publications",
+        "publishedDate": "2016-03-27",
+        "description": "Summary Java Testing with Spock teaches you how to use Spock for a wide range of testing use cases in Java. Readers new to Groovy will appreciate the succinct language tutorial that'll give you just enough Groovy to use Spock effectively. Purchase of the print book includes a free eBook in PDF, Kindle, and ePub formats from Manning Publications. About the Technology Spock combines the features of tools like JUnit, Mockito, and JBehave into a single powerful Java testing library. With Spock, you use Groovy to write more readable and concise tests. Spock enables seamless integration testing, and with the intuitive Geb library, you can even handle functional testing of web applications. About the Book Java Testing with Spock teaches you how to use Spock for a wide range of testing use cases in Java. You'll start with a quick overview of Spock and work through writing unit tests using the Groovy language. You'll discover best practices for test design as you learn to write mocks, implement integration tests, use Spock's built-in BDD testing tools, and do functional web testing using Geb. Readers new to Groovy will appreciate the succinct language tutorial in chapter 2 that gives you just enough Groovy to use Spock effectively. What's Inside Testing with Spock from the ground up Write mocks without an external library BDD tests your business analyst can read Just enough Groovy to use Spock About the Reader Written for Java developers. Knowledge of Groovy and JUnit is helpful but not required. About the Author Konstantinos Kapelonis is a software engineer who works with Java daily. Table of Contents PART 1 FOUNDATIONS AND BRIEF TOUR OF SPOCK Introducing the Spock testing framework Groovy knowledge for Spock testing A tour of Spock functionality PART 2 STRUCTURING SPOCK TESTS Writing unit tests with Spock Parameterized tests Mocking and stubbing PART 3 SPOCK IN THE ENTERPRISE Integration and functional testing with Spock Spock features for enterprise testing",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "1617292532"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9781617292538"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 304,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=2UncsgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=2UncsgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=2UncsgEACAAJ&dq=java+testing&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=2UncsgEACAAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Java_Testing_with_Spock.html?hl=&id=2UncsgEACAAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=2UncsgEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "About the Book Java Testing with Spock teaches you how to use Spock for a wide range of testing use cases in Java. You&#39;ll start with a quick overview of Spock and work through writing unit tests using the Groovy language."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "cindfHv-_WMC",
+      "etag": "F21ueU9m9Yg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/cindfHv-_WMC",
+      "volumeInfo": {
+        "title": "Unit Testing in Java",
+        "subtitle": "How Tests Drive the Code",
+        "authors": [
+          "Johannes Link",
+          "Peter Fröhlich"
+        ],
+        "publisher": "Morgan Kaufmann",
+        "publishedDate": "2003-06-03",
+        "description": "Software testing is indispensable and is one of the most discussed topics in software development today. Many companies address this issue by assigning a dedicated software testing phase towards the end of their development cycle. However, quality cannot be tested into a buggy application. Early and continuous unit testing has been shown to be crucial for high quality software and low defect rates. Yet current books on testing ignore the developer's point of view and give little guidance on how to bring the overwhelming amount of testing theory into practice. Unit Testing in Java represents a practical introduction to unit testing for software developers. It introduces the basic test-first approach and then discusses a large number of special issues and problem cases. The book instructs developers through each step and motivates them to explore further. Shows how the discovery and avoidance of software errors is a demanding and creative activity in its own right and can build confidence early in a project. Demonstrates how automated tests can detect the unwanted effects of small changes in code within the entire system. Discusses how testing works with persistency, concurrency, distribution, and web applications. Includes a discussion of testing with C++ and Smalltalk.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "1558608680"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9781558608689"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 376,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.3.1.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=cindfHv-_WMC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=cindfHv-_WMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=cindfHv-_WMC&printsec=frontcover&dq=java+testing&hl=&cd=2&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=cindfHv-_WMC&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Unit_Testing_in_Java.html?hl=&id=cindfHv-_WMC"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=cindfHv-_WMC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Unit Testing in Java How Tests Drive the Code Johannes Link With contributions by Peter Fröhlich Forewords by Erich Gamma and Frank Westphal &quot;This...is a practical introduction to using automated unit tests and the test-first approach in ..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "bCvcMcLZwV4C",
+      "etag": "Pj7vRb8lQbo",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/bCvcMcLZwV4C",
+      "volumeInfo": {
+        "title": "Next Generation Java Testing",
+        "subtitle": "TestNG and Advanced Concepts",
+        "authors": [
+          "Cédric Beust",
+          "Hani Suleiman"
+        ],
+        "publisher": "Pearson Education",
+        "publishedDate": "2007-10-15",
+        "description": "Enterprise Java developers must achieve broader, deeper test coverage, going beyond unit testing to implement functional and integration testing with systematic acceptance. Next Generation Java™ Testing introduces breakthrough Java testing techniques and TestNG, a powerful open source Java testing platform. Cédric Beust, TestNG's creator, and leading Java developer Hani Suleiman, present powerful, flexible testing patterns that will work with virtually any testing tool, framework, or language. They show how to leverage key Java platform improvements designed to facilitate effective testing, such as dependency injection and mock objects. They also thoroughly introduce TestNG, demonstrating how it overcomes the limitations of older frameworks and enables new techniques, making it far easier to test today's complex software systems. Pragmatic and results-focused, Next Generation Java™ Testing will help Java developers build more robust code for today's mission-critical environments. This book Illuminates the tradeoffs associated with testing, so you can make better decisions about what and how to test Introduces TestNG, explains its goals and features, and shows how to apply them in real-world environments Shows how to integrate TestNG with your existing code, development frameworks, and software libraries Demonstrates how to test crucial code features, such as encapsulation, state sharing, scopes, and thread safety Shows how to test application elements, including JavaEE APIs, databases, Web pages, and XML files Presents advanced techniques: testing partial failures, factories, dependent testing, remote invocation, cluster-based test farms, and more Walks through installing and using TestNG plug-ins for Eclipse, and IDEA Contains extensive code examples Whether you use TestNG, JUnit, or another testing framework, the testing design patterns presented in this book will show you how to improve your tests by giving you concrete advice on how to make your code and your design more testable.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "0132702274"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9780132702270"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 512,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.5.4.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=bCvcMcLZwV4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=bCvcMcLZwV4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=bCvcMcLZwV4C&printsec=frontcover&dq=java+testing&hl=&cd=3&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=bCvcMcLZwV4C&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Next_Generation_Java_Testing.html?hl=&id=bCvcMcLZwV4C"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=bCvcMcLZwV4C&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "This book Illuminates the tradeoffs associated with testing, so you can make better decisions about what and how to test Introduces TestNG, explains its goals and features, and shows how to apply them in real-world environments Shows how to ..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "uqLDoQEACAAJ",
+      "etag": "KokX8qT8e/A",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/uqLDoQEACAAJ",
+      "volumeInfo": {
+        "title": "Pragmatic Unit Testing in Java 8 With Junit",
+        "authors": [
+          "Jeff Langr",
+          "Andy Hunt",
+          "Dave Thomas"
+        ],
+        "publisher": "Pragmatic Bookshelf",
+        "publishedDate": "2015-03-19",
+        "description": "The Pragmatic Programmers classic is back! Freshly updated for modern software development, Pragmatic Unit Testing in Java 8 With JUnit teaches you how to write and run easily maintained unit tests in JUnit with confidence. You'll learn mnemonics to help you know what tests to write, how to remember all the boundary conditions, and what the qualities of a good test are. You'll see how unit tests can pay off by allowing you to keep your system code clean, and you'll learn how to handle the stuff that seems too tough to test. Pragmatic Unit Testing in Java 8 With JUnit steps you through all the important unit testing topics. If you've never written a unit test, you'll see screen shots from Eclipse, IntelliJ IDEA, and NetBeans that will help you get past the hard part--getting set up and started. Once past the basics, you'll learn why you want to write unit tests and how to effectively use JUnit. But the meaty part of the book is its collected unit testing wisdom from people who've been there, done that on production systems for at least 15 years: veteran author and developer Jeff Langr, building on the wisdom of Pragmatic Programmers Andy Hunt and Dave Thomas. You'll learn: How to craft your unit tests to minimize your effort in maintaining them. How to use unit tests to help keep your system clean. How to test the tough stuff. Memorable mnemonics to help you remember what's important when writing unit tests. How to help your team reap and sustain the benefits of unit testing. You won't just learn about unit testing in theory--you'll work through numerous code examples. When it comes to programming, hands-on is the only way to learn!",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "1941222595"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9781941222591"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 200,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "averageRating": 3.5,
+        "ratingsCount": 2,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=uqLDoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=uqLDoQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=uqLDoQEACAAJ&dq=java+testing&hl=&cd=4&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=uqLDoQEACAAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Pragmatic_Unit_Testing_in_Java_8_With_Ju.html?hl=&id=uqLDoQEACAAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=uqLDoQEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "But the meaty part of the book is its collected unit testing wisdom from people who&#39;ve been there, done that on production systems for at least 15 years: veteran author and developer Jeff Langr, building on the wisdom of Pragmatic ..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "dqtQAAAAMAAJ",
+      "etag": "epdTkjSZsfw",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/dqtQAAAAMAAJ",
+      "volumeInfo": {
+        "title": "Java Testing Patterns",
+        "authors": [
+          "Jon Thomas",
+          "Matthew Young",
+          "Kyle Brown",
+          "Andrew Glover"
+        ],
+        "publisher": "John Wiley & Sons Incorporated",
+        "publishedDate": "2004-10",
+        "description": "* Focuses on software testing, which is one of the most important-and often the most overlooked-aspects of software development * First book that demonstrates how to apply both existing and new design patterns to the job of testing Java software * Explains how applying proven patterns to the testing of software can help ensure that applications function correctly and more efficiently, and are easier to maintain * Patterns will be extensively reviewed online to ensure community support and endorsement * Covers detailed patterns for unit, functional, database, and application deployment testing * Provides complete Java code that applies each pattern to a real-world sample application * Companion Web site provides code for Java pattern implementations, plus code for the sample applications and test suites",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UOM:39015059221807"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 400,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "averageRating": 5,
+        "ratingsCount": 1,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.3.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=dqtQAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=dqtQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=dqtQAAAAMAAJ&q=java+testing&dq=java+testing&hl=&cd=5&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=dqtQAAAAMAAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Java_Testing_Patterns.html?hl=&id=dqtQAAAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=dqtQAAAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "See ObjectMother pattern TestRunners ( JUnit ) , 328 – 329 \u003cb\u003eTest\u003c/b\u003e Scenarios collection , 232 \u003cb\u003eTest\u003c/b\u003e Stub . ... See also Petstore application TestSuite designing identifying business components for unit \u003cb\u003etesting\u003c/b\u003e , 244 identifying framework&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "WP1wDwAAQBAJ",
+      "etag": "cwBA6I2Xn2k",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/WP1wDwAAQBAJ",
+      "volumeInfo": {
+        "title": "Hands-On Automation Testing with Java for Beginners",
+        "subtitle": "Build automation testing frameworks from scratch with Java",
+        "authors": [
+          "Rahul Shetty"
+        ],
+        "publisher": "Packt Publishing Ltd",
+        "publishedDate": "2018-09-29",
+        "description": "Learn Java programming concepts to design automation testing frameworks Key Features Learn to use Java program logic in application testing Understand various test-driven development concepts with Java tools Master Java with lots of programming examples Book Description Java is one of the most commonly-used software languages by programmers and developers. Are you from a non-technical background and looking to master Java for your automation needs? Then Hands-On Automation Testing with Java for Beginners is for you. This book provides you with efficient techniques to effectively handle Java-related automation projects. You will learn how to handle strings and their functions in Java. As you make your way through the book, you will get to grips with classes and objects, along with their uses. In the concluding chapters, you will learn about the importance of inheritance and exceptions with practical examples. By the end of this book, you will have gained comprehensive knowledge of Java. What you will learn Understand the practical usage of Java conditions and loops Write any Java program logic with strategies, tips, and tricks Leverage advanced topics in Java collections to solve Java-related problems Understand and use objects, classes, methods, and functions in Java Build Java automation frameworks from scratch Obtain knowledge of Java object-oriented programming (OOP) concepts with practical implementations Who this book is for Hands-On Automation Testing with Java for Beginners is for software developers who want to step into the world of software quality assurance and perform automation testing using various testing frameworks. Prior experience of writing tests in Java is assumed.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781789539769"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1789539765"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 156,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.0.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=WP1wDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=WP1wDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=WP1wDwAAQBAJ&printsec=frontcover&dq=java+testing&hl=&cd=6&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=WP1wDwAAQBAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Hands_On_Automation_Testing_with_Java_fo.html?hl=&id=WP1wDwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true
+        },
+        "pdf": {
+          "isAvailable": true
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=WP1wDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Are you from a non-technical background looking to master Java for your automation needs? Then Hands-On Automation Testing with Java for Beginners is for you."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "pR0-DwAAQBAJ",
+      "etag": "ynULwjEO+/k",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/pR0-DwAAQBAJ",
+      "volumeInfo": {
+        "title": "Java Unit Testing with JUnit 5",
+        "subtitle": "Test Driven Development with JUnit 5",
+        "authors": [
+          "Shekhar Gulati",
+          "Rahul Sharma"
+        ],
+        "publisher": "Apress",
+        "publishedDate": "2017-11-10",
+        "description": "Explore the new way of building and maintaining test cases with Java test driven development (TDD) using JUnit 5. This book doesn't just talk about the new concepts, it shows you ways of applying them in TDD and Java 8 to continuously deliver code that excels in all metrics. Unit testing and test driven development have now become part of every developer's skill set. For Java developers, the most popular testing tool has been JUnit, and JUnit 5 is built using the latest features of Java. With Java Unit Testing with JUnit 5, you'll master these new features, including method parameters, extensions, assertions and assumptions, and dynamic tests. You'll also see how to write clean tests with less code. This book is a departure from using older practices and presents new ways of performing tests, building assertions, and injecting dependencies. What You Will Learn Write tests the JUnit 5 way Run your tests from within your IDE Integrate tests with your build and static analysis tools Migrate from JUnit 4 to JUnit 5 Who This Book Is For Java developers both with and without any prior unit testing experience.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781484230152"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1484230159"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 151,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=pR0-DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=pR0-DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=pR0-DwAAQBAJ&printsec=frontcover&dq=java+testing&hl=&cd=7&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=pR0-DwAAQBAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Java_Unit_Testing_with_JUnit_5.html?hl=&id=pR0-DwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Java_Unit_Testing_with_JUnit_5-sample-epub.acsm?id=pR0-DwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Java_Unit_Testing_with_JUnit_5-sample-pdf.acsm?id=pR0-DwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=pR0-DwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "You&#39;ll also see how to write clean tests with less code. This book is a departure from using older practices and presents new ways of performing tests, building assertions, and injecting dependencies."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "TZCIAgAAQBAJ",
+      "etag": "GrwXk6Jq5kw",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/TZCIAgAAQBAJ",
+      "volumeInfo": {
+        "title": "Automated Functional Testing for Java-Swing",
+        "authors": [
+          "David Harrison"
+        ],
+        "publisher": "Lulu.com",
+        "publishedDate": "2009-10-03",
+        "description": "This book presents a practical and concrete approach to the challenging topic of Automated Functional Testing of software, in particular for software developed using the Java-Swing framework.The test automation envisaged in this work is that required for project-based Quality Assurance, a particularly challenging context due to time pressures. The test automation theme is firstly placed firmly within the overall QA activity on a typical project, prior to describing some of the usual reasons why automation fails and how the presented pattern of solution addresses these failures.Along with copious illustrations, there is a wealth of \"code\" that is available for download (www.dexters-defect-dungeon.com). Also included are two custom applications illustrating real test automation challenges - and solutions.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781409290681"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1409290689"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 255,
+        "printType": "BOOK",
+        "categories": [
+          "Computer software"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=TZCIAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=TZCIAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=TZCIAgAAQBAJ&pg=PA24&dq=java+testing&hl=&cd=8&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=TZCIAgAAQBAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Automated_Functional_Testing_for_Java_Sw.html?hl=&id=TZCIAgAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=TZCIAgAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Typically the developers will use a standard unit \u003cb\u003etesting\u003c/b\u003e framework, which for \u003cb\u003eJava\u003c/b\u003e would be most likely be JUnit4 - a framework for which a \u003cb\u003etesting\u003c/b\u003e pattern has been proposed5 Defect Management this part of the QA/\u003cb\u003eTest\u003c/b\u003e process reflects&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "I0NWg5is6O0C",
+      "etag": "DMkf2jIGEfg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/I0NWg5is6O0C",
+      "volumeInfo": {
+        "title": "Unit Testing in Java",
+        "subtitle": "How Tests Drive the Code",
+        "authors": [
+          "Johannes Link"
+        ],
+        "publisher": "Elsevier",
+        "publishedDate": "2003-06-10",
+        "description": "Software testing is indispensable and is one of the most discussed topics in software development today. Many companies address this issue by assigning a dedicated software testing phase towards the end of their development cycle. However, quality cannot be tested into a buggy application. Early and continuous unit testing has been shown to be crucial for high quality software and low defect rates. Yet current books on testing ignore the developer's point of view and give little guidance on how to bring the overwhelming amount of testing theory into practice. Unit Testing in Java represents a practical introduction to unit testing for software developers. It introduces the basic test-first approach and then discusses a large number of special issues and problem cases. The book instructs developers through each step and motivates them to explore further. Shows how the discovery and avoidance of software errors is a demanding and creative activity in its own right and can build confidence early in a project. Demonstrates how automated tests can detect the unwanted effects of small changes in code within the entire system. Discusses how testing works with persistency, concurrency, distribution, and web applications. Includes a discussion of testing with C++ and Smalltalk.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9780080520179"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "0080520170"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 376,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "averageRating": 5,
+        "ratingsCount": 1,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.9.6.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=I0NWg5is6O0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=I0NWg5is6O0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=I0NWg5is6O0C&pg=PA370&dq=java+testing&hl=&cd=9&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=I0NWg5is6O0C&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Unit_Testing_in_Java.html?hl=&id=I0NWg5is6O0C"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Unit_Testing_in_Java-sample-epub.acsm?id=I0NWg5is6O0C&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Unit_Testing_in_Java-sample-pdf.acsm?id=I0NWg5is6O0C&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=I0NWg5is6O0C&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "How \u003cb\u003eTests\u003c/b\u003e Drive the Code Johannes Link. \u003cb\u003ejava\u003c/b\u003e.io. Print Writer, 102 \u003cb\u003ejava\u003c/b\u003e.lang. reflect. Proxy, 115 JavaSpaces, 227 \u003cb\u003ejava\u003c/b\u003e. util. Thread, 201 jawax. servlet.jsp.tagext, 260 JDBC mocks, 193–195 JDepend, 331–332 JDK, 348 Jeffries, Ron, 164,&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "Ng9QDwAAQBAJ",
+      "etag": "6edLPOXvONc",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/Ng9QDwAAQBAJ",
+      "volumeInfo": {
+        "title": "Pragmatic Unit Testing in Java 8 with JUnit",
+        "authors": [
+          "Jeff Langr",
+          "Andy Hunt",
+          "Dave Thomas"
+        ],
+        "publisher": "Pragmatic Bookshelf",
+        "publishedDate": "2015-03-09",
+        "description": "The Pragmatic Programmers classic is back! Freshly updated for modern software development, Pragmatic Unit Testing in Java 8 With JUnit teaches you how to write and run easily maintained unit tests in JUnit with confidence. You'll learn mnemonics to help you know what tests to write, how to remember all the boundary conditions, and what the qualities of a good test are. You'll see how unit tests can pay off by allowing you to keep your system code clean, and you'll learn how to handle the stuff that seems too tough to test. Pragmatic Unit Testing in Java 8 With JUnit steps you through all the important unit testing topics. If you've never written a unit test, you'll see screen shots from Eclipse, IntelliJ IDEA, and NetBeans that will help you get past the hard part--getting set up and started. Once past the basics, you'll learn why you want to write unit tests and how to effectively use JUnit. But the meaty part of the book is its collected unit testing wisdom from people who've been there, done that on production systems for at least 15 years: veteran author and developer Jeff Langr, building on the wisdom of Pragmatic Programmers Andy Hunt and Dave Thomas. You'll learn: How to craft your unit tests to minimize your effort in maintaining them. How to use unit tests to help keep your system clean. How to test the tough stuff. Memorable mnemonics to help you remember what's important when writing unit tests. How to help your team reap and sustain the benefits of unit testing. You won't just learn about unit testing in theory--you'll work through numerous code examples. When it comes to programming, hands-on is the only way to learn!",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781680504248"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "168050424X"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 236,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.2.3.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=Ng9QDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=Ng9QDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=Ng9QDwAAQBAJ&pg=PT78&dq=java+testing&hl=&cd=10&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=Ng9QDwAAQBAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Pragmatic_Unit_Testing_in_Java_8_with_JU.html?hl=&id=Ng9QDwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Pragmatic_Unit_Testing_in_Java_8_with_JU-sample-epub.acsm?id=Ng9QDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Pragmatic_Unit_Testing_in_Java_8_with_JU-sample-pdf.acsm?id=Ng9QDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=Ng9QDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "As the \u003cb\u003etest\u003c/b\u003e directory&#39;s structure mirrors that of the src directory, each \u003cb\u003etest\u003c/b\u003e ends up in the same package as the target ... \u003cb\u003etest\u003c/b\u003e \u200b └── iloveyouboss \u200b └── ScoreCollectionTest.\u003cb\u003ejava\u003c/b\u003e In the preceding tree view, the \u003cb\u003etest\u003c/b\u003e.iloveyouboss."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "361QAAAAMAAJ",
+      "etag": "YoBD3ugqPyc",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/361QAAAAMAAJ",
+      "volumeInfo": {
+        "title": "Pragmatic Unit Testing",
+        "subtitle": "In Java with JUnit",
+        "authors": [
+          "Andrew Hunt",
+          "David Thomas"
+        ],
+        "publishedDate": "2003",
+        "description": "Presents a guide to unit testing with the JUnit library in Java along with providing information on writing code, detecting and fixing problems, testing pieces of code, and testing with a team.",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UOM:39015060081034"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 159,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "averageRating": 4,
+        "ratingsCount": 5,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.4.2.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=361QAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=361QAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=361QAAAAMAAJ&q=java+testing&dq=java+testing&hl=&cd=11&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=361QAAAAMAAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Pragmatic_Unit_Testing.html?hl=&id=361QAAAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=361QAAAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Presents a guide to unit testing with the JUnit library in Java along with providing information on writing code, detecting and fixing problems, testing pieces of code, and testing with a team."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "xxhKDwAAQBAJ",
+      "etag": "AM9jX3gJWPk",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/xxhKDwAAQBAJ",
+      "volumeInfo": {
+        "title": "Mastering Software Testing with JUnit 5",
+        "subtitle": "Comprehensive guide to develop high quality Java applications",
+        "authors": [
+          "Boni Garcia"
+        ],
+        "publisher": "Packt Publishing Ltd",
+        "publishedDate": "2017-10-27",
+        "description": "A comprehensive, hands-on guide on unit testing framework for Java programming language About This Book In-depth coverage of Jupiter, the new programming and extension model provided by JUnit 5 Integration of JUnit 5 with other frameworks such as Mockito, Spring, Selenium, Cucumber, and Docker Best practices for writing meaningful Jupiter test cases Who This Book Is For This book is for Java software engineers and testers. If you are a Java developer who is keen on improving the quality of your code and building world class applications then this book is for you. Prior experience of the concepts of automated testing will be helpful. What You Will Learn The importance of software testing and its impact on software quality The options available for testing Java applications The architecture, features and extension model of JUnit 5 Writing test cases using the Jupiter programming model How to use the latest and advanced features of JUnit 5 Integrating JUnit 5 with existing third-party frameworks Best practices for writing meaningful JUnit 5 test cases Managing software testing activities in a living software project In Detail When building an application it is of utmost importance to have clean code, a productive environment and efficient systems in place. Having automated unit testing in place helps developers to achieve these goals. The JUnit testing framework is a popular choice among Java developers and has recently released a major version update with JUnit 5. This book shows you how to make use of the power of JUnit 5 to write better software. The book begins with an introduction to software quality and software testing. After that, you will see an in-depth analysis of all the features of Jupiter, the new programming and extension model provided by JUnit 5. You will learn how to integrate JUnit 5 with other frameworks such as Mockito, Spring, Selenium, Cucumber, and Docker. After the technical features of JUnit 5, the final part of this book will train you for the daily work of a software tester. You will learn best practices for writing meaningful tests. Finally, you will learn how software testing fits into the overall software development process, and sits alongside continuous integration, defect tracking, and test reporting. Style and approach The book offers definitive and comprehensive coverage of all the Unit testing concepts with JUnit and its features using several real world examples so that readers can put their learning to practice almost immediately. This book is structured in three parts: Software testing foundations (software quality and Java testing) JUnit 5 in depth (programming and extension model of JUnit 5) Software testing in practice (how to write and manage JUnit 5 tests)",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781787124394"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1787124398"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 350,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.3.3.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=xxhKDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=xxhKDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=xxhKDwAAQBAJ&printsec=frontcover&dq=java+testing&hl=&cd=12&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=xxhKDwAAQBAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Mastering_Software_Testing_with_JUnit_5.html?hl=&id=xxhKDwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true
+        },
+        "pdf": {
+          "isAvailable": true
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=xxhKDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "This book shows you how to make use of the power of JUnit 5 to write better software. The book begins with an introduction to software quality and software testing."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "mhgIEAAAQBAJ",
+      "etag": "YFFRL8HPJqg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/mhgIEAAAQBAJ",
+      "volumeInfo": {
+        "title": "JUnit in Action, Third Edition",
+        "authors": [
+          "Catalin Tudose"
+        ],
+        "publisher": "Manning Publications",
+        "publishedDate": "2020-12-08",
+        "description": "JUnit in Action, Third Edition has been completely rewritten for this release. The book is full of examples that demonstrate JUnit's modern features, including its new architecture; nested, tagged, and dynamic tests; and dependency injection. Summary JUnit is the gold standard for unit testing Java applications. Filled with powerful new features designed to automate software testing, JUnit 5 boosts your productivity and helps avoid debugging nightmares. Whether you're just starting with JUnit or you want to ramp up on the new features, JUnit in Action, Third Edition has you covered. Extensively revised with new code and new chapters, JUnit in Action, Third Edition is an up-to-date guide to smooth software testing. Dozens of hands-on examples illustrate JUnit 5's innovations for dependency injection, nested testing, parameterized tests, and more. Throughout, you’ll learn how to use JUnit 5 to automate your testing, for a process that consumes less resources, and gives you more time for developing. Purchase of the print book includes a free eBook in PDF, Kindle, and ePub formats from Manning Publications. About the technology The JUnit framework is the gold standard for unit testing Java applications—and knowing it is an essential skill for Java developers. The latest version, JUnit 5, is a total overhaul, now supporting modern Java features like Lambdas and Streams. About the book JUnit in Action, Third Edition has been completely rewritten for this release. The book is full of examples that demonstrate JUnit's modern features, including its new architecture; nested, tagged, and dynamic tests; and dependency injection. You'll benefit from author Catalin Tudose's unique \"pyramid\" testing strategy, which breaks the testing process into layers and sets you on the path to bug-free code creation. What's inside Migrating from JUnit 4 to 5 Effective test automation Test-driven development and behavior-driven development Using mocks for test isolation Connecting JUnit 5 with Maven or Gradle About the reader For intermediate Java developers. About the author Catalin Tudose has a Ph.D. in Computer Science, and over 15 years of experience as a Senior Java Developer and Technical Team Lead. Previous editions were authored by Petar Tahchiev, Felipe Leme, Gary Gregory, and Vincent Massol. Table of Contents PART 1 - JUNIT 1 JUnit jump-start 2 Exploring core JUnit 3 JUnit architecture 4 Migrating from JUnit 4 to JUnit 5 5 Software testing principles PART 2 - DIFFERENT TESTING STRATEGIES 6 Test quality 7 Coarse-grained testing with stubs 8 Testing with mock objects 9 In-container testing PART 3 - WORKING WITH JUNIT 5 AND OTHER TOOLS 10 Runing JUnit tests from Maven 3 11 Running JUnit tests from Gradle 6 12 JUnit 5 IDE support 13 Coninuous integration with JUnit 5 PART 4 - WORKING WITH MODERN FRAMEWORKS AND JUNIT 5 14 JUnit 5 extension model 15 Presentation-layer testing 16 Testing Spring applications 17 Testing Spring Boot applications 18 Testing a REST API 19 Testing database applications PART 5 - DEVELOPING APPLICATIONS WITH JUNIT 5 20 Test-driven development with JUnit 5 21 Behavior-driven development in JUnit 5 22 Implementing a test pyramid strategy with JUnit 5",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781617297045"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1617297046"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 525,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=mhgIEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=mhgIEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=mhgIEAAAQBAJ&printsec=frontcover&dq=java+testing&hl=&cd=13&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=mhgIEAAAQBAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/JUnit_in_Action_Third_Edition.html?hl=&id=mhgIEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=mhgIEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "The latest version, JUnit 5, is a total overhaul, now supporting modern Java features like Lambdas and Streams. About the book JUnit in Action, Third Edition has been completely rewritten for this release."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "T-oY6jbgjs8C",
+      "etag": "LYmwk9oAPCo",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/T-oY6jbgjs8C",
+      "volumeInfo": {
+        "title": "Key Java",
+        "subtitle": "Advanced Tips and Techniques",
+        "authors": [
+          "John Hunt",
+          "Alexander G. McManus"
+        ],
+        "publisher": "Springer Science & Business Media",
+        "publishedDate": "1998-07-10",
+        "description": "Intended for those who already know the Java language, this book will help programmers get the most out of Javas capabilities. Topics covered include: good Java style for reusable components, using Java beans, the JDBC, optimizing and testing code, using the IFC tools, and the new JFC. It also explores the significant and exciting developments in Java and covers techniques that will be fundamental to programmers developing significant applications in Java.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "3540762590"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9783540762591"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 331,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.2.2.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=T-oY6jbgjs8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=T-oY6jbgjs8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=T-oY6jbgjs8C&pg=PA151&dq=java+testing&hl=&cd=14&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=T-oY6jbgjs8C&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Key_Java.html?hl=&id=T-oY6jbgjs8C"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Key_Java-sample-pdf.acsm?id=T-oY6jbgjs8C&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=T-oY6jbgjs8C&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "They can also act as a form of regression \u003cb\u003etesting\u003c/b\u003e either when the class is modified or when a subclass is defined . ... In \u003cb\u003eJava\u003c/b\u003e , neither the structure of the objects is fixed nor are the actual types of parameters etc. likely to be&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "ugYovgAACAAJ",
+      "etag": "PQZ2+SOU/Pg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/ugYovgAACAAJ",
+      "volumeInfo": {
+        "title": "Testing Java Microservices",
+        "authors": [
+          "Alex Soto Bueno",
+          "Jason Porter",
+          "Andy Gumbrecht"
+        ],
+        "publisher": "Pearson Professional",
+        "publishedDate": "2018-01-28",
+        "description": "Summary Testing Java Microservices teaches you to implement unit and integration tests for microservice systems running on the JVM. You'll work with a microservice environment built using Java EE, WildFly Swarm, and Docker. You'll learn how to increase your test coverage and productivity, and gain confidence that your system will work as you expect. Purchase of the print book includes a free eBook in PDF, Kindle, and ePub formats from Manning Publications. About the Technology Microservice applications present special testing challenges. Even simple services need to handle unpredictable loads, and distributed message-based designs pose unique security and performance concerns. These challenges increase when you throw in asynchronous communication and containers. About the Book Testing Java Microservices teaches you to implement unit and integration tests for microservice systems running on the JVM. You'll work with a microservice environment built using Java EE, WildFly Swarm, and Docker. You'll advance from writing simple unit tests for individual services to more-advanced practices like chaos or integration tests. As you move towards a continuous-delivery pipeline, you'll also master live system testing using technologies like the Arquillian, Wiremock, and Mockito frameworks, along with techniques like contract testing and over-the-wire service virtualization. Master these microservice-specific practices and tools and you'll greatly increase your test coverage and productivity, and gain confidence that your system will work as you expect. What's Inside Test automation Integration testing microservice systems Testing container-centric systems Service virtualization About the Reader Written for Java developers familiar with Java EE, EE4J, Spring, or Spring Boot. About the Authors Alex Soto Bueno and Jason Porter are Arquillian team members. Andy Gumbrecht is an Apache TomEE developer and PMC. They all have extensive enterprise-testing experience. Table of Contents An introduction to microservices Application under test Unit-testing microservices Component-testing microservices Integration-testing microservices Contract tests End-to-end testing Docker and testing Service virtualization Continuous delivery in microservices",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "1617292893"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9781617292897"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 296,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=ugYovgAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=ugYovgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=ugYovgAACAAJ&dq=java+testing&hl=&cd=15&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=ugYovgAACAAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Testing_Java_Microservices.html?hl=&id=ugYovgAACAAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=ugYovgAACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "These challenges increase when you throw in asynchronous communication and containers. About the Book Testing Java Microservices teaches you to implement unit and integration tests for microservice systems running on the JVM."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "GxN0QgAACAAJ",
+      "etag": "9qk+WIp6eO4",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/GxN0QgAACAAJ",
+      "volumeInfo": {
+        "title": "Java Testing and Design",
+        "subtitle": "From Unit Testing to Automated Web Tests",
+        "authors": [
+          "Frank Cohen"
+        ],
+        "publisher": "Prentice-Hall PTR",
+        "publishedDate": "2004",
+        "description": "Shows how to understand what application you want to write, what strategies are likely to get you there, and then how to measure your level of success. This book teaches you a method to build production-worthy, scalable, and well performing Web-enabled applications.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "0131421891"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9780131421899"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 489,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=GxN0QgAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=GxN0QgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=GxN0QgAACAAJ&dq=java+testing&hl=&cd=16&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=GxN0QgAACAAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Java_Testing_and_Design.html?hl=&id=GxN0QgAACAAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=GxN0QgAACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "This book shows how to understand what application you want to write, what strategies are likely to get you there, and then how to measure your level of success."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "8zgzEAAAQBAJ",
+      "etag": "ISXjb1YO57Q",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/8zgzEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Effective Unit Testing",
+        "subtitle": "A guide for Java developers",
+        "authors": [
+          "Lasse Koskela"
+        ],
+        "publisher": "Simon and Schuster",
+        "publishedDate": "2013-02-03",
+        "description": "Summary Effective Unit Testing is written to show how to write good tests—tests that are concise and to the point, expressive, useful, and maintainable. Inspired by Roy Osherove's bestselling The Art of Unit Testing, this book focuses on tools and practices specific to the Java world. It introduces you to emerging techniques like behavior-driven development and specification by example, and shows you how to add robust practices into your toolkit. About Testing Test the components before you assemble them into a full application, and you'll get better software. For Java developers, there's now a decade of experience with well-crafted tests that anticipate problems, identify known and unknown dependencies in the code, and allow you to test components both in isolation and in the context of a full application. About this Book Effective Unit Testing teaches Java developers how to write unit tests that are concise, expressive, useful, and maintainable. Offering crisp explanations and easy-to-absorb examples, it introduces emerging techniques like behavior-driven development and specification by example. Programmers who are already unit testing will learn the current state of the art. Those who are new to the game will learn practices that will serve them well for the rest of their career. Purchase of the print book comes with an offer of a free PDF, ePub, and Kindle eBook from Manning. Also available is all code from the book. About the Author Lasse Koskela is a coach, trainer, consultant, and programmer. He hacks on open source projects, helps companies improve their productivity, and speaks frequently at conferences around the world. Lasse is the author of Test Driven, also published by Manning. What's Inside A thorough introduction to unit testing Choosing best-of-breed tools Writing tests using dynamic languages Efficient test automation Table of Contents PART 1 FOUNDATIONS The promise of good tests In search of good Test doubles PART 2 CATALOG Readability Maintainability Trustworthiness PART 3 DIVERSIONS Testable design Writing tests in other JVM languages Speeding up test execution",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781638353881"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1638353883"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": false
+        },
+        "pageCount": 258,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.2",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=8zgzEAAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=8zgzEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=8zgzEAAAQBAJ&dq=java+testing&hl=&cd=17&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=8zgzEAAAQBAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Effective_Unit_Testing.html?hl=&id=8zgzEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true
+        },
+        "pdf": {
+          "isAvailable": true
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=8zgzEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Purchase of the print book comes with an offer of a free PDF, ePub, and Kindle eBook from Manning. Also available is all code from the book. About the Author Lasse Koskela is a coach, trainer, consultant, and programmer."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "nK_FpwAACAAJ",
+      "etag": "wq2dlcpNSk0",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/nK_FpwAACAAJ",
+      "volumeInfo": {
+        "title": "Effective Unit Testing",
+        "subtitle": "A guide for Java developers",
+        "authors": [
+          "Lasse Koskela"
+        ],
+        "publisher": "Manning Publications",
+        "publishedDate": "2013-02-16",
+        "description": "Summary Effective Unit Testing is written to show how to write good tests—tests that are concise and to the point, expressive, useful, and maintainable. Inspired by Roy Osherove's bestselling The Art of Unit Testing, this book focuses on tools and practices specific to the Java world. It introduces you to emerging techniques like behavior-driven development and specification by example, and shows you how to add robust practices into your toolkit. About Testing Test the components before you assemble them into a full application, and you'll get better software. For Java developers, there's now a decade of experience with well-crafted tests that anticipate problems, identify known and unknown dependencies in the code, and allow you to test components both in isolation and in the context of a full application. About this Book Effective Unit Testing teaches Java developers how to write unit tests that are concise, expressive, useful, and maintainable. Offering crisp explanations and easy-to-absorb examples, it introduces emerging techniques like behavior-driven development and specification by example. Programmers who are already unit testing will learn the current state of the art. Those who are new to the game will learn practices that will serve them well for the rest of their career. Purchase of the print book comes with an offer of a free PDF, ePub, and Kindle eBook from Manning. Also available is all code from the book. About the Author Lasse Koskela is a coach, trainer, consultant, and programmer. He hacks on open source projects, helps companies improve their productivity, and speaks frequently at conferences around the world. Lasse is the author of Test Driven, also published by Manning. What's Inside A thorough introduction to unit testing Choosing best-of-breed tools Writing tests using dynamic languages Efficient test automation Table of Contents PART 1 FOUNDATIONS The promise of good tests In search of good Test doubles PART 2 CATALOG Readability Maintainability Trustworthiness PART 3 DIVERSIONS Testable design Writing tests in other JVM languages Speeding up test execution",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "1935182579"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9781935182573"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 248,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=nK_FpwAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=nK_FpwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=nK_FpwAACAAJ&dq=java+testing&hl=&cd=18&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=nK_FpwAACAAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Effective_Unit_Testing.html?hl=&id=nK_FpwAACAAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=nK_FpwAACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Purchase of the print book comes with an offer of a free PDF, ePub, and Kindle eBook from Manning. Also available is all code from the book. About the Author Lasse Koskela is a coach, trainer, consultant, and programmer."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "u-MFCAAAQBAJ",
+      "etag": "tniW8q9Ovgg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/u-MFCAAAQBAJ",
+      "volumeInfo": {
+        "title": "Formal Approaches to Software Testing",
+        "subtitle": "Third International Workshop on Formal Approaches to Testing of Software, FATES 2003, Montreal, Quebec, Canada, October 6th, 2003",
+        "authors": [
+          "Andreas Ulrich"
+        ],
+        "publisher": "Springer",
+        "publishedDate": "2004-01-24",
+        "description": "Formal methods provide system designers with the possibility to analyze system models and reason about them with mathematical precision and rigor. The use of formal methods is not restricted to the early development phases of a system, though. The di?erent testing phases can also bene?t from them to ease the p- duction and application of e?ective and e?cient tests. Many still regard formal methods and testing as an odd combination. Formal methods traditionally aim at verifying and proving correctness (a typical academic activity), while testing shows only the presence of errors (this is what practitioners do). Nonetheless, there is an increasing interest in the use of formal methods in software testing. It is expected that formal approaches are about to make a major impact on eme- ing testing technologies and practices. Testing proves to be a good starting point for introducing formal methods in the software development process. This volume contains the papers presented at the 3rd Workshop on Formal Approaches to Testing of Software, FATES 2003, that was in a?liation with the IEEE/ACM Conference on Automated Software Engineering (ASE 2003). This year, FATES received 43 submissions. Each submission was reviewed by at least three independent reviewers from the program committee with the help of - ditional reviewers. Based on their evaluations, 18 papers submitted by authors from 13 di?erent countries were selected for presentation at the workshop.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9783540246176"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "3540246177"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 268,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=u-MFCAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=u-MFCAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=u-MFCAAAQBAJ&pg=PA70&dq=java+testing&hl=&cd=19&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=u-MFCAAAQBAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Formal_Approaches_to_Software_Testing.html?hl=&id=u-MFCAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Formal_Approaches_to_Software_Testing-sample-pdf.acsm?id=u-MFCAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=u-MFCAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Writing specifications using \u003cb\u003eJava\u003c/b\u003e Modeling Language has been accepted for a long time as a practical approach to increasing the correctness and quality of \u003cb\u003eJava\u003c/b\u003e programs. However, the current JML \u003cb\u003etesting\u003c/b\u003e system (the JML and JUnit&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "yH4rygEACAAJ",
+      "etag": "OH4tL2L4QlA",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/yH4rygEACAAJ",
+      "volumeInfo": {
+        "title": "Effective Unit Testing",
+        "subtitle": "A guide for Java developers",
+        "authors": [
+          "Lasse Koskela"
+        ],
+        "publisher": "Manning Publications",
+        "publishedDate": "2013-02-16",
+        "description": "Summary Effective Unit Testing is written to show how to write good tests—tests that are concise and to the point, expressive, useful, and maintainable. Inspired by Roy Osherove's bestselling The Art of Unit Testing, this book focuses on tools and practices specific to the Java world. It introduces you to emerging techniques like behavior-driven development and specification by example, and shows you how to add robust practices into your toolkit. About Testing Test the components before you assemble them into a full application, and you'll get better software. For Java developers, there's now a decade of experience with well-crafted tests that anticipate problems, identify known and unknown dependencies in the code, and allow you to test components both in isolation and in the context of a full application. About this Book Effective Unit Testing teaches Java developers how to write unit tests that are concise, expressive, useful, and maintainable. Offering crisp explanations and easy-to-absorb examples, it introduces emerging techniques like behavior-driven development and specification by example. Programmers who are already unit testing will learn the current state of the art. Those who are new to the game will learn practices that will serve them well for the rest of their career. Purchase of the print book comes with an offer of a free PDF, ePub, and Kindle eBook from Manning. Also available is all code from the book. About the Author Lasse Koskela is a coach, trainer, consultant, and programmer. He hacks on open source projects, helps companies improve their productivity, and speaks frequently at conferences around the world. Lasse is the author of Test Driven, also published by Manning. What's Inside A thorough introduction to unit testing Choosing best-of-breed tools Writing tests using dynamic languages Efficient test automation Table of Contents PART 1 FOUNDATIONS The promise of good tests In search of good Test doubles PART 2 CATALOG Readability Maintainability Trustworthiness PART 3 DIVERSIONS Testable design Writing tests in other JVM languages Speeding up test execution",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "1935182579"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9781935182573"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 248,
+        "printType": "BOOK",
+        "categories": [
+          "Computers"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=yH4rygEACAAJ&dq=java+testing&hl=&cd=20&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=yH4rygEACAAJ&dq=java+testing&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Effective_Unit_Testing.html?hl=&id=yH4rygEACAAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=yH4rygEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Purchase of the print book comes with an offer of a free PDF, ePub, and Kindle eBook from Manning. Also available is all code from the book. About the Author Lasse Koskela is a coach, trainer, consultant, and programmer."
+      }
+    }
+  ]
+}

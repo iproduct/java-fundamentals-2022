@@ -104,7 +104,7 @@
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                 <version>1.0.2</version>
                 <configuration>
-                    <sourceDirectory>${basedir}/src/test/resources/schemas</sourceDirectory>
+                    <sourceDirectory>${basedir}/src/main/resources/schemas</sourceDirectory>
                     <targetPackage>course.java.model.jsonschemas</targetPackage>
                     <sourceType>json</sourceType>
                 </configuration>
