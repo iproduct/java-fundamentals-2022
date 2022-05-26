@@ -13,7 +13,10 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import static java.lang.Math.min;
@@ -23,7 +26,7 @@ public class AsyncHttpClientGoogleBooks {
     public static final String GOOGLE_BOOKS_API_URI =
             "https://www.googleapis.com/books/v1/volumes?q=";
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
         // read and encode search terms
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter keywords to search books:");
@@ -46,40 +49,41 @@ public class AsyncHttpClientGoogleBooks {
                 .timeout(Duration.ofSeconds(5))
                 .GET()
                 .build();
-        var response = client
-                .send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
-        System.out.println("Response status code: " + response.statusCode());
-//        System.out.println("Results: " + response.body());
+        var completableFuture = client.sendAsync(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8))
+                .thenAccept(response -> {
+                    System.out.println("Response status code: " + response.statusCode());
+                    // unmarshal json to java objects using Jackson ObjectMapper
+                    ObjectMapper mapper = new ObjectMapper();
+                    Books books = null;
+                    try {
+                        books = mapper.readValue(response.body(), Books.class);
+                        System.out.println(formatBooksData(books));
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+        completableFuture.get();
+    }
 
-        // unmarshal json to java objects using Jackson ObjectMapper
-        ObjectMapper mapper = new ObjectMapper();
-//        URL booksFileUrl = SyncHttpClientGoogleBooks.class.getClassLoader().getResource(BOOKS_JSON_FILENAME);
-        try {
-            var books = mapper.readValue(response.body(), Books.class);
-            books.getItems().stream().map(item -> {
-                        var info = item.getVolumeInfo();
-                        return String.format("""
-                                        Title:      %s
-                                        Subtitle:   %s
-                                        Authors:    %s
-                                        Publisher:  %s
-                                        Date:       %s
-                                        Description:%s%n
-                                        """,
-                                info.getTitle(),
-                                info.getSubtitle()!= null ? info.getSubtitle() : "",
-                                info.getAuthors().stream().collect(Collectors.joining(", ")),
-                                info.getPublisher(),
-                                info.getPublishedDate(),
-                                info.getDescription() != null ?
-                                    info.getDescription().substring(0, min(80, info.getDescription().length())) + "..."
-                                : "");
-                    })
-                    .forEach(System.out::println);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static String formatBooksData(Books books) {
+        return books.getItems().stream().map(item -> {
+            var info = item.getVolumeInfo();
+            return String.format("""
+                            Title:      %s
+                            Subtitle:   %s
+                            Authors:    %s
+                            Publisher:  %s
+                            Date:       %s
+                            Description:%s%n
+                            """,
+                    info.getTitle(),
+                    info.getSubtitle() != null ? info.getSubtitle() : "",
+                    info.getAuthors().stream().collect(Collectors.joining(", ")),
+                    info.getPublisher(),
+                    info.getPublishedDate(),
+                    info.getDescription() != null ?
+                            info.getDescription().substring(0, min(80, info.getDescription().length())) + "..."
+                            : "");
+        }).collect(Collectors.joining("\n"));
     }
 }
