@@ -11,7 +11,7 @@
 <h2><%= new Date() %>
 </h2>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="hello">Hello Servlet</a>
 <a href="form-servlet">Form Servlet</a>
 </body>
 </html>
