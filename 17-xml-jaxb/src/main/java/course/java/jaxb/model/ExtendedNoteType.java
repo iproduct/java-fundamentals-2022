@@ -50,8 +50,7 @@ public class ExtendedNoteType
      * Gets the value of the priority property.
      * 
      * @return
-     *     possible object is
-     *     {@link BigInteger }
+     *     possible object is int
      *     
      */
     public int getPriority() {
@@ -62,8 +61,7 @@ public class ExtendedNoteType
      * Sets the value of the priority property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link BigInteger }
+     *     allowed object is int
      *     
      */
     public void setPriority(int value) {
@@ -74,8 +72,7 @@ public class ExtendedNoteType
      * Gets the value of the id property.
      * 
      * @return
-     *     possible object is
-     *     {@link BigInteger }
+     *     possible object is long
      *     
      */
     public long getId() {
@@ -86,8 +83,7 @@ public class ExtendedNoteType
      * Sets the value of the id property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link BigInteger }
+     *     allowed object is long
      *     
      */
     public void setId(long value) {
