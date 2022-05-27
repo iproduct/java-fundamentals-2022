@@ -76,7 +76,7 @@ public class ValidateXML {
         }
     }
     public static void main(String[] args){
-    	ValidateXML.validate("note9.xsd", "note2.xml");
+    	ValidateXML.validate("xml/note9.xsd", "xml/note2.xml");
     	System.out.println("Done.");
     }
 }
