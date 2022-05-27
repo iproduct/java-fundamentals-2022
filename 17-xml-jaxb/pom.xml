@@ -43,7 +43,7 @@
                 <configuration>
                     <!-- Use all XSDs under the west directory for sources here. -->
                     <sources>
-                        <source>xml/note.xsd</source>
+                        <source>xml/note9.xsd</source>
                     </sources>
                     <!-- The package of your generated sources -->
                     <packageName>course.java.jaxb.model</packageName>

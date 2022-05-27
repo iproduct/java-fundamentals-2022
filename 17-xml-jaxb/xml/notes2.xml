@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<notes xmlns="http://iproduct.org/notes">
+	<note id="1">
+		<to>Tove</to>
+		<from>Dimitar</from>
+		<heading>Reminder</heading>
+		<body>Don't forget me this weekend!</body>
+		<priority>10</priority>
+	</note>
+	<note id="2">
+		<to>Office</to>
+		<from>Dimitar</from>
+		<heading>New Course</heading>
+		<body>New JavaEE course started</body>
+		<priority>1</priority>
+	</note>
+	<note id="3">
+		<to>Office</to>
+		<from>Dimitar</from>
+		<heading>New Course</heading>
+		<body>New JavaEE course started</body>
+	</note>
+</notes>
