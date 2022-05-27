@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="unqualified">
+
+	<xs:element name="notes" type="noteListType" />
+
+	<xs:complexType name="noteType">
+		<xs:sequence>
+			<xs:element name="to" type="xs:string" />
+			<xs:element name="from">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Gergana" />
+						<xs:enumeration value="Denitza" />
+						<xs:enumeration value="Dimitar" />
+						<xs:enumeration value="Krasimir" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="heading" type="xs:string" />
+			<xs:element name="body" type="xs:string" />
+			<xs:element name="date" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:date">
+						<xs:pattern value="20\d{2}-\d{2}-\d{2}"></xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="extendedNoteType">
+		<xs:complexContent>
+			<xs:extension base="noteType">
+				<xs:sequence>
+					<xs:element name="priority" type="xs:positiveInteger" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="id" type="xs:positiveInteger" use="optional"></xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="noteListType">
+		<xs:sequence>
+			<xs:element name="note" type="extendedNoteType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

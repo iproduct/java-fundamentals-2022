@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<notes xmlns="http://iproduct.org/notes">
+	<note id="1">
+		<to>Tove</to>
+		<from>Gergana</from>
+		<heading>Reminder</heading>
+		<body>Don't forget me this weekend!</body>
+		<date>2013-10-11</date>
+		<priority>10</priority>
+	</note>
+</notes>

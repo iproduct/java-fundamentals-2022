@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<person xmlns="http://www.example.org/family"
+xmlns:ch="http://www.example.org/children"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.example.org/family family.xsd 
+http://www.example.org/children children.xsd">
+
+  <firstname>Hege</firstname>
+  <lastname>Refsnes</lastname>
+  <children2>
+    <ch:childname>Cecilie</ch:childname>
+    <ch:childname>Brian</ch:childname>
+  </children2>
+</person>
+

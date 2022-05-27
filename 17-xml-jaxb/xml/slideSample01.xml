@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<!DOCTYPE slideshow SYSTEM "slideshow3.dtd">
 <!--  A SAMPLE set of slides  -->
 
 <slideshow 
@@ -11,12 +10,12 @@
 
     <!-- TITLE SLIDE -->
     <slide type="all">
-      <slide-title>Wake up to WonderWidgets!</slide-title>
+      <title>Wake up to WonderWidgets!</title>
     </slide>
 
     <!-- OVERVIEW -->
     <slide type="all">
-      <slide-title>Overview</slide-title>
+      <title>Overview</title>
       <item>Why <em>WonderWidgets</em> are great</item>
       <item/>
       <item>Who <em>buys</em> WonderWidgets</item>
