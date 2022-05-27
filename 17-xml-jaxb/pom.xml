@@ -41,8 +41,12 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <!-- Use all XSDs under the west directory for sources here. -->
+                    <sources>
+                        <source>xml/note.xsd</source>
+                    </sources>
                     <!-- The package of your generated sources -->
-                    <packageName>com.example.myschema</packageName>
+                    <packageName>course.java.jaxb.model</packageName>
                 </configuration>
             </plugin>
         </plugins>
