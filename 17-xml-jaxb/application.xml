@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>application configuration</comment>
+<entry key="date">2022-05-27</entry>
+<entry key="config.path">D:\Course_Java_Web_Development\git\java-fundamentals-2022\17-xml-jaxb\application.xml</entry>
+<entry key="name">Java Fundamentals Demo</entry>
+<entry key="version">1.2.3</entry>
+</properties>

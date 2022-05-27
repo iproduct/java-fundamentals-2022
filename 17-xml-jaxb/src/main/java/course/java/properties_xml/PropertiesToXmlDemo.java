@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class PropertiesToXmlDemo {
 
     public static void main(String[] args) throws IOException {
         URL appConfigPath = PropertiesToXmlDemo.class.getClassLoader()
-                .getResource("properties/app.properties");
+                .getResource("app.properties");
 
         System.out.println("Path: " + appConfigPath);
 
@@ -46,13 +47,12 @@ public class PropertiesToXmlDemo {
         Path configPath;
         try {
             configPath = Paths.get(appConfigPath.toURI());
-            Path xmlPath = configPath.resolve("../application.xml").normalize();
+            Path xmlPath = configPath.resolve("../../../application.xml").normalize();
             appProps.setProperty("config.path", xmlPath.toString());
             printProperties(appProps);
 
             appProps.storeToXML(new FileOutputStream(xmlPath.toString()),
-                    "application configuration",
-                    Charset.forName("utf-8").toString());
+                    "application configuration", StandardCharsets.UTF_8);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
