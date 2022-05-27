@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><notes>
+	<note>
+		<to>Tove</to>
+		<from>Dimitar</from>
+		<heading>Reminder</heading>
+		<body>Don't forget me this weekend!</body>
+	</note>
+	<note>
+		<to>Office</to>
+		<from>Dimitar</from>
+		<heading>New Course</heading>
+		<body>New JavaEE course started</body>
+	</note>
+	<note>
+		<to>Office</to>
+		<from>Dimitar</from>
+		<heading>New Course</heading>
+		<body>New JavaEE course started</body>
+	</note>
+<note><to>Java Course</to><from>Trayan</from><heading>Last Lecture</heading><body>XML Processing demos</body></note></notes>

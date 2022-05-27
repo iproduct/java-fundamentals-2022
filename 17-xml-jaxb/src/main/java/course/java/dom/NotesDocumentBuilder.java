@@ -25,8 +25,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 public class NotesDocumentBuilder {
-	public static final String XS_FILE_NAME = "note.xsd";
-	public static final String XML_FILE_NAME = "notes.xml";
+	public static final String XS_FILE_NAME = "xml/note.xsd";
+	public static final String XML_FILE_NAME = "xml/notes.xml";
 	public static final String XML_OUTPUT_FILE_NAME = "notes.xml";
 
 	public static void main(String[] args) {
@@ -67,8 +67,8 @@ public class NotesDocumentBuilder {
 			});
 			Document doc = db.parse(new File(XML_FILE_NAME));
 
-			addNote(doc, "Trayan", "Office", "New Course",
-					"New JavaEE course started");
+			addNote(doc, "Trayan", "Java Course", "Last Lecture",
+					"XML Processing demos");
 			// Manipulate document
 			// Element rootElement = doc.getDocumentElement();
 			NodeList notes = doc.getElementsByTagName("note");
